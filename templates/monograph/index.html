@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mira Voss · Architect</title>
+  <meta name="description" content="Portfolio of Mira Voss, an architect practicing in Copenhagen." />
+  <meta name="theme-color" content="#16352b" />
+  <!--
+    MONOGRAPH — single-file portfolio template.
+    Replace every element with data-field. The left panel is the cover; the right column is the index.
+    Sample copy is fictional.
+    Delete the "All templates" link before publishing your own site.
+  -->
+  <script>
+    if (location.search.indexOf("preview=1") !== -1) document.documentElement.classList.add("previewing");
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cover: #16352b;
+      --cover-ink: #f3efe4;
+      --paper: #f3efe4;
+      --ink: #1a1a18;
+      --muted: #5e5a52;
+      --rule: #ddd6c8;
+      --gold: #a68445;
+      --gallery-bar: 34px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html.previewing { --gallery-bar: 0px; }
+    html.previewing, html.previewing body { overflow: hidden; height: 100%; }
+    html.previewing .template-gallery { display: none; }
+    body { margin: 0; padding-top: var(--gallery-bar); background: var(--paper); color: var(--ink); font-family: Outfit, "Avenir Next", sans-serif; line-height: 1.5; }
+    a { color: inherit; }
+    a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+    .shell { display: grid; grid-template-columns: minmax(280px, 40%) 1fr; min-height: 100vh; }
+    .cover {
+      position: sticky;
+      top: var(--gallery-bar);
+      height: calc(100vh - var(--gallery-bar));
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1.6rem 1.6rem 1.4rem;
+      background: var(--cover);
+      color: var(--cover-ink);
+    }
+    .monogram {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-weight: 500;
+      font-size: clamp(7rem, 14vw, 11rem);
+      line-height: .75;
+      letter-spacing: -0.04em;
+    }
+    .cover h1 {
+      margin: .4rem 0 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-weight: 500;
+      font-size: clamp(2.6rem, 4vw, 3.6rem);
+      letter-spacing: -0.03em;
+      line-height: .95;
+    }
+    .cover .role { margin: .7rem 0 0; letter-spacing: .16em; text-transform: uppercase; font-size: .75rem; color: #d9c89a; }
+    .cover footer { display: flex; justify-content: space-between; gap: 1rem; font-size: .95rem; }
+    .cover a { color: var(--cover-ink); }
+    .index { padding: 1.6rem 1.6rem 5rem; }
+    .index header {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: baseline;
+      padding-bottom: .8rem;
+      border-bottom: 1px solid var(--ink);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-size: .75rem;
+    }
+    .index header a { text-decoration: none; }
+    .index header nav { display: flex; gap: 1rem; }
+    h2 {
+      margin: 2rem 0 .4rem;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-weight: 500;
+      font-size: 2.4rem;
+      letter-spacing: -0.03em;
+    }
+    .about { margin: 0; max-width: 46rem; font-size: 1.12rem; color: #2a2926; }
+    .project {
+      display: grid;
+      grid-template-columns: 3rem 1fr auto;
+      gap: .8rem;
+      padding: 1.05rem 0;
+      border-bottom: 1px solid var(--rule);
+      text-decoration: none;
+      align-items: baseline;
+    }
+    .project:hover h3 { color: var(--gold); }
+    .project span { color: var(--muted); font-variant-numeric: tabular-nums; }
+    .project h3 {
+      margin: 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-weight: 500;
+      font-size: 2rem;
+      letter-spacing: -0.03em;
+    }
+    .project p { grid-column: 2 / -1; margin: .15rem 0 0; color: var(--muted); }
+    .meta { color: var(--muted); font-size: .9rem; }
+    .practice { display: grid; grid-template-columns: 8rem 1fr; gap: .35rem 1rem; margin-top: .6rem; }
+    .practice div { padding-top: .7rem; border-top: 1px solid var(--rule); }
+    .practice span { color: var(--muted); }
+    .colophon { margin-top: 2.4rem; color: var(--muted); font-size: .92rem; }
+    .template-gallery {
+      position: fixed;
+      z-index: 5;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--gallery-bar);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--ink);
+      color: var(--paper);
+      text-decoration: none;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    @media (max-width: 860px) {
+      .shell { grid-template-columns: 1fr; }
+      .cover { position: relative; height: auto; min-height: 70vh; }
+      .project { grid-template-columns: 2.2rem 1fr; }
+      .meta { grid-column: 2; }
+      .practice { grid-template-columns: 1fr; }
+      .index header { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="cover">
+      <div>
+        <div class="monogram" aria-hidden="true" data-field="initial">M</div>
+        <h1 data-field="name">Mira Voss</h1>
+        <p class="role" data-field="role">Architect · Copenhagen</p>
+      </div>
+      <footer>
+        <span data-field="focus">Houses, rooms, public buildings</span>
+        <a data-field="email" href="mailto:studio@miravoss.example">Email</a>
+      </footer>
+    </aside>
+    <main class="index">
+      <header>
+        <span>Monograph · 2026</span>
+        <nav aria-label="Sections">
+          <a href="#work">Work</a>
+          <a href="#practice">Practice</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
+      <h2>Selected work</h2>
+      <p class="about" id="about" data-field="about">A small practice. Most of the work is houses and the slow parts of public buildings: the room you wait in, the court you cross, the stair you remember. Drawings are the point. Photographs come later, and only if they tell the truth about the light.</p>
+      <section id="work">
+        <a class="project" href="#courtyard">
+          <span>01</span>
+          <h3 data-field="project-title">Courtyard House</h3>
+          <span class="meta">Frederiksberg · 2025</span>
+          <p data-field="project-summary">A family house organized around a brick court. The rooms borrow light from the middle and give the street almost nothing.</p>
+        </a>
+        <a class="project" href="#reading">
+          <span>02</span>
+          <h3 data-field="project-title">Reading Room</h3>
+          <span class="meta">Aarhus · 2024</span>
+          <p data-field="project-summary">An addition to a branch library. One long table, a high window, and shelves that stop before the ceiling so the room stays a room.</p>
+        </a>
+        <a class="project" href="#kiln">
+          <span>03</span>
+          <h3 data-field="project-title">Kiln Pavilion</h3>
+          <span class="meta">Bornholm · 2023</span>
+          <p data-field="project-summary">A seasonal workspace for a ceramics studio. Timber, a thick roof, and a door wide enough for a kiln.</p>
+        </a>
+        <a class="project" href="#landing">
+          <span>04</span>
+          <h3 data-field="project-title">Landing</h3>
+          <span class="meta">Malmö · 2022</span>
+          <p data-field="project-summary">The arrival hall of a small clinic. Benches in the light, desks out of it, and a material palette a person can touch without thinking.</p>
+        </a>
+      </section>
+      <section id="practice">
+        <h2>Practice</h2>
+        <div class="practice">
+          <span>2020 —</span><div data-field="job-title">Own studio, Copenhagen</div>
+          <span>2015 — 20</span><div data-field="company">Project architect, Holm &amp; Line</div>
+          <span>2012 — 15</span><div>Assistant, a housing office in Basel</div>
+        </div>
+      </section>
+      <p class="colophon" id="contact">
+        <span data-field="year">2026</span> ·
+        <a data-field="email" href="mailto:studio@miravoss.example">studio@miravoss.example</a>
+        · Sample projects, for the template.
+      </p>
+    </main>
+  </div>
+  <a class="template-gallery" href="../../index.html">All templates</a>
+</body>
+</html>

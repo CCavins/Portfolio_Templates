@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ren Park · Art Director</title>
+  <meta name="description" content="Portfolio of Ren Park, an art director based in Los Angeles." />
+  <meta name="theme-color" content="#efeae2" />
+  <!--
+    ATELIER — single-file portfolio template.
+    Replace every element with data-field. data-tone sets the background each project reveals.
+    Tones in the stylesheet: paper (default), ink, signal.
+    Sample copy is fictional.
+    Delete the "All templates" link before publishing your own site.
+  -->
+  <script>
+    if (location.search.indexOf("preview=1") !== -1) document.documentElement.classList.add("previewing");
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500&family=Syne:wght@500;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper: #efeae2;
+      --ink: #141414;
+      --signal: #e23a1b;
+      --muted: color-mix(in srgb, currentColor 68%, transparent);
+      --gallery-bar: 34px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html.previewing { --gallery-bar: 0px; }
+    html.previewing, html.previewing body { overflow: hidden; height: 100%; }
+    html.previewing .template-gallery { display: none; }
+    body {
+      margin: 0;
+      padding-top: var(--gallery-bar);
+      overflow-x: clip;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Outfit, "Avenir Next", sans-serif;
+      line-height: 1.45;
+      transition: background .35s ease, color .35s ease;
+    }
+    body[data-tone="ink"] { background: var(--ink); color: var(--paper); }
+    body[data-tone="signal"] { background: var(--signal); color: #fff6f2; }
+    ::selection { background: var(--ink); color: var(--paper); }
+    body[data-tone="ink"] ::selection { background: var(--paper); color: var(--ink); }
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+    .page { width: min(1180px, calc(100% - 2rem)); margin: 0 auto; }
+    header {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: baseline;
+      padding: 1.2rem 0;
+      font-size: .92rem;
+    }
+    .mark {
+      font-family: Syne, sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      text-decoration: none;
+      font-size: 1.15rem;
+    }
+    nav { display: flex; gap: 1.1rem; }
+    nav a { text-decoration: none; }
+    nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
+    .hero { padding: 6vh 0 6vh; min-height: 78vh; display: flex; flex-direction: column; justify-content: space-between; }
+    .eyebrow { margin: 0; letter-spacing: .18em; text-transform: uppercase; font-size: .75rem; }
+    h1 {
+      margin: 1rem 0 0;
+      font-family: Syne, sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.2rem, 10.2vw, 8.8rem);
+      max-width: 100%;
+      letter-spacing: -0.06em;
+      line-height: .84;
+      text-transform: uppercase;
+    }
+    .hero-foot {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: end;
+      margin-top: 2rem;
+      max-width: 52rem;
+    }
+    .hero-foot p { margin: 0; font-size: 1.25rem; max-width: 28rem; }
+    .where { letter-spacing: .14em; text-transform: uppercase; font-size: .75rem; }
+    .case {
+      display: grid;
+      grid-template-columns: 7rem 1fr auto;
+      gap: 1rem;
+      align-items: end;
+      width: 100%;
+      text-align: left;
+      padding: 1.6rem 0;
+      border: 0;
+      border-top: 1px solid color-mix(in srgb, currentColor 28%, transparent);
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
+    }
+    .case:last-of-type { border-bottom: 1px solid color-mix(in srgb, currentColor 28%, transparent); }
+    .case .num {
+      font-family: Syne, sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+    }
+    .case h2 {
+      margin: 0;
+      font-family: Syne, sans-serif;
+      font-weight: 750;
+      font-size: clamp(2rem, 5vw, 4rem);
+      letter-spacing: -0.045em;
+      line-height: .9;
+      text-transform: uppercase;
+    }
+    .case small { font-size: .95rem; }
+    .case:hover h2, .case:focus-visible h2 { font-style: italic; }
+    .about {
+      display: grid;
+      grid-template-columns: .7fr 1.3fr;
+      gap: 2rem;
+      padding: 4rem 0;
+    }
+    .about h2 {
+      margin: 0;
+      font-family: Syne, sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      line-height: .9;
+    }
+    .about p { margin: 0 0 1rem; font-size: 1.2rem; max-width: 42rem; }
+    .services { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0; padding: 0; list-style: none; }
+    .services li {
+      border: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+      border-radius: 999px;
+      padding: .4rem .75rem;
+      font-size: .92rem;
+    }
+    .contact {
+      padding: 6vh 0 7rem;
+      border-top: 1px solid color-mix(in srgb, currentColor 28%, transparent);
+    }
+    .contact a.huge {
+      display: inline-block;
+      font-family: Syne, sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 8.4vw, 7rem);
+      max-width: 100%;
+      letter-spacing: -0.06em;
+      line-height: .85;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+    .contact a.huge:hover { font-style: italic; }
+    .contact p { margin: 1rem 0 0; }
+    .template-gallery {
+      position: fixed;
+      z-index: 5;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--gallery-bar);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--ink);
+      color: var(--paper);
+      text-decoration: none;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    @media (max-width: 760px) {
+      header, .hero-foot, .case, .about { grid-template-columns: 1fr; display: grid; }
+      header { align-items: start; }
+      nav { flex-wrap: wrap; gap: .7rem 1rem; }
+      .hero { min-height: 0; padding-top: 2rem; }
+      .case small { grid-column: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      body { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <a class="mark" href="#top" data-field="name">Ren Park</a>
+      <nav aria-label="Sections">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero" id="top">
+      <p class="eyebrow" data-field="role">Art direction</p>
+      <h1 data-field="headline">For quiet<br />ambition.</h1>
+      <div class="hero-foot">
+        <p data-field="summary">Campaigns, identities, and the occasional object. I like work that can be specific without raising its voice.</p>
+        <span class="where" data-field="location">Los Angeles</span>
+      </div>
+    </section>
+
+    <section id="work" aria-label="Selected work">
+      <button class="case" type="button" data-tone="ink">
+        <span class="num">01</span>
+        <h2 data-field="project-title">Kin Club</h2>
+        <small>Identity · 2025</small>
+      </button>
+      <button class="case" type="button" data-tone="signal">
+        <span class="num">02</span>
+        <h2 data-field="project-title">Mira</h2>
+        <small>Campaign · 2024</small>
+      </button>
+      <button class="case" type="button" data-tone="paper">
+        <span class="num">03</span>
+        <h2 data-field="project-title">City Line</h2>
+        <small>Wayfinding · 2023</small>
+      </button>
+    </section>
+
+    <section class="about" id="about">
+      <h2>Practice</h2>
+      <div>
+        <p data-field="about">Kin Club wanted a members’ room that refused brass and velvet. Mira is a fragrance that photographs as a still life, not a lifestyle. City Line is a transit map you can read while walking. The through-line is editing: what the work is willing to leave out.</p>
+        <ul class="services" data-field="services">
+          <li>Art direction</li>
+          <li>Identity</li>
+          <li>Campaigns</li>
+          <li>Packaging</li>
+          <li>Wayfinding</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <a class="huge" data-field="email" href="mailto:studio@renpark.example">Let’s talk</a>
+      <p data-field="email-label">studio@renpark.example · <span data-field="year">2026</span></p>
+    </section>
+  </div>
+  <a class="template-gallery" href="../../index.html">All templates</a>
+  <script>
+    (function () {
+      const cases = [...document.querySelectorAll(".case")];
+      function tone(value) { document.body.dataset.tone = value; }
+      cases.forEach((item) => {
+        item.addEventListener("pointerenter", () => tone(item.dataset.tone));
+        item.addEventListener("focus", () => tone(item.dataset.tone));
+      });
+      document.getElementById("work").addEventListener("pointerleave", () => tone(""));
+    })();
+  </script>
+</body>
+</html>

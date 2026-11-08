@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sam Okonkwo · Software Engineer</title>
+  <meta name="description" content="Portfolio of Sam Okonkwo, a software engineer working on notes, images, and on-call tools." />
+  <meta name="theme-color" content="#070708" />
+  <!--
+    SIGNAL — single-file portfolio template.
+    Replace every element with data-field, and the data-title / data-copy pairs in the project list.
+    Sample copy is fictional.
+    Delete the "All templates" link before publishing your own site.
+  -->
+  <script>
+    if (location.search.indexOf("preview=1") !== -1) document.documentElement.classList.add("previewing");
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #070708;
+      --ink: #eceae4;
+      --muted: #9a9a93;
+      --line: #2a2a2a;
+      --acid: #d6ff4a;
+      --gallery-bar: 34px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html.previewing { --gallery-bar: 0px; }
+    html.previewing, html.previewing body { overflow: hidden; height: 100%; }
+    html.previewing .template-gallery { display: none; }
+    body {
+      margin: 0;
+      padding-top: var(--gallery-bar);
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+    ::selection { background: #d6ff4a; color: #111; }
+    a { color: inherit; }
+    button:focus-visible, a:focus-visible { outline: 2px solid var(--acid); outline-offset: 3px; }
+    .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+    header {
+      position: sticky;
+      top: var(--gallery-bar);
+      z-index: 3;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+      padding: .9rem 1.4rem;
+      background: rgba(7, 7, 8, .9);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+    .brand { font-weight: 500; text-decoration: none; }
+    nav { display: flex; gap: 1rem; }
+    nav a { color: var(--muted); text-decoration: none; font-size: .92rem; }
+    nav a:hover { color: var(--acid); }
+    .avail { display: inline-flex; align-items: center; gap: .45rem; color: var(--muted); font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; }
+    .avail i {
+      width: .55rem;
+      height: .55rem;
+      border-radius: 50%;
+      background: var(--acid);
+      display: inline-block;
+    }
+    main { width: min(1080px, calc(100% - 2.4rem)); margin: 0 auto; padding-bottom: 4rem; }
+    .intro { padding: 4.2rem 0 2.4rem; }
+    h1 {
+      margin: 0;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-weight: 500;
+      letter-spacing: -0.045em;
+      line-height: .95;
+    }
+    .role { margin: .8rem 0 0; color: var(--muted); font-size: 1.05rem; }
+    .lede { max-width: 40rem; margin: 1rem 0 0; font-size: 1.15rem; }
+    .work {
+      display: grid;
+      grid-template-columns: 1.45fr .85fr;
+      gap: 2.5rem;
+      align-items: start;
+      padding-top: 1rem;
+    }
+    .row {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 2.4rem 1.3fr .7fr;
+      gap: .8rem;
+      align-items: baseline;
+      text-align: left;
+      padding: 1rem 0;
+      border: 0;
+      border-top: 1px solid var(--line);
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
+    }
+    .row:last-child { border-bottom: 1px solid var(--line); }
+    .row small { color: var(--muted); }
+    .row[aria-current="true"], .row:hover { color: var(--acid); }
+    .detail {
+      position: sticky;
+      top: calc(var(--gallery-bar) + 4.2rem);
+      padding-top: .4rem;
+    }
+    .detail .mono { color: var(--muted); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; }
+    .detail h2 { margin: .45rem 0; font-size: 1.8rem; font-weight: 500; letter-spacing: -0.03em; }
+    .detail p { margin: 0; color: #c8c8c0; }
+    .stack { margin-top: .8rem; color: var(--acid); font-size: .85rem; }
+    section { padding: 2.2rem 0; scroll-margin-top: 4.5rem; }
+    h3.sec {
+      margin: 0 0 1rem;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .exp {
+      display: grid;
+      grid-template-columns: 8rem 1fr;
+      gap: .4rem 1rem;
+      padding: .8rem 0;
+      border-top: 1px solid var(--line);
+    }
+    .exp strong { font-weight: 500; }
+    .tools { margin: 0; color: #c8c8c0; font-size: 1.2rem; letter-spacing: -0.02em; }
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding-top: 1rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+    }
+    footer a:hover { color: var(--acid); }
+    .template-gallery {
+      position: fixed;
+      z-index: 4;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--gallery-bar);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--acid);
+      color: #111;
+      text-decoration: none;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .72rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    @media (max-width: 800px) {
+      header { align-items: flex-start; flex-direction: column; }
+      .work { display: flex; flex-direction: column-reverse; gap: 1rem; }
+      .detail { position: sticky; top: 7.2rem; background: var(--bg); padding-bottom: .8rem; border-bottom: 1px solid var(--line); }
+      .row { grid-template-columns: 2rem 1fr; }
+      .row small:last-child { display: none; }
+      .exp { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="brand" href="#top" data-field="name">Sam Okonkwo</a>
+    <nav aria-label="Sections">
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#stack">Stack</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <span class="avail mono"><i aria-hidden="true"></i> <span data-field="availability">Open · Austin</span></span>
+  </header>
+  <main id="top">
+    <section class="intro">
+      <h1 data-field="name">Sam Okonkwo</h1>
+      <p class="role mono" data-field="role">Software engineer</p>
+      <p class="lede" data-field="summary">I build small tools for notes, images, and the person who gets paged at midnight. The interesting part is usually the edge where the data is late and the interface still has to be calm.</p>
+    </section>
+
+    <div class="work" id="work">
+      <div class="list" role="list">
+        <button class="row" type="button" aria-current="true"
+          data-title="Ledger"
+          data-year="2025"
+          data-stack="TypeScript · SQLite"
+          data-copy="A local-first notebook. Sync is a background courtesy, not the product. Conflicts stay visible instead of disappearing into a toast.">
+          <span class="mono">01</span>
+          <span data-field="project-title">Ledger</span>
+          <small class="mono">2025</small>
+        </button>
+        <button class="row" type="button"
+          data-title="Parcel"
+          data-year="2024"
+          data-stack="Go · libvips"
+          data-copy="An image pipeline with one job: predictable derivatives. The interesting bugs were about color, not throughput.">
+          <span class="mono">02</span>
+          <span data-field="project-title">Parcel</span>
+          <small class="mono">2024</small>
+        </button>
+        <button class="row" type="button"
+          data-title="Switchboard"
+          data-year="2023"
+          data-stack="Go · Postgres"
+          data-copy="On-call routing that tells you why it woke you up. Schedules are data. Escalations leave a trail a person can read the next morning.">
+          <span class="mono">03</span>
+          <span data-field="project-title">Switchboard</span>
+          <small class="mono">2023</small>
+        </button>
+        <button class="row" type="button"
+          data-title="Margin"
+          data-year="2022"
+          data-stack="Rust · WASM"
+          data-copy="A typesetting experiment for narrow columns. It ships as a library because the demo was starting to pretend it was an app.">
+          <span class="mono">04</span>
+          <span data-field="project-title">Margin</span>
+          <small class="mono">2022</small>
+        </button>
+      </div>
+      <aside class="detail" aria-live="polite">
+        <p class="mono" id="detail-kicker">Selected · 2025</p>
+        <h2 id="detail-title">Ledger</h2>
+        <p id="detail-copy">A local-first notebook. Sync is a background courtesy, not the product. Conflicts stay visible instead of disappearing into a toast.</p>
+        <p class="stack mono" id="detail-stack">TypeScript · SQLite</p>
+      </aside>
+    </div>
+
+    <section id="experience">
+      <h3 class="sec">Experience</h3>
+      <article class="exp">
+        <span class="mono">2023 —</span>
+        <div>
+          <strong data-field="job-title">Engineer, tools</strong>
+          <div data-field="company">Northline</div>
+        </div>
+      </article>
+      <article class="exp">
+        <span class="mono">2020 — 23</span>
+        <div>
+          <strong data-field="job-title">Platform engineer</strong>
+          <div data-field="company">Keel Systems</div>
+        </div>
+      </article>
+      <article class="exp">
+        <span class="mono">2018 — 20</span>
+        <div>
+          <strong data-field="job-title">Generalist</strong>
+          <div data-field="company">A newsroom that still had a copy desk</div>
+        </div>
+      </article>
+    </section>
+
+    <section id="stack">
+      <h3 class="sec">Stack</h3>
+      <p class="tools" data-field="skills">TypeScript, Go, Rust, Postgres, SQLite. Interfaces in the browser when that is the honest place for them.</p>
+    </section>
+
+    <footer id="contact">
+      <span>&copy; <span data-field="year">2026</span> <span data-field="name">Sam Okonkwo</span></span>
+      <span>
+        <a data-field="email" href="mailto:sam.okonkwo@example.com">sam.okonkwo@example.com</a>
+        ·
+        <a data-field="github" href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </span>
+    </footer>
+  </main>
+  <a class="template-gallery" href="../../index.html">All templates</a>
+  <script>
+    (function () {
+      const rows = [...document.querySelectorAll(".row")];
+      const title = document.getElementById("detail-title");
+      const copy = document.getElementById("detail-copy");
+      const kicker = document.getElementById("detail-kicker");
+      const stack = document.getElementById("detail-stack");
+      function select(row) {
+        rows.forEach((item) => item.removeAttribute("aria-current"));
+        row.setAttribute("aria-current", "true");
+        title.textContent = row.dataset.title;
+        copy.textContent = row.dataset.copy;
+        kicker.textContent = "Selected · " + row.dataset.year;
+        stack.textContent = row.dataset.stack;
+      }
+      rows.forEach((row) => {
+        row.addEventListener("click", () => select(row));
+        row.addEventListener("mouseenter", () => select(row));
+        row.addEventListener("focus", () => select(row));
+      });
+    })();
+  </script>
+</body>
+</html>
