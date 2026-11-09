@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Amira Shah · Brand Strategist</title>
   <meta name="description" content="Portfolio of Amira Shah, a brand strategist based in New York." />
   <meta name="theme-color" content="#f3efe6" />
@@ -165,7 +165,13 @@
       .mast span:last-child, .mast strong { text-align: left; }
       .split, .notes, .work-item { grid-template-columns: 1fr; }
       .when { grid-column: 1; }
-      .table th:nth-child(3), .table td:nth-child(3) { display: none; }
+      .work-item { padding: 1rem 0; }
+      .table thead { display: none; }
+      .table, .table tbody, .table tr, .table td { display: block; width: 100%; }
+      .table tr { padding: .85rem 0; border-top: 1px solid var(--rule); }
+      .table td { border: 0; padding: .12rem 0; }
+      footer a { display: inline-flex; align-items: center; min-height: 44px; }
+      blockquote { font-size: clamp(1.45rem, 7vw, 2.1rem); }
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   </style>

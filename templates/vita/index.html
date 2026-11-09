@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Elena Vasquez · Operations</title>
   <meta name="description" content="Résumé of Elena Vasquez, an operations lead based in Seattle." />
   <meta name="theme-color" content="#ffffff" />
@@ -102,8 +102,11 @@
     }
     @media (max-width: 720px) {
       header, .layout, .job, .school { display: block; }
-      .contact { text-align: left; margin-top: .8rem; }
+      .contact { text-align: left; margin-top: .6rem; }
+      .contact a { display: inline-flex; align-items: center; min-height: 44px; }
       .when { display: block; margin-bottom: .2rem; }
+      h1 { font-size: clamp(2.1rem, 10vw, 2.8rem); }
+      .sheet { margin-top: 1.2rem; }
     }
     @media print {
       .template-gallery { display: none; }
