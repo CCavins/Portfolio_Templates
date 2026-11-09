@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nia Cole · Product Designer</title>
+  <meta name="description" content="Portfolio of Nia Cole, a product designer based in Chicago." />
+  <meta name="theme-color" content="#e7e5e1" />
+  <!--
+    BENTO — single-file portfolio template.
+    A tile grid: name, about, current work, projects, and contact.
+    Replace every element with data-field. Sample copy is fictional.
+    Delete the "All templates" link before publishing your own site.
+    The downloadable zip already has that link removed.
+  -->
+  <script>
+    if (location.search.indexOf("preview=1") !== -1) document.documentElement.classList.add("previewing");
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --page: #e7e5e1;
+      --tile: #fffcf8;
+      --ink: #1c1b19;
+      --muted: #5e5a54;
+      --line: #ddd8d0;
+      --gallery-bar: 34px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html.previewing { --gallery-bar: 0px; }
+    html.previewing, html.previewing body { overflow: hidden; height: 100%; }
+    html.previewing .template-gallery { display: none; }
+    body {
+      margin: 0;
+      padding-top: var(--gallery-bar);
+      background: var(--page);
+      color: var(--ink);
+      font-family: Sora, "Avenir Next", sans-serif;
+      line-height: 1.45;
+    }
+    a { color: inherit; }
+    a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+    .bento {
+      width: min(1080px, calc(100% - 1.5rem));
+      margin: 1.1rem auto 3rem;
+      display: grid;
+      grid-template-columns: 1.15fr 1fr 1fr;
+      gap: .75rem;
+    }
+    .tile {
+      background: var(--tile);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 1.2rem 1.25rem 1.3rem;
+      min-width: 0;
+    }
+    .name {
+      grid-row: span 2;
+      background: var(--ink);
+      color: #f6f3ee;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 280px;
+    }
+    .kicker, .label {
+      margin: 0;
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .name .kicker { color: #c8c2b8; }
+    h1 {
+      margin: .8rem 0 .35rem;
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      font-weight: 500;
+      letter-spacing: -0.045em;
+      line-height: .95;
+    }
+    .role { margin: 0; font-size: 1.05rem; }
+    .about { grid-column: span 2; }
+    .about p, .tile p { margin: .55rem 0 0; }
+    h2 {
+      margin: .35rem 0 0;
+      font-size: 1.35rem;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+    }
+    .meta { color: var(--muted); font-size: .92rem; }
+    .contact a { text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    .contact p + p { margin-top: .35rem; }
+    .template-gallery {
+      position: fixed;
+      z-index: 5;
+      top: 0; left: 0; right: 0;
+      height: var(--gallery-bar);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #141414;
+      color: #f6f3ec;
+      text-decoration: none;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    @media (max-width: 800px) {
+      .bento { grid-template-columns: 1fr; }
+      .name, .about { grid-column: auto; grid-row: auto; min-height: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <main class="bento">
+    <section class="tile name">
+      <p class="kicker" data-field="location">Chicago</p>
+      <div>
+        <h1 data-field="name">Nia Cole</h1>
+        <p class="role" data-field="role">Product designer</p>
+      </div>
+    </section>
+    <section class="tile about">
+      <p class="label">About</p>
+      <p data-field="about">I design the parts of a product people have to trust: onboarding, money movement, and the screen they see when something fails. Most of the work is removing a step, then checking that the step was not load-bearing.</p>
+    </section>
+    <section class="tile">
+      <p class="label">Now</p>
+      <h2 data-field="now-title">A smaller bank</h2>
+      <p data-field="now">Opening week for an account a person can explain to their parents. I own the first-run flow and the empty states.</p>
+    </section>
+    <section class="tile contact" id="contact">
+      <p class="label">Contact</p>
+      <p><a data-field="email" href="mailto:nia.cole@example.com">nia.cole@example.com</a></p>
+      <p><a data-field="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+    </section>
+    <section class="tile">
+      <p class="label">01</p>
+      <h2 data-field="project-title">Transfer</h2>
+      <p class="meta" data-field="project-meta">2025 · Fintech</p>
+      <p data-field="project-summary">A send-money flow that names the fee before the confirmation, not after the complaint.</p>
+    </section>
+    <section class="tile">
+      <p class="label">02</p>
+      <h2 data-field="project-title">First week</h2>
+      <p class="meta" data-field="project-meta">2024 · Health</p>
+      <p data-field="project-summary">Onboarding for a clinic app. The useful version asked for one thing, then got out of the way.</p>
+    </section>
+    <section class="tile">
+      <p class="label">03</p>
+      <h2 data-field="project-title">Night desk</h2>
+      <p class="meta" data-field="project-meta">2023 · Support</p>
+      <p data-field="project-summary">The tools a night-shift agent actually keeps open. Fewer panels, one timeline, a way to undo.</p>
+    </section>
+  </main>
+  <a class="template-gallery" href="../../index.html">All templates</a>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ada Mensah · Product Designer</title>
+  <meta name="description" content="Case studies by Ada Mensah, a product designer based in London." />
+  <meta name="theme-color" content="#f7f6f3" />
+  <!--
+    PROOF — single-file case-study template.
+    Each project leads with the outcome, then the role and a short account.
+    Replace every element with data-field. Sample copy is fictional.
+    Delete the "All templates" link before publishing your own site.
+    The downloadable zip already has that link removed.
+  -->
+  <script>
+    if (location.search.indexOf("preview=1") !== -1) document.documentElement.classList.add("previewing");
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper: #f7f6f3;
+      --ink: #171717;
+      --muted: #5c5c5c;
+      --line: #e3e0d8;
+      --gallery-bar: 34px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html.previewing { --gallery-bar: 0px; }
+    html.previewing, html.previewing body { overflow: hidden; height: 100%; }
+    html.previewing .template-gallery { display: none; }
+    body {
+      margin: 0;
+      padding-top: var(--gallery-bar);
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Figtree, "Avenir Next", sans-serif;
+      line-height: 1.5;
+    }
+    a { color: inherit; }
+    a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+    .page { width: min(1040px, calc(100% - 2rem)); margin: 0 auto; }
+    header {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: flex-end;
+      padding: 1.6rem 0 1.4rem;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 650;
+      letter-spacing: -0.045em;
+      line-height: .95;
+    }
+    .role { margin: .4rem 0 0; color: var(--muted); }
+    nav { display: flex; gap: 1rem; }
+    nav a { text-decoration: none; border-bottom: 1px solid var(--ink); }
+    .case {
+      display: grid;
+      grid-template-columns: .9fr 1.2fr;
+      gap: 1.5rem;
+      align-items: stretch;
+      padding: 1.3rem 0;
+      border-top: 1px solid var(--line);
+    }
+    .cover {
+      min-height: 220px;
+      border-radius: 18px;
+      padding: 1.1rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #161616;
+    }
+    .cover span { font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; }
+    .cover strong {
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      letter-spacing: -0.04em;
+      line-height: .95;
+    }
+    .c1 { background: #d7f27a; }
+    .c2 { background: #c9d7ff; }
+    .c3 { background: #ffd0bf; }
+    h2 { margin: 0; font-size: clamp(1.7rem, 3vw, 2.3rem); letter-spacing: -0.035em; line-height: 1.05; }
+    .outcome { margin: .7rem 0 0; font-size: 1.15rem; }
+    .detail { margin: .7rem 0 0; color: var(--muted); max-width: 52ch; }
+    .byline { margin: .9rem 0 0; font-size: .92rem; }
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding: 1.2rem 0 4rem;
+      border-top: 1px solid var(--ink);
+    }
+    .template-gallery {
+      position: fixed;
+      z-index: 5;
+      top: 0; left: 0; right: 0;
+      height: var(--gallery-bar);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #171717;
+      color: #f7f6f3;
+      text-decoration: none;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    @media (max-width: 760px) {
+      header { flex-direction: column; align-items: flex-start; }
+      .case { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div>
+        <h1 data-field="name">Ada Mensah</h1>
+        <p class="role" data-field="role">Product designer · London</p>
+      </div>
+      <nav aria-label="Contact">
+        <a data-field="email" href="mailto:ada.mensah@example.com">Email</a>
+        <a data-field="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </nav>
+    </header>
+    <main id="work">
+      <article class="case">
+        <div class="cover c1">
+          <span>01 · 2025</span>
+          <strong data-field="metric">−32% failed payments</strong>
+        </div>
+        <div>
+          <h2 data-field="project-title">Checkout</h2>
+          <p class="outcome" data-field="outcome">People stopped abandoning the card step once the fee and the failure had names.</p>
+          <p class="detail" data-field="detail">I redesigned the payment step for a marketplace. The old screen hid declines inside a toast. The new one says what happened, what it cost, and the one next action. Support tickets about “the money disappeared” dropped with the failure rate.</p>
+          <p class="byline" data-field="role-line">Lead design · with payments and support</p>
+        </div>
+      </article>
+      <article class="case">
+        <div class="cover c2">
+          <span>02 · 2024</span>
+          <strong data-field="metric">4 days to a first task</strong>
+        </div>
+        <div>
+          <h2 data-field="project-title">Onboarding</h2>
+          <p class="outcome" data-field="outcome">New teammates reached a real task in four days. The previous path took two weeks of tabs.</p>
+          <p class="detail" data-field="detail">A setup guide had become a wiki. I replaced it with a sequence of three jobs, each ending in something the team could see. The rest of the handbook stayed, one link away, for the people who wanted it.</p>
+          <p class="byline">Product design · internal tools</p>
+        </div>
+      </article>
+      <article class="case">
+        <div class="cover c3">
+          <span>03 · 2023</span>
+          <strong data-field="metric">Zero results, explained</strong>
+        </div>
+        <div>
+          <h2 data-field="project-title">Search</h2>
+          <p class="outcome" data-field="outcome">An empty search result started telling the truth about why it was empty.</p>
+          <p class="detail" data-field="detail">Shoppers typed brand names the catalog did not carry, then left. The new empty state names the closest thing we do sell and the thing we do not. It is a smaller promise, and it holds.</p>
+          <p class="byline">Design · with merchandising</p>
+        </div>
+      </article>
+    </main>
+    <footer id="contact">
+      <span data-field="about">I take a fuzzy metric and a worried team and leave both with a screen they can defend.</span>
+      <a data-field="email" href="mailto:ada.mensah@example.com">ada.mensah@example.com</a>
+    </footer>
+  </div>
+  <a class="template-gallery" href="../../index.html">All templates</a>
+</body>
+</html>
