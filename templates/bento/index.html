@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Nia Cole · Product Designer</title>
   <meta name="description" content="Portfolio of Nia Cole, a product designer based in Chicago." />
   <meta name="theme-color" content="#e7e5e1" />
@@ -110,8 +110,10 @@
       text-transform: uppercase;
     }
     @media (max-width: 800px) {
-      .bento { grid-template-columns: 1fr; }
+      .bento { grid-template-columns: 1fr; margin-top: .7rem; }
       .name, .about { grid-column: auto; grid-row: auto; min-height: 0; }
+      .name { min-height: 0; }
+      .contact a { display: inline-flex; align-items: center; min-height: 44px; }
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   </style>

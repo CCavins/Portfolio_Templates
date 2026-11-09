@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Mira Voss · Architect</title>
   <meta name="description" content="Portfolio of Mira Voss, an architect practicing in Copenhagen." />
   <meta name="theme-color" content="#16352b" />
@@ -133,11 +133,17 @@
     }
     @media (max-width: 860px) {
       .shell { grid-template-columns: 1fr; }
-      .cover { position: relative; height: auto; min-height: 70vh; }
+      .cover { position: relative; height: auto; min-height: 0; padding: 1.3rem 1.15rem 1.1rem; }
+      .monogram { font-size: clamp(4.2rem, 22vw, 6.5rem); }
+      .cover h1 { font-size: clamp(2.2rem, 10vw, 3rem); }
+      .cover footer a, .index header a, .colophon a { display: inline-flex; align-items: center; min-height: 44px; }
+      .index header nav { flex-wrap: wrap; }
       .project { grid-template-columns: 2.2rem 1fr; }
+      .project h3 { font-size: clamp(1.45rem, 7vw, 2rem); overflow-wrap: anywhere; }
       .meta { grid-column: 2; }
       .practice { grid-template-columns: 1fr; }
-      .index header { flex-direction: column; }
+      .index header { flex-direction: column; align-items: flex-start; }
+      .index { padding: 1.2rem 1rem 4rem; }
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   </style>
