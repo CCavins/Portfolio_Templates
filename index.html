@@ -131,16 +131,23 @@
       border-radius: 999px;
       padding: .28rem .55rem;
     }
-    .open {
+    .actions {
       margin-top: auto;
-      align-self: flex-start;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .35rem 1.1rem;
+      align-items: baseline;
+      padding-top: .45rem;
+    }
+    .open, .download {
       text-decoration: none;
       font-weight: 600;
       font-size: .95rem;
-      border-bottom: 1px solid var(--ink);
-      padding-top: .35rem;
     }
+    .open { border-bottom: 1px solid var(--ink); }
+    .download { color: var(--muted); border-bottom: 1px solid var(--line); }
     .open:hover { font-style: italic; }
+    .download:hover { color: var(--ink); border-bottom-color: var(--ink); }
     .open:focus-visible, a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
     footer.site {
       display: flex;
@@ -167,11 +174,11 @@
   <div class="wrap">
     <header class="site">
       <span>Portfolio Templates</span>
-      <span>Five single-file starts</span>
+      <span>Nine single-file starts</span>
     </header>
     <section class="hero">
       <h1>Pick a direction.<br /><em>Make it yours.</em></h1>
-      <p class="deck">Each option is one HTML file with fictional sample copy, marked with <code>data-field</code> so you can swap in your own name, work, and links. Open a template, edit the file, and publish it.</p>
+      <p class="deck">Each option is one HTML file with fictional sample copy, marked with <code>data-field</code>. Preview it here, or download a zip that is ready to edit and upload.</p>
     </section>
     <section class="grid" aria-label="Template options">
       <article class="card featured">
@@ -183,7 +190,10 @@
           <div class="card-top"><h2>Aurora</h2><span class="num">01</span></div>
           <p>Dark glass panels, a particle field, and an icon rail. For technical program managers, producers, and product people.</p>
           <ul class="tags"><li>Dark</li><li>Sidebar</li><li>Animated</li></ul>
-          <a class="open" href="templates/aurora/index.html">View template</a>
+          <div class="actions">
+            <a class="open" href="templates/aurora/index.html">View template</a>
+            <a class="download" href="downloads/aurora.zip" download="aurora.zip">Download zip</a>
+          </div>
         </div>
       </article>
 
@@ -196,7 +206,10 @@
           <div class="card-top"><h2>Editorial</h2><span class="num">02</span></div>
           <p>A paper-and-ink magazine page. For strategists, writers, and anyone whose work reads better than it screenshots.</p>
           <ul class="tags"><li>Light</li><li>Serif</li><li>Quiet</li></ul>
-          <a class="open" href="templates/editorial/index.html">View template</a>
+          <div class="actions">
+            <a class="open" href="templates/editorial/index.html">View template</a>
+            <a class="download" href="downloads/editorial.zip" download="editorial.zip">Download zip</a>
+          </div>
         </div>
       </article>
 
@@ -209,7 +222,10 @@
           <div class="card-top"><h2>Signal</h2><span class="num">03</span></div>
           <p>A stark engineer’s index. Select a project and the note beside it updates. No cards, no gradients.</p>
           <ul class="tags"><li>Dark</li><li>Minimal</li><li>Mono</li></ul>
-          <a class="open" href="templates/signal/index.html">View template</a>
+          <div class="actions">
+            <a class="open" href="templates/signal/index.html">View template</a>
+            <a class="download" href="downloads/signal.zip" download="signal.zip">Download zip</a>
+          </div>
         </div>
       </article>
 
@@ -222,7 +238,10 @@
           <div class="card-top"><h2>Atelier</h2><span class="num">04</span></div>
           <p>Oversized type on a ground that changes color as you move through the work. For art directors and studios.</p>
           <ul class="tags"><li>Bold</li><li>Color</li><li>Studio</li></ul>
-          <a class="open" href="templates/atelier/index.html">View template</a>
+          <div class="actions">
+            <a class="open" href="templates/atelier/index.html">View template</a>
+            <a class="download" href="downloads/atelier.zip" download="atelier.zip">Download zip</a>
+          </div>
         </div>
       </article>
 
@@ -235,13 +254,80 @@
           <div class="card-top"><h2>Monograph</h2><span class="num">05</span></div>
           <p>A sticky monograph cover beside a long list of projects. For architects, researchers, and studios with a body of work.</p>
           <ul class="tags"><li>Split</li><li>Serif</li><li>Sticky</li></ul>
-          <a class="open" href="templates/monograph/index.html">View template</a>
+          <div class="actions">
+            <a class="open" href="templates/monograph/index.html">View template</a>
+            <a class="download" href="downloads/monograph.zip" download="monograph.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="preview">
+          <iframe data-preview src="templates/bento/index.html?preview=1" title="Preview of the Bento template" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/bento/index.html" aria-label="View the Bento template"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top"><h2>Bento</h2><span class="num">06</span></div>
+          <p>A tile grid for a personal site: name, what you are doing now, a few projects, and a way to write to you.</p>
+          <ul class="tags"><li>Grid</li><li>Light</li><li>Personal</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/bento/index.html">View template</a>
+            <a class="download" href="downloads/bento.zip" download="bento.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="preview">
+          <iframe data-preview src="templates/vita/index.html?preview=1" title="Preview of the Vita template" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/vita/index.html" aria-label="View the Vita template"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top"><h2>Vita</h2><span class="num">07</span></div>
+          <p>A one-page résumé. Summary, experience, education, and skills, and it prints without the gallery chrome.</p>
+          <ul class="tags"><li>Résumé</li><li>Print</li><li>Light</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/vita/index.html">View template</a>
+            <a class="download" href="downloads/vita.zip" download="vita.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="preview">
+          <iframe data-preview src="templates/plate/index.html?preview=1" title="Preview of the Plate template" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/plate/index.html" aria-label="View the Plate template"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top"><h2>Plate</h2><span class="num">08</span></div>
+          <p>A photography contact sheet. Swap each colored frame for your own image and leave the caption underneath.</p>
+          <ul class="tags"><li>Photo</li><li>Dark</li><li>Grid</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/plate/index.html">View template</a>
+            <a class="download" href="downloads/plate.zip" download="plate.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="preview">
+          <iframe data-preview src="templates/proof/index.html?preview=1" title="Preview of the Proof template" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/proof/index.html" aria-label="View the Proof template"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top"><h2>Proof</h2><span class="num">09</span></div>
+          <p>Case studies that lead with the outcome. For product designers who want the result on the cover.</p>
+          <ul class="tags"><li>Case study</li><li>Light</li><li>Metrics</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/proof/index.html">View template</a>
+            <a class="download" href="downloads/proof.zip" download="proof.zip">Download zip</a>
+          </div>
         </div>
       </article>
     </section>
     <footer class="site">
-      <span>Sample names and projects are fictional.</span>
-      <span>Remove the “All templates” link before you publish your own site.</span>
+      <span>Sample names are fictional. Each zip has the gallery bar removed.</span>
+      <a href="downloads/all-templates.zip" download="all-templates.zip">Download all</a>
     </footer>
   </div>
   <script>

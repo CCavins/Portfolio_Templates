@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elena Vasquez · Operations</title>
+  <meta name="description" content="Résumé of Elena Vasquez, an operations lead based in Seattle." />
+  <meta name="theme-color" content="#ffffff" />
+  <!--
+    VITA — single-file résumé template.
+    A one-page CV: summary, experience, education, and skills. It also prints cleanly.
+    Replace every element with data-field. Sample copy is fictional.
+    Delete the "All templates" link before publishing your own site.
+    The downloadable zip already has that link removed.
+  -->
+  <script>
+    if (location.search.indexOf("preview=1") !== -1) document.documentElement.classList.add("previewing");
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,650&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #1a1a1a;
+      --muted: #4e4e4e;
+      --rule: #1a1a1a;
+      --hairline: #d9d9d9;
+      --gallery-bar: 34px;
+    }
+    * { box-sizing: border-box; }
+    html.previewing { --gallery-bar: 0px; }
+    html.previewing, html.previewing body { overflow: hidden; height: 100%; }
+    html.previewing .template-gallery { display: none; }
+    body {
+      margin: 0;
+      padding-top: var(--gallery-bar);
+      background: #fff;
+      color: var(--ink);
+      font-family: "Source Sans 3", "Segoe UI", sans-serif;
+      line-height: 1.45;
+    }
+    a { color: inherit; }
+    a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+    .sheet { width: min(820px, calc(100% - 2rem)); margin: 2rem auto 4rem; }
+    header {
+      display: flex;
+      justify-content: space-between;
+      gap: 1.5rem;
+      align-items: flex-end;
+      padding-bottom: .8rem;
+      border-bottom: 2px solid var(--rule);
+    }
+    h1 {
+      margin: 0;
+      font-family: "Source Serif 4", Georgia, serif;
+      font-weight: 650;
+      font-size: clamp(2.4rem, 5vw, 3.3rem);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .role { margin: .35rem 0 0; font-size: 1.05rem; }
+    .contact { margin: 0; text-align: right; color: var(--muted); font-size: .95rem; }
+    .contact a { white-space: nowrap; }
+    h2 {
+      margin: 1.4rem 0 .7rem;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .summary { margin: 0; max-width: 65ch; }
+    .layout { display: grid; grid-template-columns: 1.45fr .8fr; gap: 2.4rem; }
+    .job, .school {
+      display: grid;
+      grid-template-columns: 6.6rem 1fr;
+      gap: .35rem 1rem;
+      padding: .75rem 0;
+      border-top: 1px solid var(--hairline);
+    }
+    .when { color: var(--muted); font-variant-numeric: tabular-nums; }
+    h3 { margin: 0; font-size: 1.02rem; font-weight: 600; }
+    .where { margin: .1rem 0 0; color: var(--muted); }
+    ul { margin: .4rem 0 0; padding-left: 1.05rem; }
+    li + li { margin-top: .25rem; }
+    .side h2:first-child { margin-top: 1.4rem; }
+    .skills { margin: 0; padding: .75rem 0 0; border-top: 1px solid var(--hairline); }
+    .template-gallery {
+      position: fixed;
+      z-index: 5;
+      top: 0; left: 0; right: 0;
+      height: var(--gallery-bar);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #141414;
+      color: #fff;
+      text-decoration: none;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    @media (max-width: 720px) {
+      header, .layout, .job, .school { display: block; }
+      .contact { text-align: left; margin-top: .8rem; }
+      .when { display: block; margin-bottom: .2rem; }
+    }
+    @media print {
+      .template-gallery { display: none; }
+      body { padding-top: 0; }
+      .sheet { margin: 0; width: auto; }
+      a { text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <article class="sheet">
+    <header>
+      <div>
+        <h1 data-field="name">Elena Vasquez</h1>
+        <p class="role" data-field="role">Operations lead · Seattle</p>
+      </div>
+      <p class="contact">
+        <a data-field="email" href="mailto:elena.vasquez@example.com">elena.vasquez@example.com</a><br />
+        <a data-field="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a><br />
+        <span data-field="phone">206-555-0148</span>
+      </p>
+    </header>
+
+    <h2>Summary</h2>
+    <p class="summary" data-field="summary">I run the unglamorous middle of a company: hiring plans, vendor renewals, the weekly meeting that decides what slips, and the document people check when they cannot remember why. Ten years across two startups and one newsroom.</p>
+
+    <div class="layout">
+      <section>
+        <h2>Experience</h2>
+        <article class="job">
+          <span class="when" data-field="years">2022 —</span>
+          <div>
+            <h3 data-field="job-title">Head of operations</h3>
+            <p class="where" data-field="company">Northline, Seattle</p>
+            <ul>
+              <li data-field="achievement">Rebuilt quarterly planning so a slip was visible in the same week it happened.</li>
+              <li data-field="achievement">Cut the vendor list by a third without dropping a tool the support team used daily.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="job">
+          <span class="when">2018 — 22</span>
+          <div>
+            <h3 data-field="job-title">Program manager</h3>
+            <p class="where" data-field="company">Keel Systems, remote</p>
+            <ul>
+              <li data-field="achievement">Ran a two-office move while the product team stayed on a weekly release train.</li>
+              <li data-field="achievement">Wrote the onboarding packet new managers still hand to their first hire.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="job">
+          <span class="when">2015 — 18</span>
+          <div>
+            <h3 data-field="job-title">Coordinator</h3>
+            <p class="where" data-field="company">The Evening Ledger</p>
+            <ul>
+              <li data-field="achievement">Kept a daily news budget honest: what was assigned, what was late, what was killed.</li>
+            </ul>
+          </div>
+        </article>
+      </section>
+      <aside class="side">
+        <h2>Education</h2>
+        <article class="school">
+          <span class="when">2015</span>
+          <div>
+            <h3 data-field="degree">B.A. History</h3>
+            <p class="where" data-field="school">University of Washington</p>
+          </div>
+        </article>
+        <h2>Skills</h2>
+        <p class="skills" data-field="skills">Planning, hiring, vendor management, internal writing, light spreadsheet work. Tools follow the team. I do not collect them.</p>
+      </aside>
+    </div>
+  </article>
+  <a class="template-gallery" href="../../index.html">All templates</a>
+</body>
+</html>

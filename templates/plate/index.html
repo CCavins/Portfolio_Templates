@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jules Marin · Photographer</title>
+  <meta name="description" content="Portfolio of Jules Marin, a photographer based in Lisbon." />
+  <meta name="theme-color" content="#101010" />
+  <!--
+    PLATE — single-file photography template.
+    A contact sheet. Each .frame is a stand-in for a photograph.
+    Replace a frame's background with your own image:
+      style="background-image: url('photos/coast.jpg')"
+    and keep background-size: cover on .frame.
+    Replace every element with data-field. Sample copy is fictional.
+    Delete the "All templates" link before publishing your own site.
+    The downloadable zip already has that link removed.
+  -->
+  <script>
+    if (location.search.indexOf("preview=1") !== -1) document.documentElement.classList.add("previewing");
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #f3f1ec;
+      --muted: #b9b3a8;
+      --gallery-bar: 34px;
+    }
+    * { box-sizing: border-box; }
+    html.previewing { --gallery-bar: 0px; }
+    html.previewing, html.previewing body { overflow: hidden; height: 100%; }
+    html.previewing .template-gallery { display: none; }
+    body {
+      margin: 0;
+      padding-top: var(--gallery-bar);
+      background: #101010;
+      color: var(--ink);
+      font-family: Manrope, "Avenir Next", sans-serif;
+      line-height: 1.4;
+    }
+    a { color: inherit; }
+    a:focus-visible, .frame:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+    header {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: baseline;
+      padding: 1.3rem 1.2rem 1rem;
+    }
+    h1 {
+      margin: 0;
+      font-family: "Bodoni Moda", Georgia, serif;
+      font-weight: 500;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .meta { margin: .3rem 0 0; color: var(--muted); font-size: .92rem; }
+    nav { display: flex; gap: 1rem; font-size: .92rem; }
+    nav a { color: var(--muted); text-decoration: none; }
+    nav a:hover { color: var(--ink); }
+    .sheet {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: .45rem;
+      padding: 0 .7rem 3rem;
+    }
+    .frame {
+      position: relative;
+      display: block;
+      aspect-ratio: 4 / 5;
+      background-size: cover;
+      background-position: center;
+      color: #111;
+      text-decoration: none;
+    }
+    .frame span {
+      position: absolute;
+      left: .7rem;
+      right: .7rem;
+      bottom: .7rem;
+      font-size: .85rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      opacity: 0;
+    }
+    .frame:hover span, .frame:focus-visible span { opacity: 1; }
+    .f1 { background: linear-gradient(160deg, #d7dde4, #8ea0b0 45%, #c9b7a2); }
+    .f2 { background: linear-gradient(180deg, #f2e2c4, #c98455 70%, #6e3b2e); }
+    .f3 { background: linear-gradient(200deg, #1c2430, #3e5c4e 60%, #d8d2c4); }
+    .f4 { background: linear-gradient(145deg, #f7f4ee, #d9d3c7 40%, #a9a297); }
+    .f5 { background: linear-gradient(165deg, #2a211c, #8c4a32 55%, #e7c7a1); }
+    .f6 { background: linear-gradient(180deg, #9bb7c9, #e7eef2 50%, #6d7c86); }
+    .f7 { background: linear-gradient(150deg, #141414, #3a3a3a 40%, #cfc6b8); }
+    .f8 { background: linear-gradient(190deg, #e6d3c4, #a36b73 55%, #2c2428); }
+    .f9 { background: linear-gradient(170deg, #bfc6a8, #6f7d55 50%, #1e2418); }
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding: 0 1.2rem 4rem;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+    .template-gallery {
+      position: fixed;
+      z-index: 5;
+      top: 0; left: 0; right: 0;
+      height: var(--gallery-bar);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f3f1ec;
+      color: #141414;
+      text-decoration: none;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    @media (max-width: 800px) {
+      .sheet { grid-template-columns: 1fr 1fr; }
+      header { flex-direction: column; }
+      .frame span { opacity: 1; color: #fff; text-shadow: 0 1px 8px rgba(0,0,0,.45); }
+    }
+    @media (max-width: 520px) {
+      .sheet { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1 data-field="name">Jules Marin</h1>
+      <p class="meta" data-field="role">Photographer · Lisbon</p>
+    </div>
+    <nav aria-label="Contact">
+      <a data-field="email" href="mailto:studio@julesmarin.example">Email</a>
+      <a data-field="instagram" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </nav>
+  </header>
+  <main class="sheet" id="work" aria-label="Selected photographs">
+    <a class="frame f1" href="#work"><span data-field="caption">Coast road, January</span></a>
+    <a class="frame f2" href="#work"><span data-field="caption">Kitchen, late</span></a>
+    <a class="frame f3" href="#work"><span data-field="caption">River stairs</span></a>
+    <a class="frame f4" href="#work"><span data-field="caption">Studio wall</span></a>
+    <a class="frame f5" href="#work"><span data-field="caption">Market, closing</span></a>
+    <a class="frame f6" href="#work"><span data-field="caption">Ferry window</span></a>
+    <a class="frame f7" href="#work"><span data-field="caption">Rehearsal</span></a>
+    <a class="frame f8" href="#work"><span data-field="caption">Guest room</span></a>
+    <a class="frame f9" href="#work"><span data-field="caption">Orchard road</span></a>
+  </main>
+  <footer id="contact">
+    <span data-field="about">Commissioned work and a slower personal series about rooms people are about to leave.</span>
+    <span data-field="year">2026</span>
+  </footer>
+  <a class="template-gallery" href="../../index.html">All templates</a>
+</body>
+</html>
