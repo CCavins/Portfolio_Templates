@@ -1,0 +1,330 @@
+{
+  "_comment": "Source of truth for the gallery and the downloads. One entry per design; the first theme is the default. Run python3 scripts/build.py after editing this file or any template.",
+  "categories": [
+    "Design",
+    "Engineering",
+    "Writing & Strategy",
+    "Visual & Photo",
+    "Film & Sound",
+    "Academic & Education",
+    "Business & Freelance",
+    "Career & Résumé",
+    "Personal & Starter"
+  ],
+  "templates": [
+    {
+      "slug": "aurora",
+      "name": "Aurora",
+      "category": "Engineering",
+      "for": "Technical program managers, producers, and product people",
+      "description": "Dark glass panels, a particle field, and an icon rail that expands on hover. Sections for experience, projects, a media showcase, and skill bars.",
+      "tags": ["Sidebar", "Animated", "Glass"],
+      "themes": [
+        { "id": "ocean", "label": "Ocean", "mode": "dark" },
+        { "id": "ember", "label": "Ember", "mode": "dark" }
+      ],
+      "sections": ["Intro", "About", "Experience", "Projects", "Showcase", "Skills", "Contact"],
+      "notes": [
+        "The typed lines in the hero come from data-lines on the #typed element. Separate lines with a | character.",
+        "Each skill bar reads data-level (0 to 100) on its .skill element; the label and the bar width both come from that one number.",
+        "Showcase: replace a .poster card with an <img> or a YouTube/Vimeo <iframe>. The carousel scrolls sideways and snaps."
+      ]
+    },
+    {
+      "slug": "editorial",
+      "name": "Editorial",
+      "category": "Writing & Strategy",
+      "for": "Strategists, writers, and consultants",
+      "description": "A paper-and-ink magazine page: masthead, a big serif headline, a work index, a pull quote, and an experience table.",
+      "tags": ["Serif", "Quiet", "Magazine"],
+      "themes": [
+        { "id": "paper", "label": "Paper", "mode": "light" },
+        { "id": "night", "label": "Night", "mode": "dark" }
+      ],
+      "sections": ["Masthead", "Hero", "About", "Selected work", "Quote", "Experience", "Notes", "Contact"],
+      "notes": [
+        "Each work item links to a note further down the page (href=\"#northwind\" matches id=\"northwind\"). Keep the pairs matched when you rename projects."
+      ]
+    },
+    {
+      "slug": "signal",
+      "name": "Signal",
+      "category": "Engineering",
+      "for": "Software engineers",
+      "description": "A stark engineer's index. Select a project and the note beside it updates. No cards, no gradients.",
+      "tags": ["Minimal", "Mono", "Interactive"],
+      "themes": [
+        { "id": "acid", "label": "Acid", "mode": "dark" },
+        { "id": "paper", "label": "Paper", "mode": "light" }
+      ],
+      "sections": ["Intro", "Work", "Experience", "Stack", "Contact"],
+      "notes": [
+        "Project text lives in data-title, data-year, data-stack, and data-copy on each .row button. The detail panel on the right is filled from those attributes, so edit the attributes rather than the panel."
+      ]
+    },
+    {
+      "slug": "atelier",
+      "name": "Atelier",
+      "category": "Design",
+      "for": "Art directors and design studios",
+      "description": "Oversized type on a ground that changes color as you move through the work. Three projects, a practice statement, and one very large email link.",
+      "tags": ["Bold", "Color", "Studio"],
+      "themes": [
+        { "id": "paper", "label": "Paper", "mode": "light" },
+        { "id": "concrete", "label": "Concrete", "mode": "dark" }
+      ],
+      "sections": ["Header", "Hero", "Work", "Practice", "Contact"],
+      "notes": [
+        "data-tone on each .case button sets the background the page turns when that project is hovered or focused. Tones are defined in the stylesheet: paper, ink, signal."
+      ]
+    },
+    {
+      "slug": "monograph",
+      "name": "Monograph",
+      "category": "Design",
+      "for": "Architects, researchers, and studios with a body of work",
+      "description": "A sticky monograph cover beside a long list of projects. For practices whose work is best read as a list.",
+      "tags": ["Split", "Serif", "Sticky"],
+      "themes": [
+        { "id": "forest", "label": "Forest", "mode": "light" },
+        { "id": "oxblood", "label": "Oxblood", "mode": "dark" }
+      ],
+      "sections": ["Cover", "Selected work", "Practice", "Contact"],
+      "notes": [
+        "The big letter on the cover is data-field=\"initial\". Change it to your own initial or delete the element."
+      ]
+    },
+    {
+      "slug": "bento",
+      "name": "Bento",
+      "category": "Personal & Starter",
+      "for": "A personal home page",
+      "description": "A tile grid: name, about, what you are doing now, three projects, and a way to write to you.",
+      "tags": ["Grid", "Personal", "Compact"],
+      "themes": [
+        { "id": "stone", "label": "Stone", "mode": "light" },
+        { "id": "midnight", "label": "Midnight", "mode": "dark" }
+      ],
+      "sections": ["Name", "About", "Now", "Contact", "Projects"],
+      "notes": [
+        "Every tile is a <section class=\"tile\">. Add or remove tiles freely; the grid reflows."
+      ]
+    },
+    {
+      "slug": "vita",
+      "name": "Vita",
+      "category": "Career & Résumé",
+      "for": "A job search",
+      "description": "A one-page résumé: summary, experience, education, and skills. Prints to a clean PDF with a button that hides itself on paper.",
+      "tags": ["Résumé", "Print", "One page"],
+      "themes": [
+        { "id": "classic", "label": "Classic", "mode": "light" },
+        { "id": "navy", "label": "Navy", "mode": "light" }
+      ],
+      "sections": ["Header", "Summary", "Experience", "Education", "Skills"],
+      "notes": [
+        "Use the Print / Save as PDF button (or your browser's print command) to export a PDF. The button and any colored rules are hidden or simplified in print."
+      ]
+    },
+    {
+      "slug": "plate",
+      "name": "Plate",
+      "category": "Visual & Photo",
+      "for": "Photographers",
+      "description": "A photography contact sheet. Swap each colored frame for your own image; click a frame to open it large with its caption.",
+      "tags": ["Photo", "Grid", "Lightbox"],
+      "themes": [
+        { "id": "darkroom", "label": "Darkroom", "mode": "dark" },
+        { "id": "gallery", "label": "Gallery", "mode": "light" }
+      ],
+      "sections": ["Header", "Contact sheet", "Footer"],
+      "notes": [
+        "Replace a frame's background with your own photo: style=\"background-image: url('photos/coast.jpg')\" and put the file in a photos folder next to index.html.",
+        "The lightbox shows the same background image larger. For a different large version, add data-full=\"photos/coast-large.jpg\" to the frame."
+      ]
+    },
+    {
+      "slug": "proof",
+      "name": "Proof",
+      "category": "Design",
+      "for": "Product designers",
+      "description": "Case studies that lead with the outcome: a big metric on the cover, then the role and a short account.",
+      "tags": ["Case study", "Metrics", "Clean"],
+      "themes": [
+        { "id": "paper", "label": "Paper", "mode": "light" },
+        { "id": "slate", "label": "Slate", "mode": "dark" }
+      ],
+      "sections": ["Header", "Case studies", "Contact"],
+      "notes": [
+        "Each case has a cover color class (c1, c2, c3). Reuse them or add c4 in the stylesheet for more studies."
+      ]
+    },
+    {
+      "slug": "ledger",
+      "name": "Ledger",
+      "category": "Business & Freelance",
+      "for": "Freelancers and consultants",
+      "description": "Services with starting prices, a four-step process, three testimonials, and a booking call to action. Built to turn a visit into an email.",
+      "tags": ["Services", "Pricing", "Testimonials"],
+      "themes": [
+        { "id": "linen", "label": "Linen", "mode": "light" },
+        { "id": "graphite", "label": "Graphite", "mode": "dark" }
+      ],
+      "sections": ["Intro", "Services", "Process", "Testimonials", "Book a call"],
+      "notes": [
+        "Prices are plain text inside data-field=\"price\". Replace with \"On request\" if you do not publish rates.",
+        "The booking button is a mailto link. Swap the href for a Calendly or Cal.com URL if you use one."
+      ]
+    },
+    {
+      "slug": "thesis",
+      "name": "Thesis",
+      "category": "Academic & Education",
+      "for": "Academics, researchers, and PhD students",
+      "description": "Publications grouped by year with DOI and PDF links, teaching, talks, and a CV link. Reads like a well-kept department page.",
+      "tags": ["Publications", "Serif", "CV"],
+      "themes": [
+        { "id": "ivory", "label": "Ivory", "mode": "light" },
+        { "id": "oxford", "label": "Oxford", "mode": "dark" }
+      ],
+      "sections": ["Header", "About", "Publications", "Teaching", "Talks", "Contact"],
+      "notes": [
+        "Publications are grouped under <h3 class=\"year\"> headings. Each <li class=\"pub\"> has a DOI link and a PDF link; delete either link if you do not have one.",
+        "The CV link in the header expects a cv.pdf next to index.html."
+      ]
+    },
+    {
+      "slug": "reel",
+      "name": "Reel",
+      "category": "Film & Sound",
+      "for": "Filmmakers, editors, and motion designers",
+      "description": "A full-width video hero, a selected work list with runtimes, a credits table, and a stills grid.",
+      "tags": ["Video", "Dark", "Credits"],
+      "themes": [
+        { "id": "cinema", "label": "Cinema", "mode": "dark" },
+        { "id": "daylight", "label": "Daylight", "mode": "light" }
+      ],
+      "sections": ["Video hero", "Selected work", "Credits", "Stills", "Contact"],
+      "notes": [
+        "The hero holds a placeholder. Replace the <div class=\"video-placeholder\"> with a YouTube or Vimeo <iframe>; the exact embed code to paste is in a comment right above it.",
+        "Stills are colored frames. Replace each with an <img> or a background-image, as in the Plate template."
+      ]
+    },
+    {
+      "slug": "marquee",
+      "name": "Marquee",
+      "category": "Film & Sound",
+      "for": "Musicians, bands, and performers",
+      "description": "Listen links, an upcoming-dates table, a releases grid, and a press quote. Loud type, one accent color.",
+      "tags": ["Music", "Dates", "Releases"],
+      "themes": [
+        { "id": "neon", "label": "Neon", "mode": "dark" },
+        { "id": "vinyl", "label": "Vinyl", "mode": "light" }
+      ],
+      "sections": ["Hero", "Listen", "Dates", "Releases", "Press", "Contact"],
+      "notes": [
+        "Listen buttons link to Spotify, Apple Music, and Bandcamp. Delete the ones you do not use.",
+        "Each release is a colored square. Replace the square with an <img> of the cover art."
+      ]
+    },
+    {
+      "slug": "folio",
+      "name": "Folio",
+      "category": "Visual & Photo",
+      "for": "Illustrators and visual artists",
+      "description": "A column grid of artwork with captions and a lightbox, plus a short commissions note. The art is the page.",
+      "tags": ["Illustration", "Masonry", "Lightbox"],
+      "themes": [
+        { "id": "cream", "label": "Cream", "mode": "light" },
+        { "id": "charcoal", "label": "Charcoal", "mode": "dark" }
+      ],
+      "sections": ["Header", "Gallery", "Commissions", "Contact"],
+      "notes": [
+        "Each <figure class=\"piece\"> holds a colored placeholder with a chosen aspect ratio. Replace the placeholder <div> with an <img> and keep the <figcaption>.",
+        "Clicking a piece opens it in a lightbox with its caption. No library is involved; it is a native <dialog>."
+      ]
+    },
+    {
+      "slug": "dispatch",
+      "name": "Dispatch",
+      "category": "Writing & Strategy",
+      "for": "Journalists, essayists, and newsletter writers",
+      "description": "Clippings with outlet, date, and link, grouped by beat, with a newsletter signup. Newsprint columns and a dateline.",
+      "tags": ["Clippings", "Newsletter", "Columns"],
+      "themes": [
+        { "id": "newsprint", "label": "Newsprint", "mode": "light" },
+        { "id": "broadsheet", "label": "Broadsheet", "mode": "dark" }
+      ],
+      "sections": ["Dateline", "Hero", "Beats", "Clippings", "Newsletter", "Contact"],
+      "notes": [
+        "Each clipping is an <article class=\"clip\"> with outlet, date, headline link, and a one-line description. Newest first is the convention.",
+        "The newsletter button links to a URL; point it at your Substack, Buttondown, or Ghost page."
+      ]
+    },
+    {
+      "slug": "cohort",
+      "name": "Cohort",
+      "category": "Academic & Education",
+      "for": "Educators, coaches, and speakers",
+      "description": "Offerings, upcoming workshops with dates, student quotes, and an FAQ that opens and closes. Warm and direct.",
+      "tags": ["Teaching", "Workshops", "FAQ"],
+      "themes": [
+        { "id": "sage", "label": "Sage", "mode": "light" },
+        { "id": "plum", "label": "Plum", "mode": "dark" }
+      ],
+      "sections": ["Hero", "Offerings", "Workshops", "Quotes", "FAQ", "Contact"],
+      "notes": [
+        "The FAQ uses native <details> elements; copy one <details> block per question. No JavaScript needed."
+      ]
+    },
+    {
+      "slug": "primer",
+      "name": "Primer",
+      "category": "Personal & Starter",
+      "for": "Students and first portfolios",
+      "description": "A short hero, three projects told as what I did and what I learned, skills, and contact. The most heavily commented file in the set.",
+      "tags": ["Starter", "Student", "Commented"],
+      "themes": [
+        { "id": "sky", "label": "Sky", "mode": "light" },
+        { "id": "dusk", "label": "Dusk", "mode": "dark" }
+      ],
+      "sections": ["Hero", "Projects", "Skills", "Contact"],
+      "notes": [
+        "Every block has a comment explaining what it is and whether to copy it. Start with the HOW TO EDIT comment at the top of the file."
+      ]
+    },
+    {
+      "slug": "collective",
+      "name": "Collective",
+      "category": "Business & Freelance",
+      "for": "Small studios and agencies",
+      "description": "Services, a row of client names, team cards, an approach section, and contact. One page that reads as a company, not a person.",
+      "tags": ["Studio", "Team", "Clients"],
+      "themes": [
+        { "id": "bone", "label": "Bone", "mode": "light" },
+        { "id": "carbon", "label": "Carbon", "mode": "dark" }
+      ],
+      "sections": ["Hero", "Services", "Clients", "Team", "Approach", "Contact"],
+      "notes": [
+        "Team members are <article class=\"person\"> cards with a colored initial block. Replace the block with an <img> for a photo."
+      ]
+    },
+    {
+      "slug": "pixel",
+      "name": "Pixel",
+      "category": "Engineering",
+      "for": "Game developers and 3D artists",
+      "description": "Project cards with platform and engine tags, itch.io and Steam links, a dev-log list, and screenshot frames that reveal on hover.",
+      "tags": ["Games", "Tags", "Dev log"],
+      "themes": [
+        { "id": "arcade", "label": "Arcade", "mode": "dark" },
+        { "id": "mono", "label": "Mono", "mode": "light" }
+      ],
+      "sections": ["Hero", "Projects", "Dev log", "Contact"],
+      "notes": [
+        "Each project has a .shot frame. Replace its background with a screenshot: style=\"background-image: url('shots/game.png')\".",
+        "Platform and engine tags are plain <li> items; add as many as you need."
+      ]
+    }
+  ]
+}

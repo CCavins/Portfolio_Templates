@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cream">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Ines Rocha · Illustration</title>
+  <meta name="description" content="Illustration portfolio of Ines Rocha. Editorial, books, and murals. Open for commissions." />
+  <meta property="og:title" content="Ines Rocha · Illustration" />
+  <meta property="og:description" content="Editorial, books, and murals. Open for commissions." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="theme-color" content="#f6f1e7" />
+  <!--
+    ============================================================
+    FOLIO — single-file template for illustrators and visual artists
+    A column grid of artwork with captions, a lightbox, and a short
+    commissions note. The art is the page.
+    ============================================================
+
+    HOW TO EDIT
+
+    1. TEXT. Replace every element with data-field="…". Update
+       <title> and the description / og: meta tags above.
+       Sample names and clients are fictional.
+
+    2. ARTWORK. Each piece is a <figure class="piece"> holding a
+       <button class="art"> (so it can open the lightbox) with a
+       colored placeholder inside, and a <figcaption>.
+       To use a real image, replace the inner
+         <div class="ph p1" style="aspect-ratio: 4 / 5"></div>
+       with
+         <img src="art/poster.jpg" alt="Short description">
+       and leave the rest. Put image files in an art folder next to
+       index.html. Copy a figure to add a piece; delete to remove.
+
+       The grid is CSS columns, so tall and wide pieces mix freely
+       and the page never needs a layout script.
+
+    3. LIGHTBOX. Clicking a piece opens it in a native <dialog>
+       with its caption. For a larger version of the image, add
+       data-full="art/poster-large.jpg" on the <button class="art">.
+
+    4. COMMISSIONS. One paragraph and a list of what you take on.
+
+    5. THEME. Change data-theme="cream" on the <html> tag to:
+         cream     warm cream page (default)
+         charcoal  dark grey page, warm white type
+       Colors live in the THEMES block at the top of <style>.
+       Preview without editing: index.html?theme=charcoal
+
+    6. FONTS. Gloock and Nunito Sans load from Google Fonts.
+
+    7. PUBLISH. Upload this folder (with art/) to any static host;
+       the entry file is index.html. If you copied this file from the
+       gallery, delete the <a class="template-gallery"> link near the
+       bottom.
+  -->
+  <script>
+    // Gallery support: ?preview=1 hides the "All templates" bar; ?theme=name previews a theme.
+    (function () {
+      var q = location.search;
+      if (q.indexOf("preview=1") !== -1) document.documentElement.classList.add("previewing");
+      var m = q.match(/[?&]theme=([\w-]+)/);
+      if (m) document.documentElement.setAttribute("data-theme", m[1]);
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Gloock&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600&display=swap" rel="stylesheet" />
+  <style>
+    /* ---------- THEMES ---------- */
+
+    /* THEME: cream (default) — warm cream page, ink type, coral accent */
+    :root, [data-theme="cream"] {
+      --bg: #f6f1e7;
+      --ink: #221f1b;
+      --muted: #6b645a;
+      --line: #dfd6c8;
+      --accent: #d9593c;
+      --dialog: rgba(246, 241, 231, .97);
+      --gallery-bar: 34px;
+    }
+    /* THEME: charcoal — dark grey page, warm white type, mustard accent */
+    [data-theme="charcoal"] {
+      --bg: #232220;
+      --ink: #f3eee4;
+      --muted: #a8a195;
+      --line: #3a3835;
+      --accent: #e5b84a;
+      --dialog: rgba(35, 34, 32, .97);
+    }
+
+    /* ---------- LAYOUT ---------- */
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html.previewing { --gallery-bar: 0px; }
+    html.previewing, html.previewing body { overflow: hidden; height: 100%; }
+    html.previewing .template-gallery { display: none; }
+    body { margin: 0; padding-top: var(--gallery-bar); background: var(--bg); color: var(--ink); font-family: "Nunito Sans", "Avenir Next", sans-serif; line-height: 1.5; }
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .serif { font-family: Gloock, Georgia, serif; font-weight: 400; }
+    .page { width: min(1200px, calc(100% - 2rem)); margin: 0 auto; }
+    header { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; padding: 1.4rem 0 1.2rem; }
+    h1 { margin: 0; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.02em; line-height: 1; }
+    .role { margin: .3rem 0 0; color: var(--muted); }
+    nav { display: flex; gap: 1.1rem; font-size: .95rem; }
+    nav a { text-decoration: none; color: var(--muted); }
+    nav a:hover { color: var(--accent); }
+    .open { color: var(--accent); font-weight: 600; }
+    /* The grid: CSS columns, so mixed aspect ratios flow without a script. */
+    .wall { columns: 3; column-gap: 1rem; padding-bottom: 1rem; }
+    .piece { margin: 0 0 1rem; break-inside: avoid; }
+    .art { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; border-radius: 10px; overflow: hidden; }
+    .art img, .art .ph { display: block; width: 100%; border-radius: 10px; }
+    .art:hover .ph, .art:hover img { filter: brightness(1.03); }
+    .ph { background-size: cover; }
+    .p1 { background: linear-gradient(140deg, #f2b8a2, #d9593c 60%, #6b2a1d); }
+    .p2 { background: linear-gradient(180deg, #d9e6d3, #5f8a62 70%); }
+    .p3 { background: linear-gradient(160deg, #2b3a67, #9ab3e8 80%); }
+    .p4 { background: linear-gradient(200deg, #fbe7a1, #e5b84a 50%, #8a5a1d); }
+    .p5 { background: linear-gradient(150deg, #f6f1e7, #cdbfa6 60%, #6b645a); }
+    .p6 { background: linear-gradient(170deg, #7d4a8a, #f3c6e4 90%); }
+    .p7 { background: linear-gradient(130deg, #1f1f1f, #6d6d6d 70%); }
+    .p8 { background: linear-gradient(190deg, #c9e4e7, #2f7a84 80%); }
+    figcaption { margin-top: .45rem; font-size: .88rem; color: var(--muted); }
+    figcaption strong { color: var(--ink); font-weight: 600; }
+    section { padding: 2.4rem 0; border-top: 1px solid var(--line); scroll-margin-top: 1rem; }
+    .commissions { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    h2 { margin: 0 0 .8rem; font-size: clamp(1.8rem, 3.5vw, 2.5rem); letter-spacing: -0.02em; }
+    .commissions p { margin: 0; font-size: 1.1rem; max-width: 40rem; }
+    .commissions ul { margin: 0; padding: 0; list-style: none; }
+    .commissions li { padding: .6rem 0; border-top: 1px solid var(--line); }
+    .commissions li:first-child { border-top: 0; padding-top: 0; }
+    footer { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: 1.2rem 0 4rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .92rem; }
+    footer a.email { color: var(--ink); font-weight: 600; }
+
+    /* Lightbox */
+    .lightbox { border: 0; padding: 0; background: transparent; max-width: 100vw; max-height: 100vh; width: 100%; height: 100%; color: var(--ink); }
+    .lightbox::backdrop { background: var(--dialog); }
+    .lightbox-inner { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .9rem; width: 100%; height: 100%; padding: 3.5rem 1rem 1.5rem; }
+    .large { width: min(92vw, 1000px); flex: 1 1 auto; min-height: 0; max-height: 80vh; background-size: contain; background-position: center; background-repeat: no-repeat; border-radius: 10px; }
+    .lightbox p { margin: 0; font-size: .95rem; color: var(--muted); }
+    .close { position: absolute; top: 1rem; right: 1rem; min-width: 44px; min-height: 44px; padding: 0 .9rem; border: 1px solid var(--muted); border-radius: 999px; background: transparent; color: var(--ink); font: inherit; font-size: .85rem; cursor: pointer; }
+
+    .template-gallery {
+      position: fixed; z-index: 5; top: 0; left: 0; right: 0;
+      height: var(--gallery-bar);
+      display: flex; align-items: center; justify-content: center;
+      background: var(--ink); color: var(--bg);
+      text-decoration: none; font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+    }
+    @media (max-width: 900px) { .wall { columns: 2; } .commissions { grid-template-columns: 1fr; } }
+    @media (max-width: 560px) {
+      .wall { columns: 1; }
+      header { flex-direction: column; gap: .3rem; }
+      nav { flex-wrap: wrap; gap: 0 1rem; }
+      nav a, footer a { display: inline-flex; align-items: center; min-height: 44px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- ===== HEADER ===== -->
+    <header>
+      <div>
+        <h1 class="serif" data-field="name">Ines Rocha</h1>
+        <p class="role" data-field="role">Illustration · editorial, books, murals · Porto</p>
+      </div>
+      <nav aria-label="Sections">
+        <a href="#work">Work</a>
+        <a href="#commissions">Commissions</a>
+        <a href="#contact">Contact</a>
+        <span class="open" data-field="availability">Open for 2026</span>
+      </nav>
+    </header>
+
+    <!-- ===== GALLERY: copy one <figure class="piece"> per artwork. Replace .ph with an <img>. ===== -->
+    <main class="wall" id="work" aria-label="Selected work">
+      <figure class="piece">
+        <button class="art" type="button"><div class="ph p1" style="aspect-ratio: 4 / 5"></div></button>
+        <figcaption><strong data-field="art-title">The Long Table</strong> · <span data-field="art-meta">cover, Paperplane magazine, 2026</span></figcaption>
+      </figure>
+      <figure class="piece">
+        <button class="art" type="button"><div class="ph p2" style="aspect-ratio: 1 / 1"></div></button>
+        <figcaption><strong data-field="art-title">Orchard</strong> · <span data-field="art-meta">picture book spread, 2025</span></figcaption>
+      </figure>
+      <figure class="piece">
+        <button class="art" type="button"><div class="ph p3" style="aspect-ratio: 3 / 4"></div></button>
+        <figcaption><strong data-field="art-title">Night Ferry</strong> · <span data-field="art-meta">personal, risograph, 2025</span></figcaption>
+      </figure>
+      <figure class="piece">
+        <button class="art" type="button"><div class="ph p4" style="aspect-ratio: 16 / 9"></div></button>
+        <figcaption><strong data-field="art-title">Market Hall mural</strong> · <span data-field="art-meta">Porto, 14 metres, 2024</span></figcaption>
+      </figure>
+      <figure class="piece">
+        <button class="art" type="button"><div class="ph p5" style="aspect-ratio: 4 / 5"></div></button>
+        <figcaption><strong data-field="art-title">Guest Room</strong> · <span data-field="art-meta">editorial, The Evening Ledger, 2024</span></figcaption>
+      </figure>
+      <figure class="piece">
+        <button class="art" type="button"><div class="ph p6" style="aspect-ratio: 1 / 1"></div></button>
+        <figcaption><strong data-field="art-title">Kin Club menus</strong> · <span data-field="art-meta">set of six, 2024</span></figcaption>
+      </figure>
+      <figure class="piece">
+        <button class="art" type="button"><div class="ph p7" style="aspect-ratio: 2 / 3"></div></button>
+        <figcaption><strong data-field="art-title">Rehearsal</strong> · <span data-field="art-meta">charcoal series, 2023</span></figcaption>
+      </figure>
+      <figure class="piece">
+        <button class="art" type="button"><div class="ph p8" style="aspect-ratio: 4 / 3"></div></button>
+        <figcaption><strong data-field="art-title">River Stairs</strong> · <span data-field="art-meta">poster, Lisbon Book Fair, 2023</span></figcaption>
+      </figure>
+    </main>
+
+    <!-- ===== COMMISSIONS ===== -->
+    <section class="commissions" id="commissions">
+      <div>
+        <h2 class="serif">Commissions</h2>
+        <p data-field="commissions">I take on a few editorial and book projects each season, and one mural a year. Send a brief, a deadline, and a budget range; I reply within a week with a yes, a no, or a name.</p>
+      </div>
+      <ul aria-label="What I take on">
+        <li data-field="commission-type">Editorial illustration · single images and series</li>
+        <li data-field="commission-type">Book covers and interiors</li>
+        <li data-field="commission-type">Murals and large-format print</li>
+        <li data-field="commission-type">Limited-run prints, through the shop</li>
+      </ul>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <footer id="contact">
+      <a class="email" data-field="email" href="mailto:hello@inesrocha.example">hello@inesrocha.example</a>
+      <span>
+        <a data-field="instagram" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a> ·
+        <a data-field="shop" href="https://www.etsy.com/" target="_blank" rel="noopener noreferrer">Print shop</a> ·
+        <span data-field="agent">Represented in the UK by Harbor Illustration</span>
+      </span>
+    </footer>
+  </div>
+
+  <!-- ===== LIGHTBOX ===== -->
+  <dialog class="lightbox" id="lightbox" aria-label="Artwork">
+    <div class="lightbox-inner">
+      <button class="close" type="button" id="lightbox-close">Close</button>
+      <div class="large" id="lightbox-image" role="img"></div>
+      <p id="lightbox-caption"></p>
+    </div>
+  </dialog>
+
+  <a class="template-gallery" href="../../index.html">All templates</a>
+  <script>
+    // Opens the clicked piece in the lightbox. Uses data-full, else the <img> src, else the placeholder background.
+    (function () {
+      const dialog = document.getElementById("lightbox");
+      if (!dialog || typeof dialog.showModal !== "function") return;
+      const image = document.getElementById("lightbox-image");
+      const caption = document.getElementById("lightbox-caption");
+      document.querySelectorAll(".art").forEach((button) => {
+        const label = button.parentElement.querySelector("figcaption");
+        if (label && !button.hasAttribute("aria-label")) button.setAttribute("aria-label", "View larger: " + label.textContent.trim());
+        button.addEventListener("click", () => {
+          const img = button.querySelector("img");
+          const ph = button.querySelector(".ph");
+          const src = button.dataset.full || (img && img.getAttribute("src"));
+          image.style.backgroundImage = src ? "url('" + src + "')" : (ph ? getComputedStyle(ph).backgroundImage : "none");
+          const text = button.parentElement.querySelector("figcaption");
+          caption.textContent = text ? text.textContent : "";
+          image.setAttribute("aria-label", caption.textContent);
+          dialog.showModal();
+        });
+      });
+      document.getElementById("lightbox-close").addEventListener("click", () => dialog.close());
+      dialog.addEventListener("click", (event) => { if (event.target === dialog) dialog.close(); });
+    })();
+  </script>
+</body>
+</html>

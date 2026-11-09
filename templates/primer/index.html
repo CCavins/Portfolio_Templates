@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="sky">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <!-- The browser tab title. Put your name and what you do. -->
+  <title>Maya Chen · Computer Science Student</title>
+  <!-- One sentence search engines and link previews show. -->
+  <meta name="description" content="Portfolio of Maya Chen, a third-year computer science student. Three projects, what I did, and what I learned." />
+  <meta property="og:title" content="Maya Chen · Computer Science Student" />
+  <meta property="og:description" content="Three projects, what I did, and what I learned." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="theme-color" content="#eef4fb" />
+  <!--
+    ============================================================
+    PRIMER — single-file portfolio for students and first portfolios
+    A short hero, three projects told as "what I did / what I
+    learned", a skills list, and contact. Every block below has a
+    comment explaining what it is and whether to copy it.
+    ============================================================
+
+    HOW TO EDIT (read this once, then follow the comments in the body)
+
+    1. YOU NEED: this file and a text editor. VS Code is free.
+       Open index.html in the editor to change it, and in a browser
+       to see it (double-click the file). Save, then refresh.
+
+    2. TEXT. Find every data-field="…" and replace the words inside
+       the tag with your own. Do not change the data-field name
+       itself; it is just a marker. Example:
+         before:  <h1 data-field="name">Maya Chen</h1>
+         after:   <h1 data-field="name">Your Name</h1>
+       Sample names and projects are fictional.
+
+    3. PROJECTS. Each project is one <article class="project">.
+       To add a fourth, copy from <article class="project"> down to
+       its </article> and paste it below the last one. To remove
+       one, delete that whole block.
+
+    4. LINKS. Links look like <a href="https://…">Text</a>. Change
+       the address inside href="…" and the text between the tags.
+       An email link is href="mailto:you@example.com".
+
+    5. THEME. Change data-theme="sky" on the <html> tag (line 2) to:
+         sky   light blue page (default)
+         dusk  deep navy page, light text
+       Every color is in the THEMES block at the top of <style>.
+       If you want your own colors, change the hex codes there.
+       Preview without editing: index.html?theme=dusk
+
+    6. FONT. Plus Jakarta Sans loads from Google Fonts in the <link>
+       below. Pick another at fonts.google.com, copy its <link>, and
+       change the font-family on body.
+
+    7. PUBLISH (free). Make a GitHub account, create a repository
+       named yourname.github.io, upload this folder's files, and
+       the site appears at https://yourname.github.io in a minute.
+       Netlify Drop (drag the folder onto app.netlify.com/drop)
+       also works with no account setup.
+
+    If you copied this file from the gallery instead of downloading
+    the zip, delete the <a class="template-gallery"> link near the
+    bottom before publishing.
+  -->
+  <script>
+    // Gallery support: ?preview=1 hides the "All templates" bar; ?theme=name previews a theme.
+    // You can leave this in; it does nothing on your own site.
+    (function () {
+      var q = location.search;
+      if (q.indexOf("preview=1") !== -1) document.documentElement.classList.add("previewing");
+      var m = q.match(/[?&]theme=([\w-]+)/);
+      if (m) document.documentElement.setAttribute("data-theme", m[1]);
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ---------- THEMES: every color used on the page ---------- */
+
+    /* THEME: sky (default) — light blue page, dark text, blue accent */
+    :root, [data-theme="sky"] {
+      --bg: #eef4fb;        /* page background */
+      --card: #ffffff;      /* project cards */
+      --ink: #15202b;       /* main text */
+      --muted: #5b6b7c;     /* secondary text */
+      --line: #d5dfeb;      /* borders */
+      --accent: #2563eb;    /* links, buttons, highlights */
+      --on-accent: #ffffff; /* text on top of the accent color */
+      --gallery-bar: 34px;  /* leave this alone; the build tool uses it */
+    }
+    /* THEME: dusk — deep navy page, light text, amber accent */
+    [data-theme="dusk"] {
+      --bg: #101827;
+      --card: #182235;
+      --ink: #eef2f8;
+      --muted: #9aa8bb;
+      --line: #27344a;
+      --accent: #f5b942;
+      --on-accent: #101827;
+    }
+
+    /* ---------- LAYOUT: you rarely need to touch anything below ---------- */
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html.previewing { --gallery-bar: 0px; }
+    html.previewing, html.previewing body { overflow: hidden; height: 100%; }
+    html.previewing .template-gallery { display: none; }
+    body { margin: 0; padding-top: var(--gallery-bar); background: var(--bg); color: var(--ink); font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif; line-height: 1.6; }
+    a { color: var(--accent); }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .page { width: min(880px, calc(100% - 2rem)); margin: 0 auto; }
+    header { display: flex; justify-content: space-between; gap: 1rem; align-items: center; padding: 1.2rem 0; }
+    .brand { color: var(--ink); text-decoration: none; font-weight: 800; }
+    nav { display: flex; gap: 1.1rem; font-size: .95rem; }
+    nav a { color: var(--muted); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .hero { padding: 2.6rem 0 2.2rem; }
+    .hello { margin: 0; color: var(--accent); font-weight: 600; }
+    h1 { margin: .3rem 0 0; font-size: clamp(2.2rem, 6vw, 3.6rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; }
+    .lede { margin: 1rem 0 0; font-size: 1.15rem; color: var(--muted); max-width: 36rem; }
+    .buttons { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.4rem; }
+    .button { display: inline-flex; align-items: center; min-height: 46px; padding: .6rem 1.2rem; border-radius: 10px; text-decoration: none; font-weight: 600; border: 1px solid var(--line); color: var(--ink); background: var(--card); }
+    .button.primary { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+    section { padding: 2.2rem 0; border-top: 1px solid var(--line); scroll-margin-top: 1rem; }
+    h2 { margin: 0 0 1.1rem; font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; }
+    .project { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 1.3rem 1.4rem; margin-bottom: 1rem; }
+    .project-top { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; flex-wrap: wrap; }
+    .project h3 { margin: 0; font-size: 1.3rem; font-weight: 800; }
+    .project .meta { color: var(--muted); font-size: .9rem; }
+    .project .summary { margin: .5rem 0 .9rem; }
+    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .two h4 { margin: 0 0 .25rem; font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+    .two p { margin: 0; color: var(--muted); font-size: .98rem; }
+    .project .links { margin-top: .9rem; display: flex; gap: 1rem; font-size: .95rem; font-weight: 600; }
+    .skills { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0; padding: 0; list-style: none; }
+    .skills li { background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: .35rem .85rem; font-size: .92rem; }
+    .skills li.strong { border-color: var(--accent); }
+    .skills-note { margin: .9rem 0 0; color: var(--muted); font-size: .92rem; }
+    .contact p { margin: 0 0 .8rem; max-width: 40rem; }
+    footer { padding: 1rem 0 3.5rem; color: var(--muted); font-size: .9rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+    .template-gallery {
+      position: fixed; z-index: 5; top: 0; left: 0; right: 0;
+      height: var(--gallery-bar);
+      display: flex; align-items: center; justify-content: center;
+      background: var(--accent); color: var(--on-accent);
+      text-decoration: none; font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    }
+    @media (max-width: 640px) {
+      header { flex-direction: column; align-items: flex-start; gap: .2rem; }
+      nav { flex-wrap: wrap; gap: 0 1rem; }
+      nav a, .brand, footer a, .project .links a { display: inline-flex; align-items: center; min-height: 44px; }
+      .two { grid-template-columns: 1fr; }
+      .hero { padding: 1.4rem 0 1.8rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- ===== HEADER: your name on the left, links to the sections on the right.
+         If you delete a section below, delete its link here too. ===== -->
+    <header>
+      <a class="brand" href="#top" data-field="name">Maya Chen</a>
+      <nav aria-label="Sections">
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <!-- ===== HERO: who you are in two sentences, and two buttons.
+         The first button goes to your projects; the second is your résumé
+         (put resume.pdf next to this file) or your email. ===== -->
+    <section class="hero" id="top">
+      <p class="hello" data-field="greeting">Hi, I’m Maya.</p>
+      <h1 data-field="headline">I’m a computer science student who likes building small tools that people actually use.</h1>
+      <p class="lede" data-field="summary">Third year at the University of Toronto. This past year I built a study-group scheduler for my department, interned on a payments team, and learned more from a failed hackathon project than from the two that won.</p>
+      <div class="buttons">
+        <a class="button primary" href="#projects">See my projects</a>
+        <a class="button" data-field="resume" href="resume.pdf">Résumé (PDF)</a>
+      </div>
+    </section>
+
+    <!-- ===== PROJECTS: one <article class="project"> per project.
+         Copy the whole block (from <article to </article>) to add a project.
+         Each has: title, a short meta line (when, with whom), one summary
+         sentence, "what I did", "what I learned", and links. ===== -->
+    <section id="projects">
+      <h2>Projects</h2>
+
+      <!-- Project 1 -->
+      <article class="project">
+        <div class="project-top">
+          <h3 data-field="project-title">Study Buddy</h3>
+          <span class="meta" data-field="project-meta">Fall 2025 · team of 3 · React, Node, Postgres</span>
+        </div>
+        <p class="summary" data-field="project-summary">A scheduler that finds a time when a study group can actually meet, using everyone’s class timetable instead of a poll nobody answers.</p>
+        <div class="two">
+          <div>
+            <h4>What I did</h4>
+            <p data-field="project-did">Designed the data model and wrote the scheduling algorithm. Set up the deployment and the database backups after we lost a week of data once.</p>
+          </div>
+          <div>
+            <h4>What I learned</h4>
+            <p data-field="project-learned">The hard part was not the algorithm. It was importing timetables from four different formats. I now start with the messy input, not the clever core.</p>
+          </div>
+        </div>
+        <p class="links">
+          <a data-field="project-link" href="https://github.com/" target="_blank" rel="noopener noreferrer">Code</a>
+          <a data-field="project-demo" href="https://example.com/" target="_blank" rel="noopener noreferrer">Live demo</a>
+        </p>
+      </article>
+
+      <!-- Project 2 -->
+      <article class="project">
+        <div class="project-top">
+          <h3 data-field="project-title">Payments internship: refund tool</h3>
+          <span class="meta" data-field="project-meta">Summer 2025 · Northline · Go, internal tools</span>
+        </div>
+        <p class="summary" data-field="project-summary">An internal page that let support agents issue a partial refund in one step instead of a six-step runbook.</p>
+        <div class="two">
+          <div>
+            <h4>What I did</h4>
+            <p data-field="project-did">Interviewed four agents, wrote the spec, built the backend endpoint and the form, and shipped it behind a feature flag in week nine.</p>
+          </div>
+          <div>
+            <h4>What I learned</h4>
+            <p data-field="project-learned">Writing the spec before the code got me useful “no, not like that” feedback on day two instead of week six. Also: money math uses integers.</p>
+          </div>
+        </div>
+        <p class="links">
+          <a data-field="project-link" href="https://example.com/" target="_blank" rel="noopener noreferrer">Write-up</a>
+        </p>
+      </article>
+
+      <!-- Project 3 -->
+      <article class="project">
+        <div class="project-top">
+          <h3 data-field="project-title">Transit Pulse (hackathon)</h3>
+          <span class="meta" data-field="project-meta">Winter 2025 · 36 hours · Python, Leaflet</span>
+        </div>
+        <p class="summary" data-field="project-summary">A live map of bus delays. It worked for the demo and fell over the day after, which turned out to be the interesting part.</p>
+        <div class="two">
+          <div>
+            <h4>What I did</h4>
+            <p data-field="project-did">Wrote the poller for the transit agency’s feed and the map front end. Presented the demo.</p>
+          </div>
+          <div>
+            <h4>What I learned</h4>
+            <p data-field="project-learned">We hit the API rate limit the moment real people opened it. I rebuilt it afterwards with caching and a queue, and wrote up what went wrong.</p>
+          </div>
+        </div>
+        <p class="links">
+          <a data-field="project-link" href="https://github.com/" target="_blank" rel="noopener noreferrer">Code</a>
+          <a data-field="project-demo" href="https://example.com/" target="_blank" rel="noopener noreferrer">Post-mortem</a>
+        </p>
+      </article>
+    </section>
+
+    <!-- ===== SKILLS: one <li> per skill. Add class="strong" to the ones
+         you would be happy to be interviewed on. ===== -->
+    <section id="skills">
+      <h2>Skills</h2>
+      <ul class="skills" data-field="skills">
+        <li class="strong">Python</li>
+        <li class="strong">JavaScript / TypeScript</li>
+        <li class="strong">SQL</li>
+        <li>Go</li>
+        <li>React</li>
+        <li>Node</li>
+        <li>Git</li>
+        <li>Linux</li>
+        <li>Figma (enough to be dangerous)</li>
+      </ul>
+      <p class="skills-note" data-field="skills-note">Outlined chips are the ones I would be glad to be interviewed on. The rest I have used in a real project at least once.</p>
+    </section>
+
+    <!-- ===== CONTACT: one line about what you are looking for, then links. ===== -->
+    <section class="contact" id="contact">
+      <h2>Contact</h2>
+      <p data-field="looking-for">I’m looking for a summer 2026 internship in backend or infrastructure, in Toronto or remote. If you have a messy problem and patience for questions, I would like to hear about it.</p>
+      <p>
+        <a data-field="email" href="mailto:maya.chen@example.com">maya.chen@example.com</a> ·
+        <a data-field="github" href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a> ·
+        <a data-field="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </p>
+    </section>
+
+    <footer>
+      <span>&copy; <span data-field="year">2026</span> <span data-field="name">Maya Chen</span></span>
+      <span data-field="colophon">Built with one HTML file and no framework.</span>
+    </footer>
+  </div>
+  <a class="template-gallery" href="../../index.html">All templates</a>
+</body>
+</html>

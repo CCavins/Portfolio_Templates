@@ -1,281 +1,218 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="ocean">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Jordan Hale · Creative Technologist</title>
   <meta name="description" content="Portfolio of Jordan Hale, a creative technologist and technical program lead." />
+  <meta property="og:title" content="Jordan Hale · Creative Technologist" />
+  <meta property="og:description" content="Portfolio of Jordan Hale, a creative technologist and technical program lead." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
   <meta name="theme-color" content="#0b1020" />
   <!--
-    AURORA — single-file portfolio template.
-    Replace every element with data-field. Sample copy is fictional.
-    Media: duplicate a .poster, or replace it with an <img> or a YouTube <iframe>.
-    Delete the "All templates" link before publishing your own site.
+    ============================================================
+    AURORA — single-file portfolio template
+    Dark glass panels over a particle field, with an icon rail that
+    expands on hover. Sections: intro, about, experience, projects,
+    a media showcase, skill bars, contact.
+    ============================================================
+
+    HOW TO EDIT
+
+    1. TEXT. Replace every element with data-field="…". Update
+       <title> and the description / og: meta tags above.
+       Sample names and projects are fictional.
+
+    2. TYPED LINES. The hero types and deletes short phrases. They
+       live in the data-lines attribute on <span id="typed">,
+       separated by a | character. Add or remove phrases there.
+
+    3. EXPERIENCE. One <article class="job"> per role; copy the
+       block. Achievements are <li> items.
+
+    4. PROJECTS. One <article class="project"> per project.
+
+    5. SHOWCASE. Each <article class="poster"> is a placeholder
+       card in a sideways-scrolling carousel. Replace a card with
+         <img class="poster" src="images/demo.jpg" alt="…">
+       or a video embed:
+         <iframe class="poster" src="https://www.youtube.com/embed/VIDEO_ID"
+                 title="…" allowfullscreen></iframe>
+
+    6. SKILLS. Each <div class="skill"> has data-level="0-100".
+       The label percentage and the bar width both come from that
+       one number; you never edit them separately.
+
+    7. NAVIGATION. The rail links point at section ids. If you
+       delete a section, delete its link too. Icons are Font Awesome
+       classes (fa-bolt, fa-user, …) loaded from a CDN.
+
+    8. THEME. Change data-theme="ocean" on the <html> tag to:
+         ocean  navy ground, cyan and violet accents (default)
+         ember  near-black warm ground, orange and gold accents
+       Colors live in the THEMES block at the top of <style>.
+       Preview without editing: index.html?theme=ember
+
+    9. FONT. Inter loads from Google Fonts.
+
+    10. PUBLISH. Upload this folder to any static host; the entry
+        file is index.html. If you copied this file from the gallery,
+        delete the <a class="template-gallery"> link near the bottom.
   -->
   <script>
-    if (location.search.indexOf("preview=1") !== -1) document.documentElement.classList.add("previewing");
+    // Gallery support: ?preview=1 hides the "All templates" bar; ?theme=name previews a theme.
+    (function () {
+      var q = location.search;
+      if (q.indexOf("preview=1") !== -1) document.documentElement.classList.add("previewing");
+      var m = q.match(/[?&]theme=([\w-]+)/);
+      if (m) document.documentElement.setAttribute("data-theme", m[1]);
+    })();
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    :root {
+    /* ---------- THEMES ---------- */
+
+    /* THEME: ocean (default) — navy ground, cyan and violet accents */
+    :root, [data-theme="ocean"] {
       --bg: #0b1020;
       --glass: rgba(16, 24, 42, 0.72);
       --glass-border: rgba(255, 255, 255, 0.14);
+      --rail: rgba(12, 18, 32, 0.72);
       --text: #eef4f8;
       --muted: #b7c7d6;
+      --soft: #d5e7f2;
       --accent: #7ee8ff;
+      --accent-2: #c3b6ff;
+      --accent-3: #8dffe6;
+      --button-from: #14b8d4;
+      --button-to: #7c6cff;
       --line: rgba(255, 255, 255, 0.1);
+      --particle: 126, 232, 255;      /* r, g, b used by the canvas */
+      --selection: #1c6f86;
+      --poster-a: linear-gradient(145deg, #9af2ff, #6d7cff);
+      --poster-b: linear-gradient(160deg, #d8ff8a, #3ddec4);
+      --poster-c: linear-gradient(160deg, #ffd0f0, #8d7cff);
+      --poster-d: linear-gradient(160deg, #ffe29a, #ff8d6b);
+      --bar-bg: rgba(255, 255, 255, 0.08);
       --gallery-bar: 34px;
     }
+    /* THEME: ember — warm near-black ground, orange and gold accents */
+    [data-theme="ember"] {
+      --bg: #170f0c;
+      --glass: rgba(38, 24, 18, 0.72);
+      --glass-border: rgba(255, 220, 190, 0.14);
+      --rail: rgba(30, 18, 14, 0.76);
+      --text: #fbf2ea;
+      --muted: #d6bfae;
+      --soft: #f1dccb;
+      --accent: #ff9f5a;
+      --accent-2: #ffd36b;
+      --accent-3: #ff6f91;
+      --button-from: #ff7a3d;
+      --button-to: #d9356b;
+      --line: rgba(255, 220, 190, 0.1);
+      --particle: 255, 159, 90;
+      --selection: #8a3b1c;
+      --poster-a: linear-gradient(145deg, #ffb37a, #ff6f91);
+      --poster-b: linear-gradient(160deg, #ffe29a, #ff9f5a);
+      --poster-c: linear-gradient(160deg, #f9c7b0, #c9556f);
+      --poster-d: linear-gradient(160deg, #ffd36b, #e0752f);
+      --bar-bg: rgba(255, 220, 190, 0.08);
+    }
+
+    /* ---------- LAYOUT ---------- */
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     html.previewing { --gallery-bar: 0px; }
     html.previewing, html.previewing body { overflow: hidden; height: 100%; }
     html.previewing .template-gallery { display: none; }
-    body {
-      margin: 0;
-      padding-top: var(--gallery-bar);
-      font-family: Inter, "Segoe UI", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.55;
-    }
-    ::selection { background: #1c6f86; color: white; }
+    body { margin: 0; padding-top: var(--gallery-bar); font-family: Inter, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); line-height: 1.55; }
+    ::selection { background: var(--selection); color: white; }
     a { color: var(--accent); }
     a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-    #particles {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      pointer-events: none;
-    }
+    #particles { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
     .sidebar {
-      position: fixed;
-      z-index: 20;
-      top: var(--gallery-bar);
-      left: 0;
-      bottom: 0;
-      width: 76px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      gap: .25rem;
+      position: fixed; z-index: 20;
+      top: var(--gallery-bar); left: 0; bottom: 0;
+      width: 76px; overflow: hidden;
+      display: flex; flex-direction: column; align-items: stretch; gap: .25rem;
       padding: 1rem 0;
-      background: rgba(12, 18, 32, 0.72);
+      background: var(--rail);
       border-right: 1px solid var(--line);
       backdrop-filter: blur(16px);
       transition: width .28s ease;
     }
     .sidebar:hover, .sidebar:focus-within { width: 210px; }
-    .sidebar-logo {
-      display: flex;
-      align-items: center;
-      height: 44px;
-      padding: 0 22px;
-      margin-bottom: .8rem;
-      font-weight: 800;
-      letter-spacing: .04em;
-      color: var(--accent);
-      white-space: nowrap;
-    }
+    .sidebar-logo { display: flex; align-items: center; height: 44px; padding: 0 22px; margin-bottom: .8rem; font-weight: 800; letter-spacing: .04em; color: var(--accent); white-space: nowrap; }
     .logo-full { display: none; font-size: .95rem; font-weight: 700; }
     .sidebar:hover .logo-short, .sidebar:focus-within .logo-short { display: none; }
     .sidebar:hover .logo-full, .sidebar:focus-within .logo-full { display: inline; }
-    .sidebar-link {
-      display: flex;
-      align-items: center;
-      gap: .9rem;
-      min-height: 44px;
-      padding: .65rem 24px;
-      color: var(--text);
-      text-decoration: none;
-      white-space: nowrap;
-      border-radius: 0;
-    }
+    .sidebar-link { display: flex; align-items: center; gap: .9rem; min-height: 44px; padding: .65rem 24px; color: var(--text); text-decoration: none; white-space: nowrap; }
     .sidebar-link i { width: 1.25rem; text-align: center; flex: 0 0 1.25rem; }
     .sidebar-link span { opacity: 0; transition: opacity .2s ease; }
     .sidebar:hover .sidebar-link span, .sidebar:focus-within .sidebar-link span { opacity: 1; }
     .sidebar-link:hover, .sidebar-link.active { color: var(--accent); background: rgba(255,255,255,.06); }
     .main { position: relative; z-index: 1; margin-left: 76px; }
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 4rem 1.5rem;
+    .hero { min-height: 100vh; display: grid; place-items: center; padding: 4rem 1.5rem; }
+    .hero-card { width: min(620px, 100%); text-align: center; padding: 2.6rem 2rem 2.2rem; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 28px; box-shadow: 0 20px 60px rgba(0, 0, 0, .28); backdrop-filter: blur(16px); }
+    .eyebrow { margin: 0 0 .8rem; letter-spacing: .16em; text-transform: uppercase; font-size: .75rem; color: var(--accent); }
+    .gradient-text {
+      background: linear-gradient(100deg, var(--accent), var(--accent-2) 55%, var(--accent-3));
+      -webkit-background-clip: text; background-clip: text;
+      color: var(--accent); -webkit-text-fill-color: transparent;
     }
-    .hero-card {
-      width: min(620px, 100%);
-      text-align: center;
-      padding: 2.6rem 2rem 2.2rem;
-      background: var(--glass);
-      border: 1px solid var(--glass-border);
-      border-radius: 28px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, .28);
-      backdrop-filter: blur(16px);
-    }
-    .eyebrow {
-      margin: 0 0 .8rem;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      font-size: .75rem;
-      color: var(--accent);
-    }
-    h1 {
-      margin: 0;
-      font-size: clamp(2.6rem, 6vw, 4.3rem);
-      line-height: .98;
-      letter-spacing: -0.045em;
-      background: linear-gradient(100deg, #9af2ff, #c3b6ff 55%, #8dffe6);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: #c9f6ff;
-      -webkit-text-fill-color: transparent;
-    }
-    .role { margin: .8rem 0 .35rem; font-size: 1.25rem; color: #d5f4ff; }
-    .typed { display: block; min-height: 1.6em; font-weight: 600; color: #f4fbff; overflow-wrap: anywhere; }
-    .typed::after {
-      content: "";
-      display: inline-block;
-      width: 1px;
-      height: .9em;
-      margin-left: 3px;
-      background: currentColor;
-      vertical-align: -1px;
-      animation: blink 1s steps(1) infinite;
-    }
+    h1 { margin: 0; font-size: clamp(2.6rem, 6vw, 4.3rem); line-height: .98; letter-spacing: -0.045em; }
+    .role { margin: .8rem 0 .35rem; font-size: 1.25rem; color: var(--soft); }
+    .typed { display: block; min-height: 1.6em; font-weight: 600; color: var(--text); overflow-wrap: anywhere; }
+    .typed::after { content: ""; display: inline-block; width: 1px; height: .9em; margin-left: 3px; background: currentColor; vertical-align: -1px; animation: blink 1s steps(1) infinite; }
     @keyframes blink { 50% { opacity: 0; } }
     .lede { color: var(--muted); margin: .8rem auto 0; max-width: 38rem; }
     .hero-actions { display: flex; justify-content: center; gap: .7rem; flex-wrap: wrap; margin-top: 1.5rem; }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      min-height: 44px;
-      padding: .7rem 1.2rem;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: 700;
-      border: 1px solid transparent;
-    }
-    .btn-primary { background: linear-gradient(90deg, #14b8d4, #7c6cff); color: white; }
+    .btn { display: inline-flex; align-items: center; min-height: 44px; padding: .7rem 1.2rem; border-radius: 999px; text-decoration: none; font-weight: 700; border: 1px solid transparent; }
+    .btn-primary { background: linear-gradient(90deg, var(--button-from), var(--button-to)); color: white; }
     .btn-primary:hover { filter: brightness(1.08); }
     .btn-ghost { color: var(--text); border-color: var(--line); background: rgba(255,255,255,.04); }
-    .section {
-      width: min(920px, calc(100% - 2rem));
-      margin: 0 auto 1.25rem;
-      padding: 1.7rem 1.5rem 1.5rem;
-      background: var(--glass);
-      border: 1px solid var(--glass-border);
-      border-radius: 22px;
-      backdrop-filter: blur(14px);
-      scroll-margin-top: 1.2rem;
-    }
-    .section h2 {
-      margin: 0 0 1rem;
-      text-align: center;
-      font-size: clamp(1.7rem, 3vw, 2.15rem);
-      letter-spacing: -0.03em;
-      background: linear-gradient(90deg, #9af2ff, #c3b6ff, #8dffe6);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: #c9f6ff;
-      -webkit-text-fill-color: transparent;
-    }
+    .section { width: min(920px, calc(100% - 2rem)); margin: 0 auto 1.25rem; padding: 1.7rem 1.5rem 1.5rem; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 22px; backdrop-filter: blur(14px); scroll-margin-top: 1.2rem; }
+    .section h2 { margin: 0 0 1rem; text-align: center; font-size: clamp(1.7rem, 3vw, 2.15rem); letter-spacing: -0.03em; }
     .section p { margin: 0; color: var(--muted); }
     .job + .job { margin-top: 1.2rem; padding-top: 1.2rem; border-top: 1px solid var(--line); }
     .job h3 { margin: 0; color: var(--text); font-size: 1.12rem; }
-    .meta { margin: .2rem 0 .45rem; color: #d5e7f2; }
+    .meta { margin: .2rem 0 .45rem; color: var(--soft); }
     .job ul, .section ul { margin: .4rem 0 0; padding-left: 1.1rem; color: var(--muted); }
     .job li + li { margin-top: .3rem; }
     .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: .8rem; }
-    .project {
-      padding: 1rem 1rem .95rem;
-      border-radius: 16px;
-      background: rgba(255,255,255,.04);
-      border: 1px solid var(--line);
-    }
+    .project { padding: 1rem 1rem .95rem; border-radius: 16px; background: rgba(255,255,255,.04); border: 1px solid var(--line); }
     .project h3 { margin: 0 0 .4rem; font-size: 1.02rem; color: var(--text); }
     .project p { margin: 0; }
     .hint { margin-top: .9rem !important; font-size: .88rem; text-align: center; }
-    .showcase-carousel {
-      display: flex;
-      gap: .9rem;
-      overflow-x: auto;
-      padding-bottom: .4rem;
-      scroll-snap-type: x mandatory;
-    }
-    .poster {
-      flex: 0 0 min(280px, 82vw);
-      height: 168px;
-      scroll-snap-align: start;
-      border-radius: 16px;
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      color: #071018;
-      box-shadow: 0 10px 24px rgba(0,0,0,.25);
-    }
+    .showcase-carousel { display: flex; gap: .9rem; overflow-x: auto; padding-bottom: .4rem; scroll-snap-type: x mandatory; }
+    .poster { flex: 0 0 min(280px, 82vw); height: 168px; scroll-snap-align: start; border-radius: 16px; padding: 1rem; display: flex; flex-direction: column; justify-content: space-between; color: #071018; box-shadow: 0 10px 24px rgba(0,0,0,.25); object-fit: cover; border: 0; }
     .poster span { font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; }
     .poster strong { font-size: 1.25rem; letter-spacing: -0.03em; }
-    .poster-a { background: linear-gradient(145deg, #9af2ff, #6d7cff); }
-    .poster-b { background: linear-gradient(160deg, #d8ff8a, #3ddec4); }
-    .poster-c { background: linear-gradient(160deg, #ffd0f0, #8d7cff); }
-    .poster-d { background: linear-gradient(160deg, #ffe29a, #ff8d6b); }
+    .poster-a { background: var(--poster-a); }
+    .poster-b { background: var(--poster-b); }
+    .poster-c { background: var(--poster-c); }
+    .poster-d { background: var(--poster-d); }
     .skills { display: grid; grid-template-columns: 1fr 1fr; gap: .85rem 1.4rem; }
     .skill-label { display: flex; justify-content: space-between; font-size: .92rem; margin-bottom: .35rem; color: var(--text); }
-    .bar-bg { height: 8px; border-radius: 99px; background: rgba(255,255,255,.08); overflow: hidden; }
-    .bar-fill {
-      height: 100%;
-      width: 0;
-      border-radius: inherit;
-      background: linear-gradient(90deg, #14b8d4, #7c6cff);
-      transition: width 1s ease;
-    }
+    .bar-bg { height: 8px; border-radius: 99px; background: var(--bar-bg); overflow: hidden; }
+    .bar-fill { height: 100%; width: 0; border-radius: inherit; background: linear-gradient(90deg, var(--button-from), var(--button-to)); transition: width 1s ease; }
     .contact-row { display: flex; flex-wrap: wrap; gap: .8rem 1.2rem; justify-content: center; }
-    footer {
-      text-align: center;
-      padding: 1.2rem 1rem 5.5rem;
-      color: var(--muted);
-    }
+    footer { text-align: center; padding: 1.2rem 1rem 5.5rem; color: var(--muted); }
     footer p { margin: .3rem 0; }
     .template-gallery {
-      position: fixed;
-      z-index: 40;
-      top: 0;
-      left: 0;
-      right: 0;
+      position: fixed; z-index: 40; top: 0; left: 0; right: 0;
       height: var(--gallery-bar);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #f4fbff;
-      color: #102033;
-      text-decoration: none;
-      font-size: .72rem;
-      font-weight: 700;
-      letter-spacing: .14em;
-      text-transform: uppercase;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--text); color: var(--bg);
+      text-decoration: none; font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
     }
     @media (max-width: 800px) {
-      .sidebar {
-        top: auto;
-        width: 100%;
-        height: calc(64px + env(safe-area-inset-bottom));
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-evenly;
-        gap: 0;
-        padding: 0 0 env(safe-area-inset-bottom);
-        overflow-x: auto;
-        border-right: 0;
-        border-top: 1px solid var(--line);
-      }
+      .sidebar { top: auto; width: 100%; height: calc(64px + env(safe-area-inset-bottom)); flex-direction: row; align-items: center; justify-content: space-evenly; gap: 0; padding: 0 0 env(safe-area-inset-bottom); overflow-x: auto; border-right: 0; border-top: 1px solid var(--line); }
       .sidebar:hover, .sidebar:focus-within { width: 100%; }
       .sidebar-logo, .sidebar-link span { display: none; }
       .sidebar-link { flex: 1; width: auto; min-width: 44px; height: 48px; padding: 0; justify-content: center; }
@@ -296,6 +233,7 @@
 </head>
 <body>
   <canvas id="particles" aria-hidden="true"></canvas>
+  <!-- ===== RAIL: one link per section ===== -->
   <nav class="sidebar" aria-label="Sections">
     <div class="sidebar-logo">
       <span class="logo-short" data-field="initials">JH</span>
@@ -311,12 +249,14 @@
   </nav>
 
   <main class="main">
+    <!-- ===== INTRO ===== -->
     <section class="hero" id="top">
       <div class="hero-card">
         <p class="eyebrow" data-field="location">Oakland · Open to new programs</p>
-        <h1 data-field="name">Jordan Hale</h1>
+        <h1 class="gradient-text" data-field="name">Jordan Hale</h1>
         <p class="role" data-field="role">Creative Technologist</p>
-        <span class="typed" id="typed" data-field="rotating-lines"></span>
+        <!-- Typed phrases: separate with | -->
+        <span class="typed" id="typed" data-field="rotating-lines" data-lines="Programs people can feel.|The work between idea and launch."></span>
         <p class="lede" data-field="summary">I plan the stretch between a prototype and a release: the story, the sequence, and the room where the decision actually gets made.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" data-field="email" href="mailto:jordan.hale@example.com">Let’s connect</a>
@@ -325,13 +265,15 @@
       </div>
     </section>
 
+    <!-- ===== ABOUT ===== -->
     <section class="section" id="about">
-      <h2>About</h2>
+      <h2 class="gradient-text">About</h2>
       <p data-field="about">I work with design, engineering, and the people who have to explain the launch when it is over. The useful part is usually unglamorous: a narrative the whole team can repeat, a sequence that survives contact with a calendar, and a demo that tells the truth.</p>
     </section>
 
+    <!-- ===== EXPERIENCE: copy one <article class="job"> per role ===== -->
     <section class="section" id="experience">
-      <h2>Experience</h2>
+      <h2 class="gradient-text">Experience</h2>
       <article class="job">
         <h3 data-field="company">Northstar Labs</h3>
         <p class="meta"><strong data-field="job-title">Program Lead</strong> · <span data-field="years">2022 — 2026</span></p>
@@ -350,8 +292,9 @@
       </article>
     </section>
 
+    <!-- ===== PROJECTS: copy one <article class="project"> per project ===== -->
     <section class="section" id="projects">
-      <h2>Projects</h2>
+      <h2 class="gradient-text">Projects</h2>
       <div class="projects">
         <article class="project">
           <h3 data-field="project-title">Field kit</h3>
@@ -368,49 +311,52 @@
       </div>
     </section>
 
+    <!-- ===== SHOWCASE: replace a .poster with an <img class="poster"> or an <iframe class="poster"> ===== -->
     <section class="section" id="showcase">
-      <h2>Showcase</h2>
+      <h2 class="gradient-text">Showcase</h2>
       <div class="showcase-carousel">
-        <article class="poster poster-a"><span>Film</span><strong data-field="media-title">Beta, in a room</strong></article>
-        <article class="poster poster-b"><span>Still</span><strong data-field="media-title">Kit, packed</strong></article>
-        <article class="poster poster-c"><span>Film</span><strong data-field="media-title">The launch wall</strong></article>
-        <article class="poster poster-d"><span>Still</span><strong data-field="media-title">Store demo</strong></article>
+        <article class="poster poster-a"><span data-field="media-kind">Film</span><strong data-field="media-title">Beta, in a room</strong></article>
+        <article class="poster poster-b"><span data-field="media-kind">Still</span><strong data-field="media-title">Kit, packed</strong></article>
+        <article class="poster poster-c"><span data-field="media-kind">Film</span><strong data-field="media-title">The launch wall</strong></article>
+        <article class="poster poster-d"><span data-field="media-kind">Still</span><strong data-field="media-title">Store demo</strong></article>
       </div>
-      <p class="hint">Replace a card with an image or a video embed. A YouTube iframe belongs right here in the carousel.</p>
+      <p class="hint" data-field="showcase-hint">Replace a card with an image or a video embed. A YouTube iframe belongs right here in the carousel.</p>
     </section>
 
+    <!-- ===== SKILLS: one <div class="skill" data-level="0-100"> per skill ===== -->
     <section class="section" id="skills">
-      <h2>Skills</h2>
+      <h2 class="gradient-text">Skills</h2>
       <div class="skills">
-        <div class="skill">
-          <div class="skill-label"><span>Program design</span><span>95%</span></div>
-          <div class="bar-bg"><div class="bar-fill" style="width:95%"></div></div>
+        <div class="skill" data-level="95">
+          <div class="skill-label"><span data-field="skill">Program design</span><span class="skill-percent"></span></div>
+          <div class="bar-bg"><div class="bar-fill"></div></div>
         </div>
-        <div class="skill">
-          <div class="skill-label"><span>Launch narrative</span><span>90%</span></div>
-          <div class="bar-bg"><div class="bar-fill" style="width:90%"></div></div>
+        <div class="skill" data-level="90">
+          <div class="skill-label"><span data-field="skill">Launch narrative</span><span class="skill-percent"></span></div>
+          <div class="bar-bg"><div class="bar-fill"></div></div>
         </div>
-        <div class="skill">
-          <div class="skill-label"><span>Workshop design</span><span>88%</span></div>
-          <div class="bar-bg"><div class="bar-fill" style="width:88%"></div></div>
+        <div class="skill" data-level="88">
+          <div class="skill-label"><span data-field="skill">Workshop design</span><span class="skill-percent"></span></div>
+          <div class="bar-bg"><div class="bar-fill"></div></div>
         </div>
-        <div class="skill">
-          <div class="skill-label"><span>Prototyping</span><span>80%</span></div>
-          <div class="bar-bg"><div class="bar-fill" style="width:80%"></div></div>
+        <div class="skill" data-level="80">
+          <div class="skill-label"><span data-field="skill">Prototyping</span><span class="skill-percent"></span></div>
+          <div class="bar-bg"><div class="bar-fill"></div></div>
         </div>
-        <div class="skill">
-          <div class="skill-label"><span>Launch operations</span><span>92%</span></div>
-          <div class="bar-bg"><div class="bar-fill" style="width:92%"></div></div>
+        <div class="skill" data-level="92">
+          <div class="skill-label"><span data-field="skill">Launch operations</span><span class="skill-percent"></span></div>
+          <div class="bar-bg"><div class="bar-fill"></div></div>
         </div>
-        <div class="skill">
-          <div class="skill-label"><span>Research synthesis</span><span>76%</span></div>
-          <div class="bar-bg"><div class="bar-fill" style="width:76%"></div></div>
+        <div class="skill" data-level="76">
+          <div class="skill-label"><span data-field="skill">Research synthesis</span><span class="skill-percent"></span></div>
+          <div class="bar-bg"><div class="bar-fill"></div></div>
         </div>
       </div>
     </section>
 
+    <!-- ===== CONTACT ===== -->
     <section class="section" id="contact">
-      <h2>Contact</h2>
+      <h2 class="gradient-text">Contact</h2>
       <div class="contact-row">
         <a data-field="email" href="mailto:jordan.hale@example.com">jordan.hale@example.com</a>
         <a data-field="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
@@ -427,11 +373,16 @@
 
   <script>
     (function () {
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      /* ---- Particle field. Color comes from the --particle variable of the active theme. ---- */
       const canvas = document.getElementById("particles");
       const ctx = canvas.getContext("2d");
-      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       let particles = [];
       const mouse = { x: -9999, y: -9999 };
+      function particleColor() {
+        return (getComputedStyle(document.documentElement).getPropertyValue("--particle") || "126, 232, 255").trim();
+      }
       function resize() {
         const dpr = Math.min(window.devicePixelRatio || 1, 2);
         canvas.width = Math.floor(innerWidth * dpr);
@@ -442,35 +393,26 @@
       }
       function seed() {
         particles = Array.from({ length: 42 }, () => ({
-          x: Math.random() * innerWidth,
-          y: Math.random() * innerHeight,
-          vx: 0,
-          vy: 0,
-          baseVx: (Math.random() - 0.5) * 0.35,
-          baseVy: (Math.random() - 0.5) * 0.35
+          x: Math.random() * innerWidth, y: Math.random() * innerHeight,
+          vx: 0, vy: 0,
+          baseVx: (Math.random() - 0.5) * 0.35, baseVy: (Math.random() - 0.5) * 0.35
         }));
       }
       function draw() {
+        const rgb = particleColor();
         ctx.clearRect(0, 0, innerWidth, innerHeight);
+        ctx.lineWidth = 1;
         for (let i = 0; i < particles.length; i++) {
           const p = particles[i];
           if (!reduce) {
-            const dx = p.x - mouse.x;
-            const dy = p.y - mouse.y;
+            const dx = p.x - mouse.x, dy = p.y - mouse.y;
             const dist = Math.hypot(dx, dy);
-            if (dist && dist < 120) {
-              p.vx += (dx / dist) * 0.35;
-              p.vy += (dy / dist) * 0.35;
-            }
+            if (dist && dist < 120) { p.vx += (dx / dist) * 0.35; p.vy += (dy / dist) * 0.35; }
             p.vx += (p.baseVx - p.vx) * 0.02;
             p.vy += (p.baseVy - p.vy) * 0.02;
             const speed = Math.hypot(p.vx, p.vy);
-            if (speed > 1.6) {
-              p.vx = (p.vx / speed) * 1.6;
-              p.vy = (p.vy / speed) * 1.6;
-            }
-            p.x += p.vx;
-            p.y += p.vy;
+            if (speed > 1.6) { p.vx = (p.vx / speed) * 1.6; p.vy = (p.vy / speed) * 1.6; }
+            p.x += p.vx; p.y += p.vy;
             if (p.x < 0 || p.x > innerWidth) p.baseVx *= -1;
             if (p.y < 0 || p.y > innerHeight) p.baseVy *= -1;
             p.x = Math.max(0, Math.min(innerWidth, p.x));
@@ -478,14 +420,13 @@
           }
           ctx.beginPath();
           ctx.arc(p.x, p.y, 2.1, 0, Math.PI * 2);
-          ctx.fillStyle = "rgba(126, 232, 255, .75)";
+          ctx.fillStyle = "rgba(" + rgb + ", .75)";
           ctx.fill();
           for (let j = i + 1; j < particles.length; j++) {
             const q = particles[j];
             const d = Math.hypot(p.x - q.x, p.y - q.y);
             if (d < 140) {
-              ctx.strokeStyle = "rgba(126, 232, 255, " + ((1 - d / 140) * 0.28) + ")";
-              ctx.strokeWidth = 1;
+              ctx.strokeStyle = "rgba(" + rgb + ", " + ((1 - d / 140) * 0.28) + ")";
               ctx.beginPath();
               ctx.moveTo(p.x, p.y);
               ctx.lineTo(q.x, q.y);
@@ -502,18 +443,16 @@
       }
       window.addEventListener("resize", () => { resize(); if (reduce) draw(); });
       window.addEventListener("pointermove", (event) => { mouse.x = event.clientX; mouse.y = event.clientY; });
-      document.addEventListener("visibilitychange", () => {
-        alive = !document.hidden;
-        if (alive && !reduce) tick();
-      });
+      document.addEventListener("visibilitychange", () => { alive = !document.hidden; if (alive && !reduce) tick(); });
       resize();
       seed();
       tick();
 
-      const lines = ["Programs people can feel.", "The work between idea and launch."];
+      /* ---- Typed lines, read from data-lines on #typed. ---- */
       const typed = document.getElementById("typed");
-      if (reduce) {
-        typed.textContent = lines[0];
+      const lines = (typed.dataset.lines || "").split("|").map((s) => s.trim()).filter(Boolean);
+      if (!lines.length || reduce) {
+        typed.textContent = lines[0] || "";
       } else {
         let line = 0, count = 0, deleting = false;
         (function type() {
@@ -533,12 +472,16 @@
         })();
       }
 
-      document.querySelectorAll(".bar-fill").forEach((bar) => {
-        const width = bar.style.width;
-        bar.style.width = "0";
-        requestAnimationFrame(() => { bar.style.width = width; });
+      /* ---- Skill bars: label and width both from data-level. ---- */
+      document.querySelectorAll(".skill[data-level]").forEach((skill) => {
+        const level = Math.max(0, Math.min(100, parseInt(skill.dataset.level, 10) || 0));
+        const label = skill.querySelector(".skill-percent");
+        const bar = skill.querySelector(".bar-fill");
+        if (label) label.textContent = level + "%";
+        if (bar) requestAnimationFrame(() => { bar.style.width = level + "%"; });
       });
 
+      /* ---- Highlight the rail link for the section in view. ---- */
       const links = [...document.querySelectorAll(".sidebar-link")];
       const map = new Map(links.map((link) => [link.getAttribute("href").slice(1), link]));
       const sections = [...document.querySelectorAll("main section[id]")];

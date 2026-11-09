@@ -1,118 +1,132 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="paper">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Ada Mensah · Product Designer</title>
   <meta name="description" content="Case studies by Ada Mensah, a product designer based in London." />
+  <meta property="og:title" content="Ada Mensah · Product Designer" />
+  <meta property="og:description" content="Case studies by Ada Mensah, a product designer based in London." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
   <meta name="theme-color" content="#f7f6f3" />
   <!--
-    PROOF — single-file case-study template.
-    Each project leads with the outcome, then the role and a short account.
-    Replace every element with data-field. Sample copy is fictional.
-    Delete the "All templates" link before publishing your own site.
-    The downloadable zip already has that link removed.
+    ============================================================
+    PROOF — single-file case-study template
+    Each project leads with the outcome: a big metric on a colored
+    cover, then the title, the result, a short account, and your role.
+    ============================================================
+
+    HOW TO EDIT
+
+    1. TEXT. Replace every element with data-field="…". Update
+       <title> and the description / og: meta tags above.
+       Sample names and projects are fictional.
+
+    2. CASE STUDIES. Each one is an <article class="case">. Copy a
+       whole block to add a study. The cover uses a color class
+       (c1, c2, c3); reuse one or add a .c4 rule in the stylesheet.
+       Keep the metric short: three to five words reads best.
+
+    3. IMAGES. To show a screenshot instead of the colored cover,
+       replace <div class="cover c1"> … </div> with
+       <img class="cover" src="images/checkout.png" alt="…">.
+       The .cover rule already sets the size and corner radius.
+
+    4. THEME. Change data-theme="paper" on the <html> tag to:
+         paper  off-white page (default)
+         slate  dark grey page, same bright covers
+       Colors live in the THEMES block at the top of <style>.
+       Preview without editing: index.html?theme=slate
+
+    5. FONT. Figtree loads from Google Fonts in the <link> below.
+
+    6. PUBLISH. Upload this folder to any static host; the entry file
+       is index.html. If you copied this file from the gallery, delete
+       the <a class="template-gallery"> link near the bottom.
   -->
   <script>
-    if (location.search.indexOf("preview=1") !== -1) document.documentElement.classList.add("previewing");
+    // Gallery support: ?preview=1 hides the "All templates" bar; ?theme=name previews a theme.
+    (function () {
+      var q = location.search;
+      if (q.indexOf("preview=1") !== -1) document.documentElement.classList.add("previewing");
+      var m = q.match(/[?&]theme=([\w-]+)/);
+      if (m) document.documentElement.setAttribute("data-theme", m[1]);
+    })();
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    :root {
+    /* ---------- THEMES ---------- */
+
+    /* THEME: paper (default) — off-white page, near-black text */
+    :root, [data-theme="paper"] {
       --paper: #f7f6f3;
       --ink: #171717;
       --muted: #5c5c5c;
       --line: #e3e0d8;
+      --cover-ink: #161616;
+      --c1: #d7f27a;
+      --c2: #c9d7ff;
+      --c3: #ffd0bf;
       --gallery-bar: 34px;
     }
+    /* THEME: slate — dark grey page, the covers stay bright */
+    [data-theme="slate"] {
+      --paper: #1b1d21;
+      --ink: #f1f0ec;
+      --muted: #a4a39d;
+      --line: #32353c;
+      --cover-ink: #161616;
+      --c1: #c8ef5a;
+      --c2: #b7c9ff;
+      --c3: #ffbda6;
+    }
+
+    /* ---------- LAYOUT ---------- */
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     html.previewing { --gallery-bar: 0px; }
     html.previewing, html.previewing body { overflow: hidden; height: 100%; }
     html.previewing .template-gallery { display: none; }
-    body {
-      margin: 0;
-      padding-top: var(--gallery-bar);
-      background: var(--paper);
-      color: var(--ink);
-      font-family: Figtree, "Avenir Next", sans-serif;
-      line-height: 1.5;
-    }
+    body { margin: 0; padding-top: var(--gallery-bar); background: var(--paper); color: var(--ink); font-family: Figtree, "Avenir Next", sans-serif; line-height: 1.5; }
     a { color: inherit; }
     a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
     .page { width: min(1040px, calc(100% - 2rem)); margin: 0 auto; }
-    header {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      align-items: flex-end;
-      padding: 1.6rem 0 1.4rem;
-    }
-    h1 {
-      margin: 0;
-      font-size: clamp(2.4rem, 5vw, 3.6rem);
-      font-weight: 650;
-      letter-spacing: -0.045em;
-      line-height: .95;
-    }
+    header { display: flex; justify-content: space-between; gap: 1rem; align-items: flex-end; padding: 1.6rem 0 1.4rem; }
+    h1 { margin: 0; font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 650; letter-spacing: -0.045em; line-height: .95; }
     .role { margin: .4rem 0 0; color: var(--muted); }
     nav { display: flex; gap: 1rem; }
     nav a { text-decoration: none; border-bottom: 1px solid var(--ink); }
-    .case {
-      display: grid;
-      grid-template-columns: .9fr 1.2fr;
-      gap: 1.5rem;
-      align-items: stretch;
-      padding: 1.3rem 0;
-      border-top: 1px solid var(--line);
-    }
+    .case { display: grid; grid-template-columns: .9fr 1.2fr; gap: 1.5rem; align-items: stretch; padding: 1.3rem 0; border-top: 1px solid var(--line); }
     .cover {
       min-height: 220px;
+      width: 100%;
       border-radius: 18px;
       padding: 1.1rem 1.2rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      color: #161616;
+      color: var(--cover-ink);
+      object-fit: cover;
     }
     .cover span { font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; }
-    .cover strong {
-      font-size: clamp(2.4rem, 4vw, 3.4rem);
-      letter-spacing: -0.04em;
-      line-height: .95;
-    }
-    .c1 { background: #d7f27a; }
-    .c2 { background: #c9d7ff; }
-    .c3 { background: #ffd0bf; }
+    .cover strong { font-size: clamp(2.4rem, 4vw, 3.4rem); letter-spacing: -0.04em; line-height: .95; }
+    .c1 { background: var(--c1); }
+    .c2 { background: var(--c2); }
+    .c3 { background: var(--c3); }
     h2 { margin: 0; font-size: clamp(1.7rem, 3vw, 2.3rem); letter-spacing: -0.035em; line-height: 1.05; }
     .outcome { margin: .7rem 0 0; font-size: 1.15rem; }
     .detail { margin: .7rem 0 0; color: var(--muted); max-width: 52ch; }
     .byline { margin: .9rem 0 0; font-size: .92rem; }
-    footer {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-      padding: 1.2rem 0 4rem;
-      border-top: 1px solid var(--ink);
-    }
+    footer { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: 1.2rem 0 4rem; border-top: 1px solid var(--ink); }
     .template-gallery {
-      position: fixed;
-      z-index: 5;
-      top: 0; left: 0; right: 0;
+      position: fixed; z-index: 5; top: 0; left: 0; right: 0;
       height: var(--gallery-bar);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #171717;
-      color: #f7f6f3;
-      text-decoration: none;
-      font-size: .72rem;
-      font-weight: 600;
-      letter-spacing: .14em;
-      text-transform: uppercase;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--ink); color: var(--paper);
+      text-decoration: none; font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
     }
     @media (max-width: 760px) {
       header { flex-direction: column; align-items: flex-start; gap: .4rem; }
@@ -126,6 +140,7 @@
 </head>
 <body>
   <div class="page">
+    <!-- ===== HEADER ===== -->
     <header>
       <div>
         <h1 data-field="name">Ada Mensah</h1>
@@ -137,9 +152,10 @@
       </nav>
     </header>
     <main id="work">
+      <!-- ===== CASE STUDY: copy one <article class="case"> per project ===== -->
       <article class="case">
         <div class="cover c1">
-          <span>01 · 2025</span>
+          <span data-field="case-kicker">01 · 2025</span>
           <strong data-field="metric">−32% failed payments</strong>
         </div>
         <div>
@@ -151,29 +167,30 @@
       </article>
       <article class="case">
         <div class="cover c2">
-          <span>02 · 2024</span>
+          <span data-field="case-kicker">02 · 2024</span>
           <strong data-field="metric">4 days to a first task</strong>
         </div>
         <div>
           <h2 data-field="project-title">Onboarding</h2>
           <p class="outcome" data-field="outcome">New teammates reached a real task in four days. The previous path took two weeks of tabs.</p>
           <p class="detail" data-field="detail">A setup guide had become a wiki. I replaced it with a sequence of three jobs, each ending in something the team could see. The rest of the handbook stayed, one link away, for the people who wanted it.</p>
-          <p class="byline">Product design · internal tools</p>
+          <p class="byline" data-field="role-line">Product design · internal tools</p>
         </div>
       </article>
       <article class="case">
         <div class="cover c3">
-          <span>03 · 2023</span>
+          <span data-field="case-kicker">03 · 2023</span>
           <strong data-field="metric">Zero results, explained</strong>
         </div>
         <div>
           <h2 data-field="project-title">Search</h2>
           <p class="outcome" data-field="outcome">An empty search result started telling the truth about why it was empty.</p>
           <p class="detail" data-field="detail">Shoppers typed brand names the catalog did not carry, then left. The new empty state names the closest thing we do sell and the thing we do not. It is a smaller promise, and it holds.</p>
-          <p class="byline">Design · with merchandising</p>
+          <p class="byline" data-field="role-line">Design · with merchandising</p>
         </div>
       </article>
     </main>
+    <!-- ===== CONTACT ===== -->
     <footer id="contact">
       <span data-field="about">I take a fuzzy metric and a worried team and leave both with a screen they can defend.</span>
       <a data-field="email" href="mailto:ada.mensah@example.com">ada.mensah@example.com</a>

@@ -1,33 +1,87 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="stone">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Nia Cole · Product Designer</title>
   <meta name="description" content="Portfolio of Nia Cole, a product designer based in Chicago." />
+  <meta property="og:title" content="Nia Cole · Product Designer" />
+  <meta property="og:description" content="Portfolio of Nia Cole, a product designer based in Chicago." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
   <meta name="theme-color" content="#e7e5e1" />
   <!--
-    BENTO — single-file portfolio template.
-    A tile grid: name, about, current work, projects, and contact.
-    Replace every element with data-field. Sample copy is fictional.
-    Delete the "All templates" link before publishing your own site.
-    The downloadable zip already has that link removed.
+    ============================================================
+    BENTO — single-file portfolio template
+    A tile grid for a personal home page: name, about, what you are
+    doing now, a few projects, and a way to write to you.
+    ============================================================
+
+    HOW TO EDIT
+
+    1. TEXT. Replace every element with data-field="…". Update
+       <title> and the description / og: meta tags above too.
+       All sample names and projects are fictional.
+
+    2. TILES. Every box is a <section class="tile">. Copy a project
+       tile to add a project; delete any tile you do not need. The
+       grid has three columns on desktop and reflows on its own.
+       The dark name tile spans two rows (class "name"); the about
+       tile spans two columns (class "about").
+
+    3. THEME. Change data-theme="stone" on the <html> tag to:
+         stone     warm light grey page, white tiles (default)
+         midnight  deep navy page, dark tiles
+       Colors live in the THEMES block at the top of <style>.
+       Preview a theme without editing: index.html?theme=midnight
+
+    4. FONT. Sora loads from Google Fonts in the <link> below.
+
+    5. PUBLISH. Upload this folder to any static host; the entry file
+       is index.html. If you copied this file from the gallery rather
+       than downloading the zip, delete the <a class="template-gallery">
+       link near the bottom.
   -->
   <script>
-    if (location.search.indexOf("preview=1") !== -1) document.documentElement.classList.add("previewing");
+    // Gallery support: ?preview=1 hides the "All templates" bar; ?theme=name previews a theme.
+    (function () {
+      var q = location.search;
+      if (q.indexOf("preview=1") !== -1) document.documentElement.classList.add("previewing");
+      var m = q.match(/[?&]theme=([\w-]+)/);
+      if (m) document.documentElement.setAttribute("data-theme", m[1]);
+    })();
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
-    :root {
+    /* ---------- THEMES ---------- */
+
+    /* THEME: stone (default) — warm grey page, off-white tiles, one dark name tile */
+    :root, [data-theme="stone"] {
       --page: #e7e5e1;
       --tile: #fffcf8;
       --ink: #1c1b19;
       --muted: #5e5a54;
       --line: #ddd8d0;
+      --name-bg: #1c1b19;
+      --name-ink: #f6f3ee;
+      --name-kicker: #c8c2b8;
       --gallery-bar: 34px;
     }
+    /* THEME: midnight — navy page, slate tiles, one bright name tile */
+    [data-theme="midnight"] {
+      --page: #0f1420;
+      --tile: #1a2130;
+      --ink: #eef1f6;
+      --muted: #9aa5b8;
+      --line: #28324a;
+      --name-bg: #f3e9c8;
+      --name-ink: #141a27;
+      --name-kicker: #5c5a49;
+    }
+
+    /* ---------- LAYOUT ---------- */
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     html.previewing { --gallery-bar: 0px; }
@@ -50,69 +104,37 @@
       grid-template-columns: 1.15fr 1fr 1fr;
       gap: .75rem;
     }
-    .tile {
-      background: var(--tile);
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 1.2rem 1.25rem 1.3rem;
-      min-width: 0;
-    }
+    .tile { background: var(--tile); border: 1px solid var(--line); border-radius: 22px; padding: 1.2rem 1.25rem 1.3rem; min-width: 0; }
     .name {
       grid-row: span 2;
-      background: var(--ink);
-      color: #f6f3ee;
+      background: var(--name-bg);
+      color: var(--name-ink);
+      border-color: var(--name-bg);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       min-height: 280px;
     }
-    .kicker, .label {
-      margin: 0;
-      font-size: .72rem;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .name .kicker { color: #c8c2b8; }
-    h1 {
-      margin: .8rem 0 .35rem;
-      font-size: clamp(2.6rem, 5vw, 4.2rem);
-      font-weight: 500;
-      letter-spacing: -0.045em;
-      line-height: .95;
-    }
+    .kicker, .label { margin: 0; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+    .name .kicker { color: var(--name-kicker); }
+    h1 { margin: .8rem 0 .35rem; font-size: clamp(2.6rem, 5vw, 4.2rem); font-weight: 500; letter-spacing: -0.045em; line-height: .95; }
     .role { margin: 0; font-size: 1.05rem; }
     .about { grid-column: span 2; }
     .about p, .tile p { margin: .55rem 0 0; }
-    h2 {
-      margin: .35rem 0 0;
-      font-size: 1.35rem;
-      font-weight: 500;
-      letter-spacing: -0.03em;
-    }
+    h2 { margin: .35rem 0 0; font-size: 1.35rem; font-weight: 500; letter-spacing: -0.03em; }
     .meta { color: var(--muted); font-size: .92rem; }
     .contact a { text-decoration-thickness: 1px; text-underline-offset: 3px; }
     .contact p + p { margin-top: .35rem; }
     .template-gallery {
-      position: fixed;
-      z-index: 5;
-      top: 0; left: 0; right: 0;
+      position: fixed; z-index: 5; top: 0; left: 0; right: 0;
       height: var(--gallery-bar);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #141414;
-      color: #f6f3ec;
-      text-decoration: none;
-      font-size: .72rem;
-      font-weight: 600;
-      letter-spacing: .14em;
-      text-transform: uppercase;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--name-bg); color: var(--name-ink);
+      text-decoration: none; font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
     }
     @media (max-width: 800px) {
       .bento { grid-template-columns: 1fr; margin-top: .7rem; }
       .name, .about { grid-column: auto; grid-row: auto; min-height: 0; }
-      .name { min-height: 0; }
       .contact a { display: inline-flex; align-items: center; min-height: 44px; }
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
@@ -120,6 +142,7 @@
 </head>
 <body>
   <main class="bento">
+    <!-- ===== NAME TILE (spans two rows) ===== -->
     <section class="tile name">
       <p class="kicker" data-field="location">Chicago</p>
       <div>
@@ -127,20 +150,24 @@
         <p class="role" data-field="role">Product designer</p>
       </div>
     </section>
+    <!-- ===== ABOUT TILE (spans two columns) ===== -->
     <section class="tile about">
       <p class="label">About</p>
       <p data-field="about">I design the parts of a product people have to trust: onboarding, money movement, and the screen they see when something fails. Most of the work is removing a step, then checking that the step was not load-bearing.</p>
     </section>
+    <!-- ===== NOW TILE: what you are working on at the moment ===== -->
     <section class="tile">
       <p class="label">Now</p>
       <h2 data-field="now-title">A smaller bank</h2>
       <p data-field="now">Opening week for an account a person can explain to their parents. I own the first-run flow and the empty states.</p>
     </section>
+    <!-- ===== CONTACT TILE ===== -->
     <section class="tile contact" id="contact">
       <p class="label">Contact</p>
       <p><a data-field="email" href="mailto:nia.cole@example.com">nia.cole@example.com</a></p>
       <p><a data-field="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
     </section>
+    <!-- ===== PROJECT TILES: copy one <section class="tile"> per project ===== -->
     <section class="tile">
       <p class="label">01</p>
       <h2 data-field="project-title">Transfer</h2>

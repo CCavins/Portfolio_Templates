@@ -4,11 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Portfolio Templates</title>
-  <meta name="description" content="Single-file HTML portfolio templates. Open one, replace the sample copy, and publish." />
+  <meta name="description" content="Single-file HTML portfolio templates for designers, engineers, writers, photographers, musicians, academics, freelancers, and students. Pick a design and a color theme, download, edit, publish." />
+  <meta property="og:title" content="Portfolio Templates" />
+  <meta property="og:description" content="Single-file HTML portfolio templates. Pick a design and a color theme, download, edit, publish." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='2' fill='%231c1915'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif&display=swap" rel="stylesheet" />
+  <!--
+    This page is partly generated. The cards between the "cards:start" and "cards:end"
+    comments, and the counts between "stats:start" and "stats:end", are written by
+    scripts/build.py from templates/catalog.json. Edit the catalog, not the cards.
+  -->
   <style>
     :root {
       --paper: #e6e0d4;
@@ -37,7 +46,7 @@
       padding: .05em .35em;
       border-radius: 5px;
     }
-    .wrap { width: min(1120px, calc(100% - 2rem)); margin: 0 auto; }
+    .wrap { width: min(1240px, calc(100% - 2rem)); margin: 0 auto; }
     header.site {
       display: flex;
       justify-content: space-between;
@@ -49,7 +58,7 @@
       text-transform: uppercase;
       color: var(--muted);
     }
-    .hero { padding: 3.2rem 0 2rem; }
+    .hero { padding: 3.2rem 0 1.6rem; }
     h1 {
       margin: 0;
       font-family: "Instrument Serif", Georgia, serif;
@@ -60,16 +69,62 @@
     }
     h1 em { font-style: italic; }
     .deck {
-      max-width: 38rem;
+      max-width: 40rem;
       margin: 1.25rem 0 0;
       font-size: 1.12rem;
       color: var(--muted);
     }
+
+    /* Filters */
+    .filters {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem 1.4rem;
+      align-items: center;
+      padding: .8rem 0;
+      margin-bottom: .6rem;
+      background: linear-gradient(var(--paper) 80%, transparent);
+    }
+    .chips { display: flex; flex-wrap: wrap; gap: .4rem; margin: 0; padding: 0; list-style: none; }
+    .chip {
+      min-height: 36px;
+      padding: .3rem .8rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--ink);
+      font: inherit;
+      font-size: .85rem;
+      cursor: pointer;
+    }
+    .chip:hover { border-color: var(--ink); }
+    .chip[aria-pressed="true"] { background: var(--ink); color: var(--card); border-color: var(--ink); }
+    .chip:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+    .filters .sep { width: 1px; height: 1.6rem; background: var(--line); }
+    .count { margin-left: auto; color: var(--muted); font-size: .88rem; }
+
+    /* Groups */
+    .group { padding: .4rem 0 1.4rem; }
+    .group[hidden] { display: none; }
+    .group-title {
+      margin: 0 0 .9rem;
+      display: flex;
+      align-items: baseline;
+      gap: .8rem;
+      flex-wrap: wrap;
+      font-family: "Instrument Serif", Georgia, serif;
+      font-weight: 400;
+      font-size: 2rem;
+      letter-spacing: -0.03em;
+    }
+    .group-title span { font-family: "Instrument Sans", sans-serif; font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
     .grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 1.1rem;
-      padding-bottom: 2rem;
     }
     .card {
       background: var(--card);
@@ -81,7 +136,7 @@
       flex-direction: column;
       min-width: 0;
     }
-    .card.featured { grid-column: 1 / -1; }
+    .card[hidden] { display: none; }
     .preview {
       position: relative;
       aspect-ratio: 16 / 10;
@@ -89,7 +144,6 @@
       overflow: hidden;
       border-bottom: 1px solid var(--line);
     }
-    .card.featured .preview { aspect-ratio: 16 / 7.4; }
     .preview iframe {
       position: absolute;
       top: 0;
@@ -97,39 +151,34 @@
       width: 1280px;
       height: 800px;
       border: 0;
-      transform: scale(.4);
+      transform: scale(.3);
       transform-origin: top left;
       pointer-events: none;
       background: #111;
     }
-    .preview-hit {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-    }
-    .preview-hit:focus-visible {
-      outline: 3px solid var(--ink);
-      outline-offset: -3px;
-    }
-    .card-body { padding: 1.05rem 1.15rem 1.2rem; display: flex; flex-direction: column; gap: .55rem; flex: 1; }
+    .preview-hit { position: absolute; inset: 0; z-index: 1; }
+    .preview-hit:focus-visible { outline: 3px solid var(--ink); outline-offset: -3px; }
+    .card-body { padding: 1rem 1.1rem 1.15rem; display: flex; flex-direction: column; gap: .5rem; flex: 1; }
     .card-top { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
-    h2 {
+    h3 {
       margin: 0;
       font-family: "Instrument Serif", Georgia, serif;
-      font-size: 2rem;
+      font-size: 1.75rem;
       font-weight: 400;
       letter-spacing: -0.03em;
     }
+    h3 .variant { font-style: italic; color: var(--muted); }
     .num { font-size: .78rem; letter-spacing: .14em; color: var(--muted); }
-    .card p { margin: 0; color: var(--muted); }
-    .tags { display: flex; flex-wrap: wrap; gap: .4rem; list-style: none; margin: .2rem 0 0; padding: 0; }
+    .card p { margin: 0; color: var(--muted); font-size: .95rem; }
+    .card p.for { color: var(--ink); font-size: .88rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: .4rem; list-style: none; margin: .1rem 0 0; padding: 0; }
     .tags li {
-      font-size: .75rem;
+      font-size: .72rem;
       letter-spacing: .06em;
       text-transform: uppercase;
       border: 1px solid var(--line);
       border-radius: 999px;
-      padding: .28rem .55rem;
+      padding: .25rem .55rem;
     }
     .actions {
       margin-top: auto;
@@ -152,6 +201,24 @@
     .open:hover { font-style: italic; }
     .download:hover { color: var(--ink); border-bottom-color: var(--ink); }
     .open:focus-visible, a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+    .empty { display: none; padding: 2rem 0; color: var(--muted); }
+    .empty.show { display: block; }
+
+    /* How it works */
+    .how {
+      margin: 1rem 0 2rem;
+      padding: 1.4rem 1.5rem;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--card);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+    }
+    .how h2 { grid-column: 1 / -1; margin: 0; font-family: "Instrument Serif", Georgia, serif; font-weight: 400; font-size: 1.7rem; letter-spacing: -0.03em; }
+    .how div { font-size: .95rem; color: var(--muted); }
+    .how strong { display: block; color: var(--ink); margin-bottom: .2rem; }
+
     footer.site {
       display: flex;
       justify-content: space-between;
@@ -163,12 +230,16 @@
       font-size: .92rem;
     }
     footer.site a { display: inline-flex; align-items: center; min-height: 44px; }
-    @media (max-width: 800px) {
+
+    @media (max-width: 1100px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .how { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 700px) {
       .grid { grid-template-columns: 1fr; }
-      .card.featured { grid-column: auto; }
-      .card.featured .preview { aspect-ratio: 16 / 10; }
+      .how { grid-template-columns: 1fr; }
       header.site { flex-direction: column; gap: .35rem; }
       h1 { font-size: clamp(2.6rem, 12vw, 4rem); }
+      .filters { position: static; }
+      .filters .sep { width: 100%; height: 1px; }
+      .count { margin-left: 0; width: 100%; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -179,178 +250,878 @@
   <div class="wrap">
     <header class="site">
       <span>Portfolio Templates</span>
-      <span>Nine single-file starts</span>
+      <span><!-- stats:start -->19 designs · 38 color themes<!-- stats:end --></span>
     </header>
     <section class="hero">
       <h1>Pick a direction.<br /><em>Make it yours.</em></h1>
-      <p class="deck">Each option is one HTML file with fictional sample copy, marked with <code>data-field</code>. Preview it here, or download a zip that is ready to edit and upload.</p>
+      <p class="deck">Every template is one HTML file with fictional sample copy marked <code>data-field</code>, a how-to-edit guide in its comments, and at least two color themes. Preview here, download a zip set to the theme you chose, replace the text, upload.</p>
     </section>
-    <section class="grid" aria-label="Template options">
-      <article class="card featured">
-        <div class="preview">
-          <iframe data-preview src="templates/aurora/index.html?preview=1" title="Preview of the Aurora template" loading="eager" tabindex="-1"></iframe>
-          <a class="preview-hit" href="templates/aurora/index.html" aria-label="View the Aurora template"></a>
-        </div>
-        <div class="card-body">
-          <div class="card-top"><h2>Aurora</h2><span class="num">01</span></div>
-          <p>Dark glass panels, a particle field, and an icon rail. For technical program managers, producers, and product people.</p>
-          <ul class="tags"><li>Dark</li><li>Sidebar</li><li>Animated</li></ul>
-          <div class="actions">
-            <a class="open" href="templates/aurora/index.html">View template</a>
-            <a class="download" href="downloads/aurora.zip" download="aurora.zip">Download zip</a>
-          </div>
-        </div>
-      </article>
 
-      <article class="card">
-        <div class="preview">
-          <iframe data-preview src="templates/editorial/index.html?preview=1" title="Preview of the Editorial template" loading="lazy" tabindex="-1"></iframe>
-          <a class="preview-hit" href="templates/editorial/index.html" aria-label="View the Editorial template"></a>
-        </div>
-        <div class="card-body">
-          <div class="card-top"><h2>Editorial</h2><span class="num">02</span></div>
-          <p>A paper-and-ink magazine page. For strategists, writers, and anyone whose work reads better than it screenshots.</p>
-          <ul class="tags"><li>Light</li><li>Serif</li><li>Quiet</li></ul>
-          <div class="actions">
-            <a class="open" href="templates/editorial/index.html">View template</a>
-            <a class="download" href="downloads/editorial.zip" download="editorial.zip">Download zip</a>
-          </div>
-        </div>
-      </article>
+    <nav class="filters" aria-label="Filter templates">
+      <ul class="chips" id="category-chips" aria-label="Category">
+        <li><button class="chip" type="button" data-filter-category="all" aria-pressed="true">All</button></li>
+        <li><button class="chip" type="button" data-filter-category="design" aria-pressed="false">Design</button></li>
+        <li><button class="chip" type="button" data-filter-category="engineering" aria-pressed="false">Engineering</button></li>
+        <li><button class="chip" type="button" data-filter-category="writing-strategy" aria-pressed="false">Writing &amp; Strategy</button></li>
+        <li><button class="chip" type="button" data-filter-category="visual-photo" aria-pressed="false">Visual &amp; Photo</button></li>
+        <li><button class="chip" type="button" data-filter-category="film-sound" aria-pressed="false">Film &amp; Sound</button></li>
+        <li><button class="chip" type="button" data-filter-category="academic-education" aria-pressed="false">Academic &amp; Education</button></li>
+        <li><button class="chip" type="button" data-filter-category="business-freelance" aria-pressed="false">Business &amp; Freelance</button></li>
+        <li><button class="chip" type="button" data-filter-category="career-resume" aria-pressed="false">Career &amp; Résumé</button></li>
+        <li><button class="chip" type="button" data-filter-category="personal-starter" aria-pressed="false">Personal &amp; Starter</button></li>
+      </ul>
+      <span class="sep" aria-hidden="true"></span>
+      <ul class="chips" id="mode-chips" aria-label="Light or dark">
+        <li><button class="chip" type="button" data-filter-mode="all" aria-pressed="true">Light &amp; dark</button></li>
+        <li><button class="chip" type="button" data-filter-mode="light" aria-pressed="false">Light</button></li>
+        <li><button class="chip" type="button" data-filter-mode="dark" aria-pressed="false">Dark</button></li>
+      </ul>
+      <span class="count" id="count" aria-live="polite"></span>
+    </nav>
 
-      <article class="card">
+    <div id="catalog">
+<!-- cards:start -->
+    <section class="group" data-category="design" aria-labelledby="group-design">
+      <h2 class="group-title" id="group-design">Design <span>3 designs · 6 themes</span></h2>
+      <div class="grid">
+      <article class="card" data-category="design" data-mode="light" data-slug="atelier">
         <div class="preview">
-          <iframe data-preview src="templates/signal/index.html?preview=1" title="Preview of the Signal template" loading="lazy" tabindex="-1"></iframe>
-          <a class="preview-hit" href="templates/signal/index.html" aria-label="View the Signal template"></a>
+          <iframe data-preview src="templates/atelier/index.html?preview=1&amp;theme=paper" title="Preview of Atelier, Paper theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/atelier/index.html?theme=paper" aria-label="View Atelier, Paper theme"></a>
         </div>
         <div class="card-body">
-          <div class="card-top"><h2>Signal</h2><span class="num">03</span></div>
-          <p>A stark engineer’s index. Select a project and the note beside it updates. No cards, no gradients.</p>
-          <ul class="tags"><li>Dark</li><li>Minimal</li><li>Mono</li></ul>
+          <div class="card-top">
+            <h3>Atelier <span class="variant">Paper</span></h3>
+            <span class="num">04</span>
+          </div>
+          <p class="for">For art directors and design studios.</p>
+          <p>Oversized type on a ground that changes color as you move through the work. Three projects, a practice statement, and one very large email link.</p>
+          <ul class="tags"><li>Light</li><li>Bold</li><li>Color</li><li>Studio</li></ul>
           <div class="actions">
-            <a class="open" href="templates/signal/index.html">View template</a>
-            <a class="download" href="downloads/signal.zip" download="signal.zip">Download zip</a>
+            <a class="open" href="templates/atelier/index.html?theme=paper">View template</a>
+            <a class="download" href="downloads/atelier-paper.zip" download="atelier-paper.zip">Download zip</a>
           </div>
         </div>
       </article>
-
-      <article class="card">
+      <article class="card" data-category="design" data-mode="dark" data-slug="atelier">
         <div class="preview">
-          <iframe data-preview src="templates/atelier/index.html?preview=1" title="Preview of the Atelier template" loading="lazy" tabindex="-1"></iframe>
-          <a class="preview-hit" href="templates/atelier/index.html" aria-label="View the Atelier template"></a>
+          <iframe data-preview src="templates/atelier/index.html?preview=1&amp;theme=concrete" title="Preview of Atelier, Concrete theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/atelier/index.html?theme=concrete" aria-label="View Atelier, Concrete theme"></a>
         </div>
         <div class="card-body">
-          <div class="card-top"><h2>Atelier</h2><span class="num">04</span></div>
-          <p>Oversized type on a ground that changes color as you move through the work. For art directors and studios.</p>
-          <ul class="tags"><li>Bold</li><li>Color</li><li>Studio</li></ul>
+          <div class="card-top">
+            <h3>Atelier <span class="variant">Concrete</span></h3>
+            <span class="num">04</span>
+          </div>
+          <p class="for">For art directors and design studios.</p>
+          <p>Oversized type on a ground that changes color as you move through the work. Three projects, a practice statement, and one very large email link.</p>
+          <ul class="tags"><li>Dark</li><li>Bold</li><li>Color</li><li>Studio</li></ul>
           <div class="actions">
-            <a class="open" href="templates/atelier/index.html">View template</a>
-            <a class="download" href="downloads/atelier.zip" download="atelier.zip">Download zip</a>
+            <a class="open" href="templates/atelier/index.html?theme=concrete">View template</a>
+            <a class="download" href="downloads/atelier-concrete.zip" download="atelier-concrete.zip">Download zip</a>
           </div>
         </div>
       </article>
-
-      <article class="card">
+      <article class="card" data-category="design" data-mode="light" data-slug="monograph">
         <div class="preview">
-          <iframe data-preview src="templates/monograph/index.html?preview=1" title="Preview of the Monograph template" loading="lazy" tabindex="-1"></iframe>
-          <a class="preview-hit" href="templates/monograph/index.html" aria-label="View the Monograph template"></a>
+          <iframe data-preview src="templates/monograph/index.html?preview=1&amp;theme=forest" title="Preview of Monograph, Forest theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/monograph/index.html?theme=forest" aria-label="View Monograph, Forest theme"></a>
         </div>
         <div class="card-body">
-          <div class="card-top"><h2>Monograph</h2><span class="num">05</span></div>
-          <p>A sticky monograph cover beside a long list of projects. For architects, researchers, and studios with a body of work.</p>
-          <ul class="tags"><li>Split</li><li>Serif</li><li>Sticky</li></ul>
+          <div class="card-top">
+            <h3>Monograph <span class="variant">Forest</span></h3>
+            <span class="num">05</span>
+          </div>
+          <p class="for">For architects, researchers, and studios with a body of work.</p>
+          <p>A sticky monograph cover beside a long list of projects. For practices whose work is best read as a list.</p>
+          <ul class="tags"><li>Light</li><li>Split</li><li>Serif</li><li>Sticky</li></ul>
           <div class="actions">
-            <a class="open" href="templates/monograph/index.html">View template</a>
-            <a class="download" href="downloads/monograph.zip" download="monograph.zip">Download zip</a>
+            <a class="open" href="templates/monograph/index.html?theme=forest">View template</a>
+            <a class="download" href="downloads/monograph-forest.zip" download="monograph-forest.zip">Download zip</a>
           </div>
         </div>
       </article>
-
-      <article class="card">
+      <article class="card" data-category="design" data-mode="dark" data-slug="monograph">
         <div class="preview">
-          <iframe data-preview src="templates/bento/index.html?preview=1" title="Preview of the Bento template" loading="lazy" tabindex="-1"></iframe>
-          <a class="preview-hit" href="templates/bento/index.html" aria-label="View the Bento template"></a>
+          <iframe data-preview src="templates/monograph/index.html?preview=1&amp;theme=oxblood" title="Preview of Monograph, Oxblood theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/monograph/index.html?theme=oxblood" aria-label="View Monograph, Oxblood theme"></a>
         </div>
         <div class="card-body">
-          <div class="card-top"><h2>Bento</h2><span class="num">06</span></div>
-          <p>A tile grid for a personal site: name, what you are doing now, a few projects, and a way to write to you.</p>
-          <ul class="tags"><li>Grid</li><li>Light</li><li>Personal</li></ul>
+          <div class="card-top">
+            <h3>Monograph <span class="variant">Oxblood</span></h3>
+            <span class="num">05</span>
+          </div>
+          <p class="for">For architects, researchers, and studios with a body of work.</p>
+          <p>A sticky monograph cover beside a long list of projects. For practices whose work is best read as a list.</p>
+          <ul class="tags"><li>Dark</li><li>Split</li><li>Serif</li><li>Sticky</li></ul>
           <div class="actions">
-            <a class="open" href="templates/bento/index.html">View template</a>
-            <a class="download" href="downloads/bento.zip" download="bento.zip">Download zip</a>
+            <a class="open" href="templates/monograph/index.html?theme=oxblood">View template</a>
+            <a class="download" href="downloads/monograph-oxblood.zip" download="monograph-oxblood.zip">Download zip</a>
           </div>
         </div>
       </article>
-
-      <article class="card">
+      <article class="card" data-category="design" data-mode="light" data-slug="proof">
         <div class="preview">
-          <iframe data-preview src="templates/vita/index.html?preview=1" title="Preview of the Vita template" loading="lazy" tabindex="-1"></iframe>
-          <a class="preview-hit" href="templates/vita/index.html" aria-label="View the Vita template"></a>
+          <iframe data-preview src="templates/proof/index.html?preview=1&amp;theme=paper" title="Preview of Proof, Paper theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/proof/index.html?theme=paper" aria-label="View Proof, Paper theme"></a>
         </div>
         <div class="card-body">
-          <div class="card-top"><h2>Vita</h2><span class="num">07</span></div>
-          <p>A one-page résumé. Summary, experience, education, and skills, and it prints without the gallery chrome.</p>
-          <ul class="tags"><li>Résumé</li><li>Print</li><li>Light</li></ul>
+          <div class="card-top">
+            <h3>Proof <span class="variant">Paper</span></h3>
+            <span class="num">09</span>
+          </div>
+          <p class="for">For product designers.</p>
+          <p>Case studies that lead with the outcome: a big metric on the cover, then the role and a short account.</p>
+          <ul class="tags"><li>Light</li><li>Case study</li><li>Metrics</li><li>Clean</li></ul>
           <div class="actions">
-            <a class="open" href="templates/vita/index.html">View template</a>
-            <a class="download" href="downloads/vita.zip" download="vita.zip">Download zip</a>
+            <a class="open" href="templates/proof/index.html?theme=paper">View template</a>
+            <a class="download" href="downloads/proof-paper.zip" download="proof-paper.zip">Download zip</a>
           </div>
         </div>
       </article>
-
-      <article class="card">
+      <article class="card" data-category="design" data-mode="dark" data-slug="proof">
         <div class="preview">
-          <iframe data-preview src="templates/plate/index.html?preview=1" title="Preview of the Plate template" loading="lazy" tabindex="-1"></iframe>
-          <a class="preview-hit" href="templates/plate/index.html" aria-label="View the Plate template"></a>
+          <iframe data-preview src="templates/proof/index.html?preview=1&amp;theme=slate" title="Preview of Proof, Slate theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/proof/index.html?theme=slate" aria-label="View Proof, Slate theme"></a>
         </div>
         <div class="card-body">
-          <div class="card-top"><h2>Plate</h2><span class="num">08</span></div>
-          <p>A photography contact sheet. Swap each colored frame for your own image and leave the caption underneath.</p>
-          <ul class="tags"><li>Photo</li><li>Dark</li><li>Grid</li></ul>
+          <div class="card-top">
+            <h3>Proof <span class="variant">Slate</span></h3>
+            <span class="num">09</span>
+          </div>
+          <p class="for">For product designers.</p>
+          <p>Case studies that lead with the outcome: a big metric on the cover, then the role and a short account.</p>
+          <ul class="tags"><li>Dark</li><li>Case study</li><li>Metrics</li><li>Clean</li></ul>
           <div class="actions">
-            <a class="open" href="templates/plate/index.html">View template</a>
-            <a class="download" href="downloads/plate.zip" download="plate.zip">Download zip</a>
+            <a class="open" href="templates/proof/index.html?theme=slate">View template</a>
+            <a class="download" href="downloads/proof-slate.zip" download="proof-slate.zip">Download zip</a>
           </div>
         </div>
       </article>
-
-      <article class="card">
-        <div class="preview">
-          <iframe data-preview src="templates/proof/index.html?preview=1" title="Preview of the Proof template" loading="lazy" tabindex="-1"></iframe>
-          <a class="preview-hit" href="templates/proof/index.html" aria-label="View the Proof template"></a>
-        </div>
-        <div class="card-body">
-          <div class="card-top"><h2>Proof</h2><span class="num">09</span></div>
-          <p>Case studies that lead with the outcome. For product designers who want the result on the cover.</p>
-          <ul class="tags"><li>Case study</li><li>Light</li><li>Metrics</li></ul>
-          <div class="actions">
-            <a class="open" href="templates/proof/index.html">View template</a>
-            <a class="download" href="downloads/proof.zip" download="proof.zip">Download zip</a>
-          </div>
-        </div>
-      </article>
+      </div>
     </section>
+    <section class="group" data-category="engineering" aria-labelledby="group-engineering">
+      <h2 class="group-title" id="group-engineering">Engineering <span>3 designs · 6 themes</span></h2>
+      <div class="grid">
+      <article class="card" data-category="engineering" data-mode="dark" data-slug="aurora">
+        <div class="preview">
+          <iframe data-preview src="templates/aurora/index.html?preview=1&amp;theme=ocean" title="Preview of Aurora, Ocean theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/aurora/index.html?theme=ocean" aria-label="View Aurora, Ocean theme"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Aurora <span class="variant">Ocean</span></h3>
+            <span class="num">01</span>
+          </div>
+          <p class="for">For technical program managers, producers, and product people.</p>
+          <p>Dark glass panels, a particle field, and an icon rail that expands on hover. Sections for experience, projects, a media showcase, and skill bars.</p>
+          <ul class="tags"><li>Dark</li><li>Sidebar</li><li>Animated</li><li>Glass</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/aurora/index.html?theme=ocean">View template</a>
+            <a class="download" href="downloads/aurora-ocean.zip" download="aurora-ocean.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-category="engineering" data-mode="dark" data-slug="aurora">
+        <div class="preview">
+          <iframe data-preview src="templates/aurora/index.html?preview=1&amp;theme=ember" title="Preview of Aurora, Ember theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/aurora/index.html?theme=ember" aria-label="View Aurora, Ember theme"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Aurora <span class="variant">Ember</span></h3>
+            <span class="num">01</span>
+          </div>
+          <p class="for">For technical program managers, producers, and product people.</p>
+          <p>Dark glass panels, a particle field, and an icon rail that expands on hover. Sections for experience, projects, a media showcase, and skill bars.</p>
+          <ul class="tags"><li>Dark</li><li>Sidebar</li><li>Animated</li><li>Glass</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/aurora/index.html?theme=ember">View template</a>
+            <a class="download" href="downloads/aurora-ember.zip" download="aurora-ember.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-category="engineering" data-mode="dark" data-slug="signal">
+        <div class="preview">
+          <iframe data-preview src="templates/signal/index.html?preview=1&amp;theme=acid" title="Preview of Signal, Acid theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/signal/index.html?theme=acid" aria-label="View Signal, Acid theme"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Signal <span class="variant">Acid</span></h3>
+            <span class="num">03</span>
+          </div>
+          <p class="for">For software engineers.</p>
+          <p>A stark engineer&#x27;s index. Select a project and the note beside it updates. No cards, no gradients.</p>
+          <ul class="tags"><li>Dark</li><li>Minimal</li><li>Mono</li><li>Interactive</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/signal/index.html?theme=acid">View template</a>
+            <a class="download" href="downloads/signal-acid.zip" download="signal-acid.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-category="engineering" data-mode="light" data-slug="signal">
+        <div class="preview">
+          <iframe data-preview src="templates/signal/index.html?preview=1&amp;theme=paper" title="Preview of Signal, Paper theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/signal/index.html?theme=paper" aria-label="View Signal, Paper theme"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Signal <span class="variant">Paper</span></h3>
+            <span class="num">03</span>
+          </div>
+          <p class="for">For software engineers.</p>
+          <p>A stark engineer&#x27;s index. Select a project and the note beside it updates. No cards, no gradients.</p>
+          <ul class="tags"><li>Light</li><li>Minimal</li><li>Mono</li><li>Interactive</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/signal/index.html?theme=paper">View template</a>
+            <a class="download" href="downloads/signal-paper.zip" download="signal-paper.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-category="engineering" data-mode="dark" data-slug="pixel">
+        <div class="preview">
+          <iframe data-preview src="templates/pixel/index.html?preview=1&amp;theme=arcade" title="Preview of Pixel, Arcade theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/pixel/index.html?theme=arcade" aria-label="View Pixel, Arcade theme"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Pixel <span class="variant">Arcade</span></h3>
+            <span class="num">19</span>
+          </div>
+          <p class="for">For game developers and 3d artists.</p>
+          <p>Project cards with platform and engine tags, itch.io and Steam links, a dev-log list, and screenshot frames that reveal on hover.</p>
+          <ul class="tags"><li>Dark</li><li>Games</li><li>Tags</li><li>Dev log</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/pixel/index.html?theme=arcade">View template</a>
+            <a class="download" href="downloads/pixel-arcade.zip" download="pixel-arcade.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-category="engineering" data-mode="light" data-slug="pixel">
+        <div class="preview">
+          <iframe data-preview src="templates/pixel/index.html?preview=1&amp;theme=mono" title="Preview of Pixel, Mono theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/pixel/index.html?theme=mono" aria-label="View Pixel, Mono theme"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Pixel <span class="variant">Mono</span></h3>
+            <span class="num">19</span>
+          </div>
+          <p class="for">For game developers and 3d artists.</p>
+          <p>Project cards with platform and engine tags, itch.io and Steam links, a dev-log list, and screenshot frames that reveal on hover.</p>
+          <ul class="tags"><li>Light</li><li>Games</li><li>Tags</li><li>Dev log</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/pixel/index.html?theme=mono">View template</a>
+            <a class="download" href="downloads/pixel-mono.zip" download="pixel-mono.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+      </div>
+    </section>
+    <section class="group" data-category="writing-strategy" aria-labelledby="group-writing-strategy">
+      <h2 class="group-title" id="group-writing-strategy">Writing &amp; Strategy <span>2 designs · 4 themes</span></h2>
+      <div class="grid">
+      <article class="card" data-category="writing-strategy" data-mode="light" data-slug="editorial">
+        <div class="preview">
+          <iframe data-preview src="templates/editorial/index.html?preview=1&amp;theme=paper" title="Preview of Editorial, Paper theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/editorial/index.html?theme=paper" aria-label="View Editorial, Paper theme"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Editorial <span class="variant">Paper</span></h3>
+            <span class="num">02</span>
+          </div>
+          <p class="for">For strategists, writers, and consultants.</p>
+          <p>A paper-and-ink magazine page: masthead, a big serif headline, a work index, a pull quote, and an experience table.</p>
+          <ul class="tags"><li>Light</li><li>Serif</li><li>Quiet</li><li>Magazine</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/editorial/index.html?theme=paper">View template</a>
+            <a class="download" href="downloads/editorial-paper.zip" download="editorial-paper.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-category="writing-strategy" data-mode="dark" data-slug="editorial">
+        <div class="preview">
+          <iframe data-preview src="templates/editorial/index.html?preview=1&amp;theme=night" title="Preview of Editorial, Night theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/editorial/index.html?theme=night" aria-label="View Editorial, Night theme"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Editorial <span class="variant">Night</span></h3>
+            <span class="num">02</span>
+          </div>
+          <p class="for">For strategists, writers, and consultants.</p>
+          <p>A paper-and-ink magazine page: masthead, a big serif headline, a work index, a pull quote, and an experience table.</p>
+          <ul class="tags"><li>Dark</li><li>Serif</li><li>Quiet</li><li>Magazine</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/editorial/index.html?theme=night">View template</a>
+            <a class="download" href="downloads/editorial-night.zip" download="editorial-night.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-category="writing-strategy" data-mode="light" data-slug="dispatch">
+        <div class="preview">
+          <iframe data-preview src="templates/dispatch/index.html?preview=1&amp;theme=newsprint" title="Preview of Dispatch, Newsprint theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/dispatch/index.html?theme=newsprint" aria-label="View Dispatch, Newsprint theme"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Dispatch <span class="variant">Newsprint</span></h3>
+            <span class="num">15</span>
+          </div>
+          <p class="for">For journalists, essayists, and newsletter writers.</p>
+          <p>Clippings with outlet, date, and link, grouped by beat, with a newsletter signup. Newsprint columns and a dateline.</p>
+          <ul class="tags"><li>Light</li><li>Clippings</li><li>Newsletter</li><li>Columns</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/dispatch/index.html?theme=newsprint">View template</a>
+            <a class="download" href="downloads/dispatch-newsprint.zip" download="dispatch-newsprint.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-category="writing-strategy" data-mode="dark" data-slug="dispatch">
+        <div class="preview">
+          <iframe data-preview src="templates/dispatch/index.html?preview=1&amp;theme=broadsheet" title="Preview of Dispatch, Broadsheet theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/dispatch/index.html?theme=broadsheet" aria-label="View Dispatch, Broadsheet theme"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Dispatch <span class="variant">Broadsheet</span></h3>
+            <span class="num">15</span>
+          </div>
+          <p class="for">For journalists, essayists, and newsletter writers.</p>
+          <p>Clippings with outlet, date, and link, grouped by beat, with a newsletter signup. Newsprint columns and a dateline.</p>
+          <ul class="tags"><li>Dark</li><li>Clippings</li><li>Newsletter</li><li>Columns</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/dispatch/index.html?theme=broadsheet">View template</a>
+            <a class="download" href="downloads/dispatch-broadsheet.zip" download="dispatch-broadsheet.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+      </div>
+    </section>
+    <section class="group" data-category="visual-photo" aria-labelledby="group-visual-photo">
+      <h2 class="group-title" id="group-visual-photo">Visual &amp; Photo <span>2 designs · 4 themes</span></h2>
+      <div class="grid">
+      <article class="card" data-category="visual-photo" data-mode="dark" data-slug="plate">
+        <div class="preview">
+          <iframe data-preview src="templates/plate/index.html?preview=1&amp;theme=darkroom" title="Preview of Plate, Darkroom theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/plate/index.html?theme=darkroom" aria-label="View Plate, Darkroom theme"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Plate <span class="variant">Darkroom</span></h3>
+            <span class="num">08</span>
+          </div>
+          <p class="for">For photographers.</p>
+          <p>A photography contact sheet. Swap each colored frame for your own image; click a frame to open it large with its caption.</p>
+          <ul class="tags"><li>Dark</li><li>Photo</li><li>Grid</li><li>Lightbox</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/plate/index.html?theme=darkroom">View template</a>
+            <a class="download" href="downloads/plate-darkroom.zip" download="plate-darkroom.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-category="visual-photo" data-mode="light" data-slug="plate">
+        <div class="preview">
+          <iframe data-preview src="templates/plate/index.html?preview=1&amp;theme=gallery" title="Preview of Plate, Gallery theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/plate/index.html?theme=gallery" aria-label="View Plate, Gallery theme"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Plate <span class="variant">Gallery</span></h3>
+            <span class="num">08</span>
+          </div>
+          <p class="for">For photographers.</p>
+          <p>A photography contact sheet. Swap each colored frame for your own image; click a frame to open it large with its caption.</p>
+          <ul class="tags"><li>Light</li><li>Photo</li><li>Grid</li><li>Lightbox</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/plate/index.html?theme=gallery">View template</a>
+            <a class="download" href="downloads/plate-gallery.zip" download="plate-gallery.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-category="visual-photo" data-mode="light" data-slug="folio">
+        <div class="preview">
+          <iframe data-preview src="templates/folio/index.html?preview=1&amp;theme=cream" title="Preview of Folio, Cream theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/folio/index.html?theme=cream" aria-label="View Folio, Cream theme"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Folio <span class="variant">Cream</span></h3>
+            <span class="num">14</span>
+          </div>
+          <p class="for">For illustrators and visual artists.</p>
+          <p>A column grid of artwork with captions and a lightbox, plus a short commissions note. The art is the page.</p>
+          <ul class="tags"><li>Light</li><li>Illustration</li><li>Masonry</li><li>Lightbox</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/folio/index.html?theme=cream">View template</a>
+            <a class="download" href="downloads/folio-cream.zip" download="folio-cream.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-category="visual-photo" data-mode="dark" data-slug="folio">
+        <div class="preview">
+          <iframe data-preview src="templates/folio/index.html?preview=1&amp;theme=charcoal" title="Preview of Folio, Charcoal theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/folio/index.html?theme=charcoal" aria-label="View Folio, Charcoal theme"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Folio <span class="variant">Charcoal</span></h3>
+            <span class="num">14</span>
+          </div>
+          <p class="for">For illustrators and visual artists.</p>
+          <p>A column grid of artwork with captions and a lightbox, plus a short commissions note. The art is the page.</p>
+          <ul class="tags"><li>Dark</li><li>Illustration</li><li>Masonry</li><li>Lightbox</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/folio/index.html?theme=charcoal">View template</a>
+            <a class="download" href="downloads/folio-charcoal.zip" download="folio-charcoal.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+      </div>
+    </section>
+    <section class="group" data-category="film-sound" aria-labelledby="group-film-sound">
+      <h2 class="group-title" id="group-film-sound">Film &amp; Sound <span>2 designs · 4 themes</span></h2>
+      <div class="grid">
+      <article class="card" data-category="film-sound" data-mode="dark" data-slug="reel">
+        <div class="preview">
+          <iframe data-preview src="templates/reel/index.html?preview=1&amp;theme=cinema" title="Preview of Reel, Cinema theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/reel/index.html?theme=cinema" aria-label="View Reel, Cinema theme"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Reel <span class="variant">Cinema</span></h3>
+            <span class="num">12</span>
+          </div>
+          <p class="for">For filmmakers, editors, and motion designers.</p>
+          <p>A full-width video hero, a selected work list with runtimes, a credits table, and a stills grid.</p>
+          <ul class="tags"><li>Dark</li><li>Video</li><li>Dark</li><li>Credits</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/reel/index.html?theme=cinema">View template</a>
+            <a class="download" href="downloads/reel-cinema.zip" download="reel-cinema.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-category="film-sound" data-mode="light" data-slug="reel">
+        <div class="preview">
+          <iframe data-preview src="templates/reel/index.html?preview=1&amp;theme=daylight" title="Preview of Reel, Daylight theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/reel/index.html?theme=daylight" aria-label="View Reel, Daylight theme"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Reel <span class="variant">Daylight</span></h3>
+            <span class="num">12</span>
+          </div>
+          <p class="for">For filmmakers, editors, and motion designers.</p>
+          <p>A full-width video hero, a selected work list with runtimes, a credits table, and a stills grid.</p>
+          <ul class="tags"><li>Light</li><li>Video</li><li>Dark</li><li>Credits</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/reel/index.html?theme=daylight">View template</a>
+            <a class="download" href="downloads/reel-daylight.zip" download="reel-daylight.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-category="film-sound" data-mode="dark" data-slug="marquee">
+        <div class="preview">
+          <iframe data-preview src="templates/marquee/index.html?preview=1&amp;theme=neon" title="Preview of Marquee, Neon theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/marquee/index.html?theme=neon" aria-label="View Marquee, Neon theme"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Marquee <span class="variant">Neon</span></h3>
+            <span class="num">13</span>
+          </div>
+          <p class="for">For musicians, bands, and performers.</p>
+          <p>Listen links, an upcoming-dates table, a releases grid, and a press quote. Loud type, one accent color.</p>
+          <ul class="tags"><li>Dark</li><li>Music</li><li>Dates</li><li>Releases</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/marquee/index.html?theme=neon">View template</a>
+            <a class="download" href="downloads/marquee-neon.zip" download="marquee-neon.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-category="film-sound" data-mode="light" data-slug="marquee">
+        <div class="preview">
+          <iframe data-preview src="templates/marquee/index.html?preview=1&amp;theme=vinyl" title="Preview of Marquee, Vinyl theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/marquee/index.html?theme=vinyl" aria-label="View Marquee, Vinyl theme"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Marquee <span class="variant">Vinyl</span></h3>
+            <span class="num">13</span>
+          </div>
+          <p class="for">For musicians, bands, and performers.</p>
+          <p>Listen links, an upcoming-dates table, a releases grid, and a press quote. Loud type, one accent color.</p>
+          <ul class="tags"><li>Light</li><li>Music</li><li>Dates</li><li>Releases</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/marquee/index.html?theme=vinyl">View template</a>
+            <a class="download" href="downloads/marquee-vinyl.zip" download="marquee-vinyl.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+      </div>
+    </section>
+    <section class="group" data-category="academic-education" aria-labelledby="group-academic-education">
+      <h2 class="group-title" id="group-academic-education">Academic &amp; Education <span>2 designs · 4 themes</span></h2>
+      <div class="grid">
+      <article class="card" data-category="academic-education" data-mode="light" data-slug="thesis">
+        <div class="preview">
+          <iframe data-preview src="templates/thesis/index.html?preview=1&amp;theme=ivory" title="Preview of Thesis, Ivory theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/thesis/index.html?theme=ivory" aria-label="View Thesis, Ivory theme"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Thesis <span class="variant">Ivory</span></h3>
+            <span class="num">11</span>
+          </div>
+          <p class="for">For academics, researchers, and phd students.</p>
+          <p>Publications grouped by year with DOI and PDF links, teaching, talks, and a CV link. Reads like a well-kept department page.</p>
+          <ul class="tags"><li>Light</li><li>Publications</li><li>Serif</li><li>CV</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/thesis/index.html?theme=ivory">View template</a>
+            <a class="download" href="downloads/thesis-ivory.zip" download="thesis-ivory.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-category="academic-education" data-mode="dark" data-slug="thesis">
+        <div class="preview">
+          <iframe data-preview src="templates/thesis/index.html?preview=1&amp;theme=oxford" title="Preview of Thesis, Oxford theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/thesis/index.html?theme=oxford" aria-label="View Thesis, Oxford theme"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Thesis <span class="variant">Oxford</span></h3>
+            <span class="num">11</span>
+          </div>
+          <p class="for">For academics, researchers, and phd students.</p>
+          <p>Publications grouped by year with DOI and PDF links, teaching, talks, and a CV link. Reads like a well-kept department page.</p>
+          <ul class="tags"><li>Dark</li><li>Publications</li><li>Serif</li><li>CV</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/thesis/index.html?theme=oxford">View template</a>
+            <a class="download" href="downloads/thesis-oxford.zip" download="thesis-oxford.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-category="academic-education" data-mode="light" data-slug="cohort">
+        <div class="preview">
+          <iframe data-preview src="templates/cohort/index.html?preview=1&amp;theme=sage" title="Preview of Cohort, Sage theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/cohort/index.html?theme=sage" aria-label="View Cohort, Sage theme"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Cohort <span class="variant">Sage</span></h3>
+            <span class="num">16</span>
+          </div>
+          <p class="for">For educators, coaches, and speakers.</p>
+          <p>Offerings, upcoming workshops with dates, student quotes, and an FAQ that opens and closes. Warm and direct.</p>
+          <ul class="tags"><li>Light</li><li>Teaching</li><li>Workshops</li><li>FAQ</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/cohort/index.html?theme=sage">View template</a>
+            <a class="download" href="downloads/cohort-sage.zip" download="cohort-sage.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-category="academic-education" data-mode="dark" data-slug="cohort">
+        <div class="preview">
+          <iframe data-preview src="templates/cohort/index.html?preview=1&amp;theme=plum" title="Preview of Cohort, Plum theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/cohort/index.html?theme=plum" aria-label="View Cohort, Plum theme"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Cohort <span class="variant">Plum</span></h3>
+            <span class="num">16</span>
+          </div>
+          <p class="for">For educators, coaches, and speakers.</p>
+          <p>Offerings, upcoming workshops with dates, student quotes, and an FAQ that opens and closes. Warm and direct.</p>
+          <ul class="tags"><li>Dark</li><li>Teaching</li><li>Workshops</li><li>FAQ</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/cohort/index.html?theme=plum">View template</a>
+            <a class="download" href="downloads/cohort-plum.zip" download="cohort-plum.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+      </div>
+    </section>
+    <section class="group" data-category="business-freelance" aria-labelledby="group-business-freelance">
+      <h2 class="group-title" id="group-business-freelance">Business &amp; Freelance <span>2 designs · 4 themes</span></h2>
+      <div class="grid">
+      <article class="card" data-category="business-freelance" data-mode="light" data-slug="ledger">
+        <div class="preview">
+          <iframe data-preview src="templates/ledger/index.html?preview=1&amp;theme=linen" title="Preview of Ledger, Linen theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/ledger/index.html?theme=linen" aria-label="View Ledger, Linen theme"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Ledger <span class="variant">Linen</span></h3>
+            <span class="num">10</span>
+          </div>
+          <p class="for">For freelancers and consultants.</p>
+          <p>Services with starting prices, a four-step process, three testimonials, and a booking call to action. Built to turn a visit into an email.</p>
+          <ul class="tags"><li>Light</li><li>Services</li><li>Pricing</li><li>Testimonials</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/ledger/index.html?theme=linen">View template</a>
+            <a class="download" href="downloads/ledger-linen.zip" download="ledger-linen.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-category="business-freelance" data-mode="dark" data-slug="ledger">
+        <div class="preview">
+          <iframe data-preview src="templates/ledger/index.html?preview=1&amp;theme=graphite" title="Preview of Ledger, Graphite theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/ledger/index.html?theme=graphite" aria-label="View Ledger, Graphite theme"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Ledger <span class="variant">Graphite</span></h3>
+            <span class="num">10</span>
+          </div>
+          <p class="for">For freelancers and consultants.</p>
+          <p>Services with starting prices, a four-step process, three testimonials, and a booking call to action. Built to turn a visit into an email.</p>
+          <ul class="tags"><li>Dark</li><li>Services</li><li>Pricing</li><li>Testimonials</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/ledger/index.html?theme=graphite">View template</a>
+            <a class="download" href="downloads/ledger-graphite.zip" download="ledger-graphite.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-category="business-freelance" data-mode="light" data-slug="collective">
+        <div class="preview">
+          <iframe data-preview src="templates/collective/index.html?preview=1&amp;theme=bone" title="Preview of Collective, Bone theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/collective/index.html?theme=bone" aria-label="View Collective, Bone theme"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Collective <span class="variant">Bone</span></h3>
+            <span class="num">18</span>
+          </div>
+          <p class="for">For small studios and agencies.</p>
+          <p>Services, a row of client names, team cards, an approach section, and contact. One page that reads as a company, not a person.</p>
+          <ul class="tags"><li>Light</li><li>Studio</li><li>Team</li><li>Clients</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/collective/index.html?theme=bone">View template</a>
+            <a class="download" href="downloads/collective-bone.zip" download="collective-bone.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-category="business-freelance" data-mode="dark" data-slug="collective">
+        <div class="preview">
+          <iframe data-preview src="templates/collective/index.html?preview=1&amp;theme=carbon" title="Preview of Collective, Carbon theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/collective/index.html?theme=carbon" aria-label="View Collective, Carbon theme"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Collective <span class="variant">Carbon</span></h3>
+            <span class="num">18</span>
+          </div>
+          <p class="for">For small studios and agencies.</p>
+          <p>Services, a row of client names, team cards, an approach section, and contact. One page that reads as a company, not a person.</p>
+          <ul class="tags"><li>Dark</li><li>Studio</li><li>Team</li><li>Clients</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/collective/index.html?theme=carbon">View template</a>
+            <a class="download" href="downloads/collective-carbon.zip" download="collective-carbon.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+      </div>
+    </section>
+    <section class="group" data-category="career-resume" aria-labelledby="group-career-resume">
+      <h2 class="group-title" id="group-career-resume">Career &amp; Résumé <span>1 design · 2 themes</span></h2>
+      <div class="grid">
+      <article class="card" data-category="career-resume" data-mode="light" data-slug="vita">
+        <div class="preview">
+          <iframe data-preview src="templates/vita/index.html?preview=1&amp;theme=classic" title="Preview of Vita, Classic theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/vita/index.html?theme=classic" aria-label="View Vita, Classic theme"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Vita <span class="variant">Classic</span></h3>
+            <span class="num">07</span>
+          </div>
+          <p class="for">For a job search.</p>
+          <p>A one-page résumé: summary, experience, education, and skills. Prints to a clean PDF with a button that hides itself on paper.</p>
+          <ul class="tags"><li>Light</li><li>Résumé</li><li>Print</li><li>One page</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/vita/index.html?theme=classic">View template</a>
+            <a class="download" href="downloads/vita-classic.zip" download="vita-classic.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-category="career-resume" data-mode="light" data-slug="vita">
+        <div class="preview">
+          <iframe data-preview src="templates/vita/index.html?preview=1&amp;theme=navy" title="Preview of Vita, Navy theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/vita/index.html?theme=navy" aria-label="View Vita, Navy theme"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Vita <span class="variant">Navy</span></h3>
+            <span class="num">07</span>
+          </div>
+          <p class="for">For a job search.</p>
+          <p>A one-page résumé: summary, experience, education, and skills. Prints to a clean PDF with a button that hides itself on paper.</p>
+          <ul class="tags"><li>Light</li><li>Résumé</li><li>Print</li><li>One page</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/vita/index.html?theme=navy">View template</a>
+            <a class="download" href="downloads/vita-navy.zip" download="vita-navy.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+      </div>
+    </section>
+    <section class="group" data-category="personal-starter" aria-labelledby="group-personal-starter">
+      <h2 class="group-title" id="group-personal-starter">Personal &amp; Starter <span>2 designs · 4 themes</span></h2>
+      <div class="grid">
+      <article class="card" data-category="personal-starter" data-mode="light" data-slug="bento">
+        <div class="preview">
+          <iframe data-preview src="templates/bento/index.html?preview=1&amp;theme=stone" title="Preview of Bento, Stone theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/bento/index.html?theme=stone" aria-label="View Bento, Stone theme"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Bento <span class="variant">Stone</span></h3>
+            <span class="num">06</span>
+          </div>
+          <p class="for">For a personal home page.</p>
+          <p>A tile grid: name, about, what you are doing now, three projects, and a way to write to you.</p>
+          <ul class="tags"><li>Light</li><li>Grid</li><li>Personal</li><li>Compact</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/bento/index.html?theme=stone">View template</a>
+            <a class="download" href="downloads/bento-stone.zip" download="bento-stone.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-category="personal-starter" data-mode="dark" data-slug="bento">
+        <div class="preview">
+          <iframe data-preview src="templates/bento/index.html?preview=1&amp;theme=midnight" title="Preview of Bento, Midnight theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/bento/index.html?theme=midnight" aria-label="View Bento, Midnight theme"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Bento <span class="variant">Midnight</span></h3>
+            <span class="num">06</span>
+          </div>
+          <p class="for">For a personal home page.</p>
+          <p>A tile grid: name, about, what you are doing now, three projects, and a way to write to you.</p>
+          <ul class="tags"><li>Dark</li><li>Grid</li><li>Personal</li><li>Compact</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/bento/index.html?theme=midnight">View template</a>
+            <a class="download" href="downloads/bento-midnight.zip" download="bento-midnight.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-category="personal-starter" data-mode="light" data-slug="primer">
+        <div class="preview">
+          <iframe data-preview src="templates/primer/index.html?preview=1&amp;theme=sky" title="Preview of Primer, Sky theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/primer/index.html?theme=sky" aria-label="View Primer, Sky theme"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Primer <span class="variant">Sky</span></h3>
+            <span class="num">17</span>
+          </div>
+          <p class="for">For students and first portfolios.</p>
+          <p>A short hero, three projects told as what I did and what I learned, skills, and contact. The most heavily commented file in the set.</p>
+          <ul class="tags"><li>Light</li><li>Starter</li><li>Student</li><li>Commented</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/primer/index.html?theme=sky">View template</a>
+            <a class="download" href="downloads/primer-sky.zip" download="primer-sky.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+      <article class="card" data-category="personal-starter" data-mode="dark" data-slug="primer">
+        <div class="preview">
+          <iframe data-preview src="templates/primer/index.html?preview=1&amp;theme=dusk" title="Preview of Primer, Dusk theme" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/primer/index.html?theme=dusk" aria-label="View Primer, Dusk theme"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3>Primer <span class="variant">Dusk</span></h3>
+            <span class="num">17</span>
+          </div>
+          <p class="for">For students and first portfolios.</p>
+          <p>A short hero, three projects told as what I did and what I learned, skills, and contact. The most heavily commented file in the set.</p>
+          <ul class="tags"><li>Dark</li><li>Starter</li><li>Student</li><li>Commented</li></ul>
+          <div class="actions">
+            <a class="open" href="templates/primer/index.html?theme=dusk">View template</a>
+            <a class="download" href="downloads/primer-dusk.zip" download="primer-dusk.zip">Download zip</a>
+          </div>
+        </div>
+      </article>
+      </div>
+    </section>
+<!-- cards:end -->
+    </div>
+    <p class="empty" id="empty">Nothing matches that combination. Try another category or both light and dark.</p>
+
+    <section class="how" aria-label="How to use a template">
+      <h2>From download to live site</h2>
+      <div><strong>1. Download</strong> Pick a design and a theme above. The zip has <code>index.html</code> and a README written for that template.</div>
+      <div><strong>2. Edit</strong> Open <code>index.html</code> in a text editor. Follow the HOW TO EDIT comment and replace every <code>data-field</code> value.</div>
+      <div><strong>3. Theme</strong> Switch themes by changing <code>data-theme</code> on the <code>&lt;html&gt;</code> tag, or edit the color variables at the top of the stylesheet.</div>
+      <div><strong>4. Publish</strong> Upload the folder to GitHub Pages, Netlify, or Cloudflare Pages. No build step.</div>
+    </section>
+
     <footer class="site">
-      <span>Sample names are fictional. Each zip has the gallery bar removed.</span>
-      <a href="downloads/all-templates.zip" download="all-templates.zip">Download all</a>
+      <span>Sample names and projects are fictional. Every zip has the gallery bar removed.</span>
+      <a href="downloads/all-templates.zip" download="all-templates.zip">Download all (default themes)</a>
     </footer>
   </div>
   <script>
-    function fitPreviews() {
-      document.querySelectorAll("[data-preview]").forEach((frame) => {
-        const box = frame.parentElement;
-        const base = 1280;
-        const scale = box.clientWidth / base;
-        if (!scale) return;
-        frame.style.width = base + "px";
-        frame.style.height = Math.ceil(box.clientHeight / scale) + "px";
-        frame.style.transform = "scale(" + scale + ")";
-      });
-    }
-    const observer = new ResizeObserver(fitPreviews);
-    document.querySelectorAll(".preview").forEach((el) => observer.observe(el));
-    fitPreviews();
-    window.addEventListener("load", fitPreviews);
+    (function () {
+      // Scale each 1280px-wide preview iframe to the width of its card.
+      function fitPreviews() {
+        document.querySelectorAll("[data-preview]").forEach((frame) => {
+          const box = frame.parentElement;
+          const base = 1280;
+          const scale = box.clientWidth / base;
+          if (!scale) return;
+          frame.style.width = base + "px";
+          frame.style.height = Math.ceil(box.clientHeight / scale) + "px";
+          frame.style.transform = "scale(" + scale + ")";
+        });
+      }
+      const observer = new ResizeObserver(fitPreviews);
+      document.querySelectorAll(".preview").forEach((el) => observer.observe(el));
+      fitPreviews();
+      window.addEventListener("load", fitPreviews);
+
+      // Filters: one category and one mode at a time.
+      const state = { category: "all", mode: "all" };
+      const cards = [...document.querySelectorAll(".card")];
+      const groups = [...document.querySelectorAll(".group")];
+      const count = document.getElementById("count");
+      const empty = document.getElementById("empty");
+
+      function apply() {
+        let shown = 0;
+        cards.forEach((card) => {
+          const ok =
+            (state.category === "all" || card.dataset.category === state.category) &&
+            (state.mode === "all" || card.dataset.mode === state.mode);
+          card.hidden = !ok;
+          if (ok) shown++;
+        });
+        groups.forEach((group) => {
+          group.hidden = !group.querySelector(".card:not([hidden])");
+        });
+        count.textContent = shown + (shown === 1 ? " template" : " templates");
+        empty.classList.toggle("show", shown === 0);
+        fitPreviews();
+      }
+
+      function wire(attr, key) {
+        const chips = [...document.querySelectorAll("[" + attr + "]")];
+        chips.forEach((chip) => {
+          chip.addEventListener("click", () => {
+            state[key] = chip.getAttribute(attr);
+            chips.forEach((c) => c.setAttribute("aria-pressed", String(c === chip)));
+            apply();
+          });
+        });
+      }
+      wire("data-filter-category", "category");
+      wire("data-filter-mode", "mode");
+      apply();
+    })();
   </script>
 </body>
 </html>

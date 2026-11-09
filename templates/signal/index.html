@@ -1,32 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="acid">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Sam Okonkwo · Software Engineer</title>
   <meta name="description" content="Portfolio of Sam Okonkwo, a software engineer working on notes, images, and on-call tools." />
+  <meta property="og:title" content="Sam Okonkwo · Software Engineer" />
+  <meta property="og:description" content="Portfolio of Sam Okonkwo, a software engineer working on notes, images, and on-call tools." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
   <meta name="theme-color" content="#070708" />
   <!--
-    SIGNAL — single-file portfolio template.
-    Replace every element with data-field, and the data-title / data-copy pairs in the project list.
-    Sample copy is fictional.
-    Delete the "All templates" link before publishing your own site.
+    ============================================================
+    SIGNAL — single-file portfolio template
+    A stark engineer's index: a project list on the left, a detail
+    panel on the right that updates when you hover or select a row.
+    ============================================================
+
+    HOW TO EDIT
+
+    1. TEXT. Replace every element that has data-field="…": name,
+       role, summary, job titles, companies, years, skills, email.
+       Also update <title> and the description / og: meta tags above.
+       All sample names and projects are fictional.
+
+    2. PROJECTS. Each project is one <button class="row"> in the
+       WORK section. The text that appears in the detail panel comes
+       from the attributes on the button, NOT from the panel itself:
+         data-title  the project name shown in the panel
+         data-year   the year shown in the kicker
+         data-stack  the technologies line
+         data-copy   the one-paragraph description
+       Copy a whole <button class="row"> … </button> block to add a
+       project; delete one to remove it. Keep the first row's
+       aria-current="true" and make the panel text match it.
+
+    3. EXPERIENCE and STACK. Copy or delete <article class="exp">
+       blocks. Skills are one sentence in data-field="skills".
+
+    4. THEME. This file ships two color themes. Change
+       data-theme="acid" on the <html> tag above to:
+         acid   dark ground, lime accent (default)
+         paper  light ground, blue accent
+       Every color lives in the THEMES block at the top of the
+       <style> tag; edit one or add your own [data-theme="…"] block.
+       Preview a theme without editing: open index.html?theme=paper
+
+    5. FONTS. IBM Plex Sans and IBM Plex Mono load from Google Fonts
+       in the <link> tag below. Swap the family names there and in
+       the font-family rules if you prefer something else.
+
+    6. PUBLISH. Upload this folder to GitHub Pages, Netlify, or any
+       static host. The entry file is index.html. If you copied this
+       file from the gallery instead of downloading the zip, delete
+       the <a class="template-gallery"> link near the bottom.
   -->
   <script>
-    if (location.search.indexOf("preview=1") !== -1) document.documentElement.classList.add("previewing");
+    // Gallery support: ?preview=1 hides the "All templates" bar inside the gallery's
+    // preview frames, and ?theme=name previews a theme without editing the file.
+    (function () {
+      var q = location.search;
+      if (q.indexOf("preview=1") !== -1) document.documentElement.classList.add("previewing");
+      var m = q.match(/[?&]theme=([\w-]+)/);
+      if (m) document.documentElement.setAttribute("data-theme", m[1]);
+    })();
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet" />
   <style>
-    :root {
+    /* ---------- THEMES ----------
+       The first block is the default. To use another, set data-theme on <html>. */
+
+    /* THEME: acid (default) — near-black ground, lime accent */
+    :root, [data-theme="acid"] {
       --bg: #070708;
       --ink: #eceae4;
+      --body: #c8c8c0;
       --muted: #9a9a93;
       --line: #2a2a2a;
-      --acid: #d6ff4a;
+      --accent: #d6ff4a;
+      --on-accent: #111;
+      --header-bg: rgba(7, 7, 8, .9);
       --gallery-bar: 34px;
     }
+    /* THEME: paper — warm white ground, blue accent */
+    [data-theme="paper"] {
+      --bg: #f4f3ee;
+      --ink: #141414;
+      --body: #3a3a36;
+      --muted: #6a6a63;
+      --line: #d8d6cc;
+      --accent: #0b3fd6;
+      --on-accent: #fff;
+      --header-bg: rgba(244, 243, 238, .9);
+    }
+
+    /* ---------- LAYOUT ---------- */
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     html.previewing { --gallery-bar: 0px; }
@@ -40,9 +110,9 @@
       font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
       line-height: 1.5;
     }
-    ::selection { background: #d6ff4a; color: #111; }
+    ::selection { background: var(--accent); color: var(--on-accent); }
     a { color: inherit; }
-    button:focus-visible, a:focus-visible { outline: 2px solid var(--acid); outline-offset: 3px; }
+    button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
     .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
     header {
       position: sticky;
@@ -53,40 +123,22 @@
       gap: 1rem;
       align-items: center;
       padding: .9rem 1.4rem;
-      background: rgba(7, 7, 8, .9);
+      background: var(--header-bg);
       border-bottom: 1px solid var(--line);
       backdrop-filter: blur(10px);
     }
     .brand { font-weight: 500; text-decoration: none; }
     nav { display: flex; gap: 1rem; }
     nav a { color: var(--muted); text-decoration: none; font-size: .92rem; }
-    nav a:hover { color: var(--acid); }
+    nav a:hover { color: var(--accent); }
     .avail { display: inline-flex; align-items: center; gap: .45rem; color: var(--muted); font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; }
-    .avail i {
-      width: .55rem;
-      height: .55rem;
-      border-radius: 50%;
-      background: var(--acid);
-      display: inline-block;
-    }
+    .avail i { width: .55rem; height: .55rem; border-radius: 50%; background: var(--accent); display: inline-block; }
     main { width: min(1080px, calc(100% - 2.4rem)); margin: 0 auto; padding-bottom: 4rem; }
     .intro { padding: 4.2rem 0 2.4rem; }
-    h1 {
-      margin: 0;
-      font-size: clamp(2.8rem, 7vw, 5rem);
-      font-weight: 500;
-      letter-spacing: -0.045em;
-      line-height: .95;
-    }
+    h1 { margin: 0; font-size: clamp(2.8rem, 7vw, 5rem); font-weight: 500; letter-spacing: -0.045em; line-height: .95; }
     .role { margin: .8rem 0 0; color: var(--muted); font-size: 1.05rem; }
     .lede { max-width: 40rem; margin: 1rem 0 0; font-size: 1.15rem; }
-    .work {
-      display: grid;
-      grid-template-columns: 1.45fr .85fr;
-      gap: 2.5rem;
-      align-items: start;
-      padding-top: 1rem;
-    }
+    .work { display: grid; grid-template-columns: 1.45fr .85fr; gap: 2.5rem; align-items: start; padding-top: 1rem; }
     .row {
       width: 100%;
       display: grid;
@@ -104,62 +156,26 @@
     }
     .row:last-child { border-bottom: 1px solid var(--line); }
     .row small { color: var(--muted); }
-    .row[aria-current="true"], .row:hover { color: var(--acid); }
-    .detail {
-      position: sticky;
-      top: calc(var(--gallery-bar) + 4.2rem);
-      padding-top: .4rem;
-    }
+    .row[aria-current="true"], .row:hover { color: var(--accent); }
+    .detail { position: sticky; top: calc(var(--gallery-bar) + 4.2rem); padding-top: .4rem; }
     .detail .mono { color: var(--muted); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; }
     .detail h2 { margin: .45rem 0; font-size: 1.8rem; font-weight: 500; letter-spacing: -0.03em; }
-    .detail p { margin: 0; color: #c8c8c0; }
-    .stack { margin-top: .8rem; color: var(--acid); font-size: .85rem; }
+    .detail p { margin: 0; color: var(--body); }
+    .stack { margin-top: .8rem; color: var(--accent); font-size: .85rem; }
     section { padding: 2.2rem 0; scroll-margin-top: 4.5rem; }
-    h3.sec {
-      margin: 0 0 1rem;
-      font-family: "IBM Plex Mono", monospace;
-      font-size: .75rem;
-      font-weight: 500;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .exp {
-      display: grid;
-      grid-template-columns: 8rem 1fr;
-      gap: .4rem 1rem;
-      padding: .8rem 0;
-      border-top: 1px solid var(--line);
-    }
+    h3.sec { margin: 0 0 1rem; font-family: "IBM Plex Mono", monospace; font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+    .exp { display: grid; grid-template-columns: 8rem 1fr; gap: .4rem 1rem; padding: .8rem 0; border-top: 1px solid var(--line); }
     .exp strong { font-weight: 500; }
-    .tools { margin: 0; color: #c8c8c0; font-size: 1.2rem; letter-spacing: -0.02em; }
-    footer {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-      padding-top: 1rem;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-    }
-    footer a:hover { color: var(--acid); }
+    .tools { margin: 0; color: var(--body); font-size: 1.2rem; letter-spacing: -0.02em; }
+    footer { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding-top: 1rem; border-top: 1px solid var(--line); color: var(--muted); }
+    footer a:hover { color: var(--accent); }
     .template-gallery {
-      position: fixed;
-      z-index: 4;
-      top: 0;
-      left: 0;
-      right: 0;
+      position: fixed; z-index: 4; top: 0; left: 0; right: 0;
       height: var(--gallery-bar);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--acid);
-      color: #111;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--accent); color: var(--on-accent);
       text-decoration: none;
-      font-family: "IBM Plex Mono", monospace;
-      font-size: .72rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
+      font-family: "IBM Plex Mono", monospace; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
     }
     @media (max-width: 800px) {
       header { align-items: flex-start; flex-direction: column; gap: .15rem; padding: .7rem 1rem .35rem; }
@@ -168,22 +184,13 @@
       .intro { padding: 1.5rem 0 1rem; }
       h1 { font-size: clamp(2.3rem, 12vw, 3.4rem); }
       .work { display: flex; flex-direction: column; gap: .25rem; }
-      .detail {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0 0 0 0);
-        white-space: nowrap;
-        border: 0;
-      }
+      .detail { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
       .row { grid-template-columns: 2rem 1fr; min-height: 52px; align-items: center; }
+      /* On phones the selected row shows its data-copy underneath itself. */
       .row[aria-current="true"]::after {
         content: attr(data-copy);
         grid-column: 1 / -1;
-        color: #c8c8c0;
+        color: var(--body);
         white-space: normal;
         overflow-wrap: anywhere;
         font-size: 1rem;
@@ -197,6 +204,7 @@
   </style>
 </head>
 <body>
+  <!-- ===== HEADER: name, section links, availability ===== -->
   <header>
     <a class="brand" href="#top" data-field="name">Sam Okonkwo</a>
     <nav aria-label="Sections">
@@ -208,12 +216,14 @@
     <span class="avail mono"><i aria-hidden="true"></i> <span data-field="availability">Open · Austin</span></span>
   </header>
   <main id="top">
+    <!-- ===== INTRO ===== -->
     <section class="intro">
       <h1 data-field="name">Sam Okonkwo</h1>
       <p class="role mono" data-field="role">Software engineer</p>
       <p class="lede" data-field="summary">I build small tools for notes, images, and the person who gets paged at midnight. The interesting part is usually the edge where the data is late and the interface still has to be calm.</p>
     </section>
 
+    <!-- ===== WORK: one <button class="row"> per project. The detail panel reads the data-* attributes. ===== -->
     <div class="work" id="work">
       <div class="list" role="list">
         <button class="row" type="button" aria-current="true"
@@ -223,7 +233,7 @@
           data-copy="A local-first notebook. Sync is a background courtesy, not the product. Conflicts stay visible instead of disappearing into a toast.">
           <span class="mono">01</span>
           <span data-field="project-title">Ledger</span>
-          <small class="mono">2025</small>
+          <small class="mono" data-field="project-year">2025</small>
         </button>
         <button class="row" type="button"
           data-title="Parcel"
@@ -232,7 +242,7 @@
           data-copy="An image pipeline with one job: predictable derivatives. The interesting bugs were about color, not throughput.">
           <span class="mono">02</span>
           <span data-field="project-title">Parcel</span>
-          <small class="mono">2024</small>
+          <small class="mono" data-field="project-year">2024</small>
         </button>
         <button class="row" type="button"
           data-title="Switchboard"
@@ -241,7 +251,7 @@
           data-copy="On-call routing that tells you why it woke you up. Schedules are data. Escalations leave a trail a person can read the next morning.">
           <span class="mono">03</span>
           <span data-field="project-title">Switchboard</span>
-          <small class="mono">2023</small>
+          <small class="mono" data-field="project-year">2023</small>
         </button>
         <button class="row" type="button"
           data-title="Margin"
@@ -250,9 +260,10 @@
           data-copy="A typesetting experiment for narrow columns. It ships as a library because the demo was starting to pretend it was an app.">
           <span class="mono">04</span>
           <span data-field="project-title">Margin</span>
-          <small class="mono">2022</small>
+          <small class="mono" data-field="project-year">2022</small>
         </button>
       </div>
+      <!-- The detail panel. Its text is replaced by the script from the selected row, so make it match the first row. -->
       <aside class="detail" aria-live="polite">
         <p class="mono" id="detail-kicker">Selected · 2025</p>
         <h2 id="detail-title">Ledger</h2>
@@ -261,24 +272,25 @@
       </aside>
     </div>
 
+    <!-- ===== EXPERIENCE: copy one <article class="exp"> per job ===== -->
     <section id="experience">
       <h3 class="sec">Experience</h3>
       <article class="exp">
-        <span class="mono">2023 —</span>
+        <span class="mono" data-field="years">2023 —</span>
         <div>
           <strong data-field="job-title">Engineer, tools</strong>
           <div data-field="company">Northline</div>
         </div>
       </article>
       <article class="exp">
-        <span class="mono">2020 — 23</span>
+        <span class="mono" data-field="years">2020 — 23</span>
         <div>
           <strong data-field="job-title">Platform engineer</strong>
           <div data-field="company">Keel Systems</div>
         </div>
       </article>
       <article class="exp">
-        <span class="mono">2018 — 20</span>
+        <span class="mono" data-field="years">2018 — 20</span>
         <div>
           <strong data-field="job-title">Generalist</strong>
           <div data-field="company">A newsroom that still had a copy desk</div>
@@ -286,11 +298,13 @@
       </article>
     </section>
 
+    <!-- ===== STACK ===== -->
     <section id="stack">
       <h3 class="sec">Stack</h3>
       <p class="tools" data-field="skills">TypeScript, Go, Rust, Postgres, SQLite. Interfaces in the browser when that is the honest place for them.</p>
     </section>
 
+    <!-- ===== CONTACT ===== -->
     <footer id="contact">
       <span>&copy; <span data-field="year">2026</span> <span data-field="name">Sam Okonkwo</span></span>
       <span>
@@ -302,6 +316,7 @@
   </main>
   <a class="template-gallery" href="../../index.html">All templates</a>
   <script>
+    // Fills the detail panel from the data-* attributes of the hovered, focused, or clicked row.
     (function () {
       const rows = [...document.querySelectorAll(".row")];
       const title = document.getElementById("detail-title");

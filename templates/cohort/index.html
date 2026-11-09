@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="sage">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Grace Okafor · Writing Coach</title>
+  <meta name="description" content="Grace Okafor teaches working professionals to write clearly. Workshops, one-to-one coaching, and talks." />
+  <meta property="og:title" content="Grace Okafor · Writing Coach" />
+  <meta property="og:description" content="Workshops, one-to-one coaching, and talks on clear writing at work." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="theme-color" content="#eef1e8" />
+  <!--
+    ============================================================
+    COHORT — single-file template for educators, coaches, and
+    speakers. Offerings, upcoming workshops with dates, student
+    quotes, and an FAQ that opens and closes without JavaScript.
+    ============================================================
+
+    HOW TO EDIT
+
+    1. TEXT. Replace every element with data-field="…". Update
+       <title> and the description / og: meta tags above.
+       Sample names, workshops, and quotes are fictional.
+
+    2. OFFERINGS. One <article class="offer"> per thing you sell or
+       teach. Each has a title, a line of detail, a description, and
+       a link. Three fit the row; a fourth wraps.
+
+    3. WORKSHOPS. One <li class="session"> per upcoming date. The
+       link at the end goes to a booking or registration page. Put
+       "Waitlist" or "Full" in the link text when needed.
+
+    4. QUOTES. One <figure> per student or client.
+
+    5. FAQ. Each question is a <details> element with a <summary>.
+       Copy one to add a question. They open and close natively.
+
+    6. THEME. Change data-theme="sage" on the <html> tag to:
+         sage  pale green page, forest accent (default)
+         plum  deep plum page, apricot accent
+       Colors live in the THEMES block at the top of <style>.
+       Preview without editing: index.html?theme=plum
+
+    7. FONTS. Lora and Karla load from Google Fonts.
+
+    8. PUBLISH. Upload this folder to any static host; the entry file
+       is index.html. If you copied this file from the gallery, delete
+       the <a class="template-gallery"> link near the bottom.
+  -->
+  <script>
+    // Gallery support: ?preview=1 hides the "All templates" bar; ?theme=name previews a theme.
+    (function () {
+      var q = location.search;
+      if (q.indexOf("preview=1") !== -1) document.documentElement.classList.add("previewing");
+      var m = q.match(/[?&]theme=([\w-]+)/);
+      if (m) document.documentElement.setAttribute("data-theme", m[1]);
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;700&family=Lora:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
+  <style>
+    /* ---------- THEMES ---------- */
+
+    /* THEME: sage (default) — pale green page, forest accent */
+    :root, [data-theme="sage"] {
+      --bg: #eef1e8;
+      --card: #f9faf5;
+      --ink: #1b2219;
+      --muted: #5c665a;
+      --line: #d3dacc;
+      --accent: #2f5d3a;
+      --on-accent: #f3f7ee;
+      --gallery-bar: 34px;
+    }
+    /* THEME: plum — deep plum page, apricot accent */
+    [data-theme="plum"] {
+      --bg: #2a1b2e;
+      --card: #35243a;
+      --ink: #f6eef4;
+      --muted: #bfaebf;
+      --line: #4a3650;
+      --accent: #f3b27a;
+      --on-accent: #2a1b2e;
+    }
+
+    /* ---------- LAYOUT ---------- */
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html.previewing { --gallery-bar: 0px; }
+    html.previewing, html.previewing body { overflow: hidden; height: 100%; }
+    html.previewing .template-gallery { display: none; }
+    body { margin: 0; padding-top: var(--gallery-bar); background: var(--bg); color: var(--ink); font-family: Karla, "Segoe UI", sans-serif; line-height: 1.55; }
+    a { color: inherit; }
+    a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .serif { font-family: Lora, Georgia, serif; }
+    .page { width: min(1040px, calc(100% - 2rem)); margin: 0 auto; }
+    header { display: flex; justify-content: space-between; gap: 1rem; align-items: center; padding: 1.2rem 0; }
+    .brand { text-decoration: none; font-weight: 600; font-size: 1.15rem; }
+    nav { display: flex; gap: 1.2rem; font-size: .95rem; }
+    nav a { text-decoration: none; color: var(--muted); }
+    nav a:hover { color: var(--accent); }
+    .hero { padding: 3rem 0 2.6rem; display: grid; grid-template-columns: 1.3fr .7fr; gap: 2rem; align-items: center; }
+    h1 { margin: 0; font-weight: 500; font-size: clamp(2.4rem, 5.5vw, 4rem); letter-spacing: -0.02em; line-height: 1.05; }
+    .lede { margin: 1rem 0 0; font-size: 1.15rem; color: var(--muted); max-width: 36rem; }
+    .cta { display: inline-flex; align-items: center; min-height: 48px; margin-top: 1.4rem; padding: .7rem 1.3rem; border-radius: 999px; background: var(--accent); color: var(--on-accent); text-decoration: none; font-weight: 700; }
+    .portrait { aspect-ratio: 4 / 5; border-radius: 24px; background: linear-gradient(160deg, var(--accent), var(--line)); display: flex; align-items: flex-end; padding: 1rem; color: var(--on-accent); font-size: .85rem; }
+    section { padding: 2.6rem 0; border-top: 1px solid var(--line); scroll-margin-top: 1rem; }
+    h2 { margin: 0 0 1.2rem; font-weight: 500; font-size: clamp(1.8rem, 3.5vw, 2.4rem); letter-spacing: -0.02em; }
+    .offers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .offer { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 1.3rem; display: flex; flex-direction: column; }
+    .offer h3 { margin: 0; font-weight: 500; font-size: 1.4rem; }
+    .offer .detail { margin: .2rem 0 .7rem; color: var(--accent); font-size: .85rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+    .offer p { margin: 0 0 1rem; color: var(--muted); }
+    .offer a { margin-top: auto; font-weight: 700; text-decoration: none; border-bottom: 2px solid var(--accent); align-self: flex-start; }
+    .sessions { margin: 0; padding: 0; list-style: none; }
+    .session { display: grid; grid-template-columns: 7rem 1fr auto; gap: 1rem; align-items: center; padding: .9rem 0; border-top: 1px solid var(--line); }
+    .session:first-child { border-top: 0; }
+    .session .when { font-weight: 700; color: var(--accent); }
+    .session strong { display: block; font-weight: 500; font-size: 1.15rem; }
+    .session span.where { color: var(--muted); font-size: .92rem; }
+    .session a { text-decoration: none; font-weight: 700; border-bottom: 2px solid var(--accent); white-space: nowrap; }
+    .quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .quotes figure { margin: 0; padding: 1.2rem; background: var(--card); border: 1px solid var(--line); border-radius: 18px; }
+    .quotes blockquote { margin: 0 0 .8rem; font-size: 1.1rem; line-height: 1.45; }
+    .quotes figcaption { color: var(--muted); font-size: .9rem; }
+    details { border-top: 1px solid var(--line); }
+    details:last-of-type { border-bottom: 1px solid var(--line); }
+    summary { cursor: pointer; padding: 1rem 0; font-weight: 500; font-size: 1.1rem; list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; color: var(--accent); font-weight: 700; }
+    details[open] summary::after { content: "–"; }
+    details p { margin: 0 0 1rem; color: var(--muted); max-width: 60ch; }
+    footer { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: 1.2rem 0 4rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .95rem; }
+    .template-gallery {
+      position: fixed; z-index: 5; top: 0; left: 0; right: 0;
+      height: var(--gallery-bar);
+      display: flex; align-items: center; justify-content: center;
+      background: var(--accent); color: var(--on-accent);
+      text-decoration: none; font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    }
+    @media (max-width: 860px) {
+      .offers, .quotes { grid-template-columns: 1fr; }
+      .hero { grid-template-columns: 1fr; padding: 1.8rem 0 2rem; }
+      .portrait { display: none; }
+    }
+    @media (max-width: 620px) {
+      header { flex-direction: column; align-items: flex-start; gap: .2rem; }
+      nav { flex-wrap: wrap; gap: 0 1rem; }
+      nav a, footer a, .brand { display: inline-flex; align-items: center; min-height: 44px; }
+      .session { grid-template-columns: 1fr; gap: .2rem; }
+      .session a { display: inline-flex; min-height: 40px; align-items: center; justify-self: start; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- ===== HEADER ===== -->
+    <header>
+      <a class="brand serif" href="#top" data-field="name">Grace Okafor</a>
+      <nav aria-label="Sections">
+        <a href="#offerings">Offerings</a>
+        <a href="#workshops">Workshops</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="top" style="border-top: 0;">
+      <div>
+        <h1 class="serif" data-field="headline">Clear writing is a work skill. I teach it like one.</h1>
+        <p class="lede" data-field="summary">Workshops and coaching for engineers, researchers, and managers who write every day and were never taught how. Fifteen years in classrooms and company rooms.</p>
+        <a class="cta" data-field="cta" href="#workshops">See upcoming workshops</a>
+      </div>
+      <!-- Replace this block with <img class="portrait" src="photo.jpg" alt="…"> -->
+      <div class="portrait" role="img" aria-label="Portrait placeholder"><span data-field="portrait-note">Portrait goes here</span></div>
+    </section>
+
+    <!-- ===== OFFERINGS: copy one <article class="offer"> per offering ===== -->
+    <section id="offerings">
+      <h2 class="serif">What I offer</h2>
+      <div class="offers">
+        <article class="offer">
+          <h3 class="serif" data-field="offer-title">Team workshop</h3>
+          <p class="detail" data-field="offer-detail">Half day · up to 16 people</p>
+          <p data-field="offer-copy">One session on the documents your team actually writes: design docs, incident reports, proposals. We edit real examples, with names removed.</p>
+          <a data-field="offer-link" href="#contact">Ask about dates</a>
+        </article>
+        <article class="offer">
+          <h3 class="serif" data-field="offer-title">One-to-one coaching</h3>
+          <p class="detail" data-field="offer-detail">Six sessions · eight weeks</p>
+          <p data-field="offer-copy">For a person with a document that matters: a thesis, a strategy memo, a book proposal. We work on your draft, not on exercises.</p>
+          <a data-field="offer-link" href="#contact">Apply for a slot</a>
+        </article>
+        <article class="offer">
+          <h3 class="serif" data-field="offer-title">Talks</h3>
+          <p class="detail" data-field="offer-detail">45 minutes · in person or remote</p>
+          <p data-field="offer-copy">“The sentence your reader skipped” for all-hands, offsites, and conferences. Practical, a little funny, no slides of bullet points.</p>
+          <a data-field="offer-link" href="#contact">Book a talk</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== WORKSHOPS: one <li class="session"> per date ===== -->
+    <section id="workshops">
+      <h2 class="serif">Upcoming workshops</h2>
+      <ul class="sessions">
+        <li class="session">
+          <span class="when" data-field="session-date">12 Feb</span>
+          <div>
+            <strong data-field="session-title">Writing the design doc</strong>
+            <span class="where" data-field="session-where">Online · 9:00–12:30 GMT · £180</span>
+          </div>
+          <a data-field="session-link" href="https://example.com/">Register</a>
+        </li>
+        <li class="session">
+          <span class="when" data-field="session-date">4 Mar</span>
+          <div>
+            <strong data-field="session-title">Clear incident reports</strong>
+            <span class="where" data-field="session-where">Online · 14:00–17:00 GMT · £180</span>
+          </div>
+          <a data-field="session-link" href="https://example.com/">Register</a>
+        </li>
+        <li class="session">
+          <span class="when" data-field="session-date">26 Mar</span>
+          <div>
+            <strong data-field="session-title">Writing for people who skim</strong>
+            <span class="where" data-field="session-where">London · full day · £420</span>
+          </div>
+          <a data-field="session-link" href="https://example.com/">Waitlist</a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===== QUOTES: one <figure> per student ===== -->
+    <section id="quotes">
+      <h2 class="serif">From past cohorts</h2>
+      <div class="quotes">
+        <figure>
+          <blockquote data-field="quote">“My design docs got shorter and people started reading them to the end. Both of those are new.”</blockquote>
+          <figcaption><span data-field="quote-name">Sam O.</span> · <span data-field="quote-role">staff engineer</span></figcaption>
+        </figure>
+        <figure>
+          <blockquote data-field="quote">“Grace does not give you rules. She shows you where the reader got lost, and then you cannot unsee it.”</blockquote>
+          <figcaption><span data-field="quote-name">Priya R.</span> · <span data-field="quote-role">research lead</span></figcaption>
+        </figure>
+        <figure>
+          <blockquote data-field="quote">“The talk got quoted back to me in three separate meetings the following week.”</blockquote>
+          <figcaption><span data-field="quote-name">Theo L.</span> · <span data-field="quote-role">head of people</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===== FAQ: copy one <details> per question ===== -->
+    <section id="faq">
+      <h2 class="serif">Questions people ask</h2>
+      <details>
+        <summary data-field="faq-q">Do you run workshops for non-native English speakers?</summary>
+        <p data-field="faq-a">Yes, and about half of every cohort is. The methods are about structure and the reader, not grammar, and they transfer across languages.</p>
+      </details>
+      <details>
+        <summary data-field="faq-q">Can you tailor a session to our documents?</summary>
+        <p data-field="faq-a">That is the default. Send three real examples a week ahead; I anonymise them and build the session around what I find.</p>
+      </details>
+      <details>
+        <summary data-field="faq-q">What does coaching cost?</summary>
+        <p data-field="faq-a">Six sessions over eight weeks is £1,400. A small number of reduced-fee places are kept for students and people between jobs; just ask.</p>
+      </details>
+      <details>
+        <summary data-field="faq-q">Do you travel?</summary>
+        <p data-field="faq-a">Within the UK and Europe, yes. Elsewhere, remote works well and I have done it a lot.</p>
+      </details>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <footer id="contact">
+      <span>Write to <a data-field="email" href="mailto:grace@okafor.example">grace@okafor.example</a> · replies within two working days</span>
+      <span>
+        <a data-field="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a> ·
+        <a data-field="newsletter" href="https://substack.com/" target="_blank" rel="noopener noreferrer">Newsletter</a>
+      </span>
+    </footer>
+  </div>
+  <a class="template-gallery" href="../../index.html">All templates</a>
+</body>
+</html>

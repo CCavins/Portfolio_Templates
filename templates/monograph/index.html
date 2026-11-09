@@ -1,34 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="forest">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Mira Voss · Architect</title>
   <meta name="description" content="Portfolio of Mira Voss, an architect practicing in Copenhagen." />
+  <meta property="og:title" content="Mira Voss · Architect" />
+  <meta property="og:description" content="Portfolio of Mira Voss, an architect practicing in Copenhagen." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
   <meta name="theme-color" content="#16352b" />
   <!--
-    MONOGRAPH — single-file portfolio template.
-    Replace every element with data-field. The left panel is the cover; the right column is the index.
-    Sample copy is fictional.
-    Delete the "All templates" link before publishing your own site.
+    ============================================================
+    MONOGRAPH — single-file portfolio template
+    A sticky cover on the left, a long index of projects on the right.
+    ============================================================
+
+    HOW TO EDIT
+
+    1. TEXT. Replace every element with data-field="…". Update
+       <title> and the description / og: meta tags above.
+       Sample names and projects are fictional.
+
+    2. COVER. The large letter is data-field="initial". Change it to
+       your own initial, or delete that <div> to leave the cover
+       with just the name.
+
+    3. PROJECTS. Each one is an <a class="project">. Copy a block to
+       add a project; the href can point at a page, a PDF, or stay
+       as an anchor. Number, title, place/year, and summary each
+       have data-field.
+
+    4. PRACTICE. One <span> + <div> pair per role. Copy both.
+
+    5. THEME. Change data-theme="forest" on the <html> tag to:
+         forest   green cover, cream page (default)
+         oxblood  deep red cover, charcoal page
+       Colors live in the THEMES block at the top of <style>.
+       Preview without editing: index.html?theme=oxblood
+
+    6. FONTS. Cormorant Garamond and Outfit load from Google Fonts.
+
+    7. PUBLISH. Upload this folder to any static host; the entry file
+       is index.html. If you copied this file from the gallery, delete
+       the <a class="template-gallery"> link near the bottom.
   -->
   <script>
-    if (location.search.indexOf("preview=1") !== -1) document.documentElement.classList.add("previewing");
+    // Gallery support: ?preview=1 hides the "All templates" bar; ?theme=name previews a theme.
+    (function () {
+      var q = location.search;
+      if (q.indexOf("preview=1") !== -1) document.documentElement.classList.add("previewing");
+      var m = q.match(/[?&]theme=([\w-]+)/);
+      if (m) document.documentElement.setAttribute("data-theme", m[1]);
+    })();
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
-    :root {
+    /* ---------- THEMES ---------- */
+
+    /* THEME: forest (default) — green cover, cream page, gold accent */
+    :root, [data-theme="forest"] {
       --cover: #16352b;
       --cover-ink: #f3efe4;
+      --cover-role: #d9c89a;
       --paper: #f3efe4;
       --ink: #1a1a18;
+      --body: #2a2926;
       --muted: #5e5a52;
       --rule: #ddd6c8;
-      --gold: #a68445;
+      --accent: #a68445;
       --gallery-bar: 34px;
     }
+    /* THEME: oxblood — deep red cover, charcoal page, rose accent */
+    [data-theme="oxblood"] {
+      --cover: #4a1420;
+      --cover-ink: #f4e9e4;
+      --cover-role: #e0a8a0;
+      --paper: #1c1a1a;
+      --ink: #f1ebe6;
+      --body: #d8d0ca;
+      --muted: #a39a94;
+      --rule: #343030;
+      --accent: #d98c80;
+    }
+
+    /* ---------- LAYOUT ---------- */
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     html.previewing { --gallery-bar: 0px; }
@@ -36,7 +94,7 @@
     html.previewing .template-gallery { display: none; }
     body { margin: 0; padding-top: var(--gallery-bar); background: var(--paper); color: var(--ink); font-family: Outfit, "Avenir Next", sans-serif; line-height: 1.5; }
     a { color: inherit; }
-    a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
     .shell { display: grid; grid-template-columns: minmax(280px, 40%) 1fr; min-height: 100vh; }
     .cover {
       position: sticky;
@@ -49,64 +107,21 @@
       background: var(--cover);
       color: var(--cover-ink);
     }
-    .monogram {
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-weight: 500;
-      font-size: clamp(7rem, 14vw, 11rem);
-      line-height: .75;
-      letter-spacing: -0.04em;
-    }
-    .cover h1 {
-      margin: .4rem 0 0;
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-weight: 500;
-      font-size: clamp(2.6rem, 4vw, 3.6rem);
-      letter-spacing: -0.03em;
-      line-height: .95;
-    }
-    .cover .role { margin: .7rem 0 0; letter-spacing: .16em; text-transform: uppercase; font-size: .75rem; color: #d9c89a; }
+    .monogram { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 500; font-size: clamp(7rem, 14vw, 11rem); line-height: .75; letter-spacing: -0.04em; }
+    .cover h1 { margin: .4rem 0 0; font-family: "Cormorant Garamond", Georgia, serif; font-weight: 500; font-size: clamp(2.6rem, 4vw, 3.6rem); letter-spacing: -0.03em; line-height: .95; }
+    .cover .role { margin: .7rem 0 0; letter-spacing: .16em; text-transform: uppercase; font-size: .75rem; color: var(--cover-role); }
     .cover footer { display: flex; justify-content: space-between; gap: 1rem; font-size: .95rem; }
     .cover a { color: var(--cover-ink); }
     .index { padding: 1.6rem 1.6rem 5rem; }
-    .index header {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      align-items: baseline;
-      padding-bottom: .8rem;
-      border-bottom: 1px solid var(--ink);
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      font-size: .75rem;
-    }
+    .index header { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; padding-bottom: .8rem; border-bottom: 1px solid var(--ink); letter-spacing: .14em; text-transform: uppercase; font-size: .75rem; }
     .index header a { text-decoration: none; }
     .index header nav { display: flex; gap: 1rem; }
-    h2 {
-      margin: 2rem 0 .4rem;
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-weight: 500;
-      font-size: 2.4rem;
-      letter-spacing: -0.03em;
-    }
-    .about { margin: 0; max-width: 46rem; font-size: 1.12rem; color: #2a2926; }
-    .project {
-      display: grid;
-      grid-template-columns: 3rem 1fr auto;
-      gap: .8rem;
-      padding: 1.05rem 0;
-      border-bottom: 1px solid var(--rule);
-      text-decoration: none;
-      align-items: baseline;
-    }
-    .project:hover h3 { color: var(--gold); }
+    h2 { margin: 2rem 0 .4rem; font-family: "Cormorant Garamond", Georgia, serif; font-weight: 500; font-size: 2.4rem; letter-spacing: -0.03em; }
+    .about { margin: 0; max-width: 46rem; font-size: 1.12rem; color: var(--body); }
+    .project { display: grid; grid-template-columns: 3rem 1fr auto; gap: .8rem; padding: 1.05rem 0; border-bottom: 1px solid var(--rule); text-decoration: none; align-items: baseline; }
+    .project:hover h3 { color: var(--accent); }
     .project span { color: var(--muted); font-variant-numeric: tabular-nums; }
-    .project h3 {
-      margin: 0;
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-weight: 500;
-      font-size: 2rem;
-      letter-spacing: -0.03em;
-    }
+    .project h3 { margin: 0; font-family: "Cormorant Garamond", Georgia, serif; font-weight: 500; font-size: 2rem; letter-spacing: -0.03em; }
     .project p { grid-column: 2 / -1; margin: .15rem 0 0; color: var(--muted); }
     .meta { color: var(--muted); font-size: .9rem; }
     .practice { display: grid; grid-template-columns: 8rem 1fr; gap: .35rem 1rem; margin-top: .6rem; }
@@ -114,22 +129,11 @@
     .practice span { color: var(--muted); }
     .colophon { margin-top: 2.4rem; color: var(--muted); font-size: .92rem; }
     .template-gallery {
-      position: fixed;
-      z-index: 5;
-      top: 0;
-      left: 0;
-      right: 0;
+      position: fixed; z-index: 5; top: 0; left: 0; right: 0;
       height: var(--gallery-bar);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--ink);
-      color: var(--paper);
-      text-decoration: none;
-      font-size: .72rem;
-      font-weight: 600;
-      letter-spacing: .14em;
-      text-transform: uppercase;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--ink); color: var(--paper);
+      text-decoration: none; font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
     }
     @media (max-width: 860px) {
       .shell { grid-template-columns: 1fr; }
@@ -150,6 +154,7 @@
 </head>
 <body>
   <div class="shell">
+    <!-- ===== COVER (sticky on desktop) ===== -->
     <aside class="cover">
       <div>
         <div class="monogram" aria-hidden="true" data-field="initial">M</div>
@@ -163,7 +168,7 @@
     </aside>
     <main class="index">
       <header>
-        <span>Monograph · 2026</span>
+        <span data-field="masthead">Monograph · 2026</span>
         <nav aria-label="Sections">
           <a href="#work">Work</a>
           <a href="#practice">Practice</a>
@@ -172,44 +177,47 @@
       </header>
       <h2>Selected work</h2>
       <p class="about" id="about" data-field="about">A small practice. Most of the work is houses and the slow parts of public buildings: the room you wait in, the court you cross, the stair you remember. Drawings are the point. Photographs come later, and only if they tell the truth about the light.</p>
+      <!-- ===== SELECTED WORK: copy one <a class="project"> per project ===== -->
       <section id="work">
         <a class="project" href="#courtyard">
           <span>01</span>
           <h3 data-field="project-title">Courtyard House</h3>
-          <span class="meta">Frederiksberg · 2025</span>
+          <span class="meta" data-field="project-meta">Frederiksberg · 2025</span>
           <p data-field="project-summary">A family house organized around a brick court. The rooms borrow light from the middle and give the street almost nothing.</p>
         </a>
         <a class="project" href="#reading">
           <span>02</span>
           <h3 data-field="project-title">Reading Room</h3>
-          <span class="meta">Aarhus · 2024</span>
+          <span class="meta" data-field="project-meta">Aarhus · 2024</span>
           <p data-field="project-summary">An addition to a branch library. One long table, a high window, and shelves that stop before the ceiling so the room stays a room.</p>
         </a>
         <a class="project" href="#kiln">
           <span>03</span>
           <h3 data-field="project-title">Kiln Pavilion</h3>
-          <span class="meta">Bornholm · 2023</span>
+          <span class="meta" data-field="project-meta">Bornholm · 2023</span>
           <p data-field="project-summary">A seasonal workspace for a ceramics studio. Timber, a thick roof, and a door wide enough for a kiln.</p>
         </a>
         <a class="project" href="#landing">
           <span>04</span>
           <h3 data-field="project-title">Landing</h3>
-          <span class="meta">Malmö · 2022</span>
+          <span class="meta" data-field="project-meta">Malmö · 2022</span>
           <p data-field="project-summary">The arrival hall of a small clinic. Benches in the light, desks out of it, and a material palette a person can touch without thinking.</p>
         </a>
       </section>
+      <!-- ===== PRACTICE: one <span> + <div> pair per role ===== -->
       <section id="practice">
         <h2>Practice</h2>
         <div class="practice">
-          <span>2020 —</span><div data-field="job-title">Own studio, Copenhagen</div>
-          <span>2015 — 20</span><div data-field="company">Project architect, Holm &amp; Line</div>
-          <span>2012 — 15</span><div>Assistant, a housing office in Basel</div>
+          <span data-field="years">2020 —</span><div data-field="job-title">Own studio, Copenhagen</div>
+          <span data-field="years">2015 — 20</span><div data-field="job-title">Project architect, Holm &amp; Line</div>
+          <span data-field="years">2012 — 15</span><div data-field="job-title">Assistant, a housing office in Basel</div>
         </div>
       </section>
+      <!-- ===== CONTACT ===== -->
       <p class="colophon" id="contact">
         <span data-field="year">2026</span> ·
         <a data-field="email" href="mailto:studio@miravoss.example">studio@miravoss.example</a>
-        · Sample projects, for the template.
+        · <span data-field="colophon">Sample projects, for the template.</span>
       </p>
     </main>
   </div>

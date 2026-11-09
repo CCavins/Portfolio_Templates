@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="bone">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Harbor &amp; Co. · Design Studio</title>
+  <meta name="description" content="Harbor & Co. is a six-person design studio in Glasgow. Identity, product design, and websites for companies that make things." />
+  <meta property="og:title" content="Harbor & Co. · Design Studio" />
+  <meta property="og:description" content="Identity, product design, and websites for companies that make things." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="theme-color" content="#f3f0ea" />
+  <!--
+    ============================================================
+    COLLECTIVE — single-file template for small studios and agencies
+    Services, a row of client names, team cards, an approach section,
+    and contact. One page that reads as a company, not a person.
+    ============================================================
+
+    HOW TO EDIT
+
+    1. TEXT. Replace every element with data-field="…". Update
+       <title> and the description / og: meta tags above.
+       The studio, clients, and people are fictional.
+
+    2. SERVICES. One <li> per service in the numbered list. Each has
+       a title and one sentence.
+
+    3. CLIENTS. A row of names in <ul class="clients">. Plain text
+       is fine; to show logos, replace a name with
+         <img src="logos/northline.svg" alt="Northline" height="28">
+
+    4. TEAM. One <article class="person"> per teammate. The colored
+       block shows initials; replace <div class="face"> with
+         <img class="face" src="team/ada.jpg" alt="Ada Mensah">
+       for a photo.
+
+    5. APPROACH. Three short numbered paragraphs about how you work.
+
+    6. THEME. Change data-theme="bone" on the <html> tag to:
+         bone    warm off-white page, black type (default)
+         carbon  near-black page, bone type
+       Colors live in the THEMES block at the top of <style>.
+       Preview without editing: index.html?theme=carbon
+
+    7. FONT. Space Grotesk loads from Google Fonts.
+
+    8. PUBLISH. Upload this folder to any static host; the entry file
+       is index.html. If you copied this file from the gallery, delete
+       the <a class="template-gallery"> link near the bottom.
+  -->
+  <script>
+    // Gallery support: ?preview=1 hides the "All templates" bar; ?theme=name previews a theme.
+    (function () {
+      var q = location.search;
+      if (q.indexOf("preview=1") !== -1) document.documentElement.classList.add("previewing");
+      var m = q.match(/[?&]theme=([\w-]+)/);
+      if (m) document.documentElement.setAttribute("data-theme", m[1]);
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ---------- THEMES ---------- */
+
+    /* THEME: bone (default) — warm off-white page, black type, orange accent */
+    :root, [data-theme="bone"] {
+      --bg: #f3f0ea;
+      --ink: #121212;
+      --muted: #5f5b55;
+      --line: #d8d3ca;
+      --accent: #ff5a1f;
+      --face-a: #ffd6c4; --face-b: #cfe3d2; --face-c: #d6d9f2; --face-d: #f6e7a8;
+      --gallery-bar: 34px;
+    }
+    /* THEME: carbon — near-black page, bone type, lime accent */
+    [data-theme="carbon"] {
+      --bg: #121212;
+      --ink: #f1ede6;
+      --muted: #a39e96;
+      --line: #2c2b29;
+      --accent: #c6ff4a;
+      --face-a: #4a2d22; --face-b: #22402b; --face-c: #2b2f55; --face-d: #4f4620;
+    }
+
+    /* ---------- LAYOUT ---------- */
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html.previewing { --gallery-bar: 0px; }
+    html.previewing, html.previewing body { overflow: hidden; height: 100%; }
+    html.previewing .template-gallery { display: none; }
+    body { margin: 0; padding-top: var(--gallery-bar); background: var(--bg); color: var(--ink); font-family: "Space Grotesk", "Segoe UI", sans-serif; line-height: 1.5; }
+    a { color: inherit; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .page { width: min(1160px, calc(100% - 2rem)); margin: 0 auto; }
+    header { display: flex; justify-content: space-between; gap: 1rem; align-items: center; padding: 1.2rem 0; border-bottom: 1px solid var(--ink); }
+    .brand { text-decoration: none; font-weight: 700; font-size: 1.15rem; letter-spacing: -0.02em; }
+    .brand i { display: inline-block; width: .7em; height: .7em; border-radius: 50%; background: var(--accent); margin-right: .4em; vertical-align: -1px; }
+    nav { display: flex; gap: 1.3rem; font-size: .95rem; }
+    nav a { text-decoration: none; color: var(--muted); }
+    nav a:hover { color: var(--ink); }
+    .hero { padding: 3.4rem 0 3rem; display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; align-items: end; }
+    h1 { margin: 0; font-size: clamp(2.6rem, 7vw, 5.6rem); font-weight: 500; letter-spacing: -0.045em; line-height: .95; }
+    h1 em { font-style: normal; color: var(--accent); }
+    .hero p { margin: 0; color: var(--muted); font-size: 1.1rem; }
+    section { padding: 2.6rem 0; border-top: 1px solid var(--line); scroll-margin-top: 1rem; }
+    .section-head { display: grid; grid-template-columns: 1fr 3fr; gap: 2rem; }
+    h2 { margin: 0; font-size: .8rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+    .services { margin: 0; padding: 0; list-style: none; counter-reset: s; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem 2rem; }
+    .services li { counter-increment: s; padding-top: 1rem; border-top: 1px solid var(--ink); }
+    .services li::before { content: counter(s, decimal-leading-zero); display: block; font-size: .8rem; color: var(--accent); margin-bottom: .6rem; }
+    .services h3 { margin: 0 0 .3rem; font-size: 1.35rem; font-weight: 500; letter-spacing: -0.02em; }
+    .services p { margin: 0; color: var(--muted); }
+    .clients { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: .8rem 2.4rem; align-items: center; font-size: 1.35rem; font-weight: 500; letter-spacing: -0.02em; color: var(--muted); }
+    .clients img { height: 28px; width: auto; display: block; }
+    .team { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .person .face { aspect-ratio: 1; border-radius: 14px; display: grid; place-items: center; font-size: 2.4rem; font-weight: 700; letter-spacing: -0.04em; object-fit: cover; width: 100%; }
+    .fa { background: var(--face-a); } .fb { background: var(--face-b); } .fc { background: var(--face-c); } .fd { background: var(--face-d); }
+    .person h3 { margin: .7rem 0 0; font-size: 1.05rem; font-weight: 700; }
+    .person p { margin: .1rem 0 0; color: var(--muted); font-size: .92rem; }
+    .approach { margin: 0; padding: 0; list-style: none; counter-reset: a; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .approach li { counter-increment: a; }
+    .approach li::before { content: counter(a); display: inline-grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; background: var(--ink); color: var(--bg); font-weight: 700; margin-bottom: .7rem; }
+    .approach h3 { margin: 0 0 .3rem; font-size: 1.2rem; font-weight: 500; }
+    .approach p { margin: 0; color: var(--muted); }
+    .contact { padding: 3rem 0 4rem; }
+    .contact a.big { display: inline-block; font-size: clamp(2rem, 6vw, 4.4rem); font-weight: 500; letter-spacing: -0.045em; line-height: 1; text-decoration: none; }
+    .contact a.big:hover { color: var(--accent); }
+    .contact .row { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-top: 1.6rem; color: var(--muted); font-size: .95rem; }
+    .contact .row span + span { margin-left: 1rem; }
+    .template-gallery {
+      position: fixed; z-index: 5; top: 0; left: 0; right: 0;
+      height: var(--gallery-bar);
+      display: flex; align-items: center; justify-content: center;
+      background: var(--ink); color: var(--bg);
+      text-decoration: none; font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    }
+    @media (max-width: 960px) { .team { grid-template-columns: repeat(2, 1fr); } .services, .approach { grid-template-columns: 1fr; } .section-head { grid-template-columns: 1fr; gap: 1rem; } }
+    @media (max-width: 680px) {
+      header { flex-direction: column; align-items: flex-start; gap: .1rem; }
+      nav { flex-wrap: wrap; gap: 0 1rem; }
+      nav a, .brand, .contact .row a { display: inline-flex; align-items: center; min-height: 44px; }
+      .hero { grid-template-columns: 1fr; padding: 1.8rem 0 2rem; }
+      .contact a.big { overflow-wrap: anywhere; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- ===== HEADER ===== -->
+    <header>
+      <a class="brand" href="#top"><i aria-hidden="true"></i><span data-field="name">Harbor &amp; Co.</span></a>
+      <nav aria-label="Sections">
+        <a href="#services">Services</a>
+        <a href="#clients">Clients</a>
+        <a href="#team">Team</a>
+        <a href="#approach">Approach</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="top" style="border-top: 0;">
+      <h1 data-field="headline">A design studio for companies that <em>make things.</em></h1>
+      <p data-field="summary">Six people in Glasgow. Identity, product design, and websites for manufacturers, hardware teams, and the occasional brewery. Since 2017.</p>
+    </section>
+
+    <!-- ===== SERVICES: one <li> per service ===== -->
+    <section id="services">
+      <div class="section-head">
+        <h2>Services</h2>
+        <ol class="services">
+          <li>
+            <h3 data-field="service-title">Identity</h3>
+            <p data-field="service-copy">Name, mark, type, and the rules a factory floor can follow. Built to survive being printed on a pallet.</p>
+          </li>
+          <li>
+            <h3 data-field="service-title">Product design</h3>
+            <p data-field="service-copy">Interfaces for tools people use all day: dashboards, configurators, field apps. Research first, then screens.</p>
+          </li>
+          <li>
+            <h3 data-field="service-title">Websites</h3>
+            <p data-field="service-copy">Marketing sites and catalogues that your own team can update. We hand over the keys and a manual.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== CLIENTS: plain names, or swap a name for an <img> logo ===== -->
+    <section id="clients">
+      <div class="section-head">
+        <h2>Selected clients</h2>
+        <ul class="clients">
+          <li data-field="client">Northline</li>
+          <li data-field="client">Keel Systems</li>
+          <li data-field="client">Kiln Ceramics</li>
+          <li data-field="client">Low Tide Brewing</li>
+          <li data-field="client">Lumen Health</li>
+          <li data-field="client">City Line Transit</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== TEAM: one <article class="person"> per teammate; replace .face with an <img class="face"> ===== -->
+    <section id="team">
+      <div class="section-head">
+        <h2>Team</h2>
+        <div class="team">
+          <article class="person">
+            <div class="face fa" aria-hidden="true" data-field="initials">AM</div>
+            <h3 data-field="person-name">Ada Mensah</h3>
+            <p data-field="person-role">Founder · design director</p>
+          </article>
+          <article class="person">
+            <div class="face fb" aria-hidden="true" data-field="initials">RP</div>
+            <h3 data-field="person-name">Ren Park</h3>
+            <p data-field="person-role">Partner · identity</p>
+          </article>
+          <article class="person">
+            <div class="face fc" aria-hidden="true" data-field="initials">SO</div>
+            <h3 data-field="person-name">Sam Okonkwo</h3>
+            <p data-field="person-role">Engineering lead</p>
+          </article>
+          <article class="person">
+            <div class="face fd" aria-hidden="true" data-field="initials">EV</div>
+            <h3 data-field="person-name">Elena Vasquez</h3>
+            <p data-field="person-role">Producer</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== APPROACH: three numbered points ===== -->
+    <section id="approach">
+      <div class="section-head">
+        <h2>How we work</h2>
+        <ol class="approach">
+          <li>
+            <h3 data-field="approach-title">We visit</h3>
+            <p data-field="approach-copy">Every project starts on your premises. You cannot design a configurator for a machine you have not watched someone configure.</p>
+          </li>
+          <li>
+            <h3 data-field="approach-title">Small team, whole way</h3>
+            <p data-field="approach-copy">The people in the pitch are the people on the project. Two or three of us, start to finish, with no handoff to juniors.</p>
+          </li>
+          <li>
+            <h3 data-field="approach-title">You can run it after</h3>
+            <p data-field="approach-copy">Files, fonts, templates, and a training session. We would rather be rehired for the next thing than needed for this one.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="contact" id="contact">
+      <a class="big" data-field="email" href="mailto:hello@harborandco.example">hello@harborandco.example</a>
+      <div class="row">
+        <span data-field="address">14 Osborne Street, Glasgow G1 5QN</span>
+        <span>
+          <a data-field="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a data-field="instagram" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <span data-field="year">&copy; 2026</span>
+        </span>
+      </div>
+    </section>
+  </div>
+  <a class="template-gallery" href="../../index.html">All templates</a>
+</body>
+</html>

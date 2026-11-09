@@ -1,164 +1,136 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="paper">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Amira Shah · Brand Strategist</title>
   <meta name="description" content="Portfolio of Amira Shah, a brand strategist based in New York." />
+  <meta property="og:title" content="Amira Shah · Brand Strategist" />
+  <meta property="og:description" content="Portfolio of Amira Shah, a brand strategist based in New York." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
   <meta name="theme-color" content="#f3efe6" />
   <!--
-    EDITORIAL — single-file portfolio template.
-    Replace every element with data-field. Sample copy is fictional.
-    Delete the "All templates" link before publishing your own site.
+    ============================================================
+    EDITORIAL — single-file portfolio template
+    A paper-and-ink magazine page: masthead, a large serif headline,
+    a work index, a pull quote, an experience table, and notes.
+    ============================================================
+
+    HOW TO EDIT
+
+    1. TEXT. Replace every element with data-field="…". Update
+       <title> and the description / og: meta tags above.
+       Sample names and projects are fictional.
+
+    2. WORK INDEX. Each project is an <a class="work-item">. Its
+       href="#northwind" points at a note further down with
+       id="northwind"; keep the pairs matched when you rename.
+       Copy a work-item to add a project. If you do not want notes,
+       point the href at a live URL instead.
+
+    3. EXPERIENCE. One <tr> per role in the table. Years, role, and
+       place each have data-field.
+
+    4. NOTES. Short reflections, one <article class="note"> each.
+       Delete the whole section if you do not need it.
+
+    5. THEME. Change data-theme="paper" on the <html> tag to:
+         paper  warm paper, clay accent (default)
+         night  black paper, brass accent
+       Colors live in the THEMES block at the top of <style>.
+       Preview without editing: index.html?theme=night
+
+    6. FONTS. Fraunces and Outfit load from Google Fonts.
+
+    7. PUBLISH. Upload this folder to any static host; the entry file
+       is index.html. If you copied this file from the gallery, delete
+       the <a class="template-gallery"> link near the bottom.
   -->
   <script>
-    if (location.search.indexOf("preview=1") !== -1) document.documentElement.classList.add("previewing");
+    // Gallery support: ?preview=1 hides the "All templates" bar; ?theme=name previews a theme.
+    (function () {
+      var q = location.search;
+      if (q.indexOf("preview=1") !== -1) document.documentElement.classList.add("previewing");
+      var m = q.match(/[?&]theme=([\w-]+)/);
+      if (m) document.documentElement.setAttribute("data-theme", m[1]);
+    })();
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,640;1,9..144,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
-    :root {
+    /* ---------- THEMES ---------- */
+
+    /* THEME: paper (default) — warm paper, dark ink, clay accent */
+    :root, [data-theme="paper"] {
       --paper: #f3efe6;
       --ink: #1c1914;
       --muted: #5c564c;
       --rule: #d9d1c3;
-      --clay: #a33b24;
+      --accent: #a33b24;
+      --selection: #efd3c4;
       --gallery-bar: 34px;
     }
+    /* THEME: night — black paper, warm white ink, brass accent */
+    [data-theme="night"] {
+      --paper: #121110;
+      --ink: #f0eadf;
+      --muted: #a39b8d;
+      --rule: #2e2a24;
+      --accent: #d6a85a;
+      --selection: #4a3b22;
+    }
+
+    /* ---------- LAYOUT ---------- */
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     html.previewing { --gallery-bar: 0px; }
     html.previewing, html.previewing body { overflow: hidden; height: 100%; }
     html.previewing .template-gallery { display: none; }
-    body {
-      margin: 0;
-      padding-top: var(--gallery-bar);
-      background: var(--paper);
-      color: var(--ink);
-      font-family: Outfit, "Avenir Next", sans-serif;
-      font-weight: 400;
-      line-height: 1.55;
-    }
-    ::selection { background: #efd3c4; }
+    body { margin: 0; padding-top: var(--gallery-bar); background: var(--paper); color: var(--ink); font-family: Outfit, "Avenir Next", sans-serif; font-weight: 400; line-height: 1.55; }
+    ::selection { background: var(--selection); }
     a { color: inherit; }
-    a:focus-visible { outline: 2px solid var(--clay); outline-offset: 3px; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
     .page { width: min(1040px, calc(100% - 2.4rem)); margin: 0 auto; }
-    .mast {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      gap: 1rem;
-      align-items: end;
-      padding: 1.3rem 0 .9rem;
-      border-bottom: 1px solid var(--ink);
-      font-size: .78rem;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-    }
+    .mast { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: end; padding: 1.3rem 0 .9rem; border-bottom: 1px solid var(--ink); font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; }
     .mast span:last-child { text-align: right; }
     .mast strong { font-family: Fraunces, Georgia, serif; font-size: 1.05rem; letter-spacing: 0; text-transform: none; font-weight: 560; }
     .hero { padding: 3.2rem 0 2.2rem; }
-    .kicker { margin: 0 0 .8rem; letter-spacing: .16em; text-transform: uppercase; font-size: .78rem; color: var(--clay); }
-    h1 {
-      margin: 0;
-      max-width: 14ch;
-      font-family: Fraunces, Georgia, serif;
-      font-weight: 560;
-      font-size: clamp(3.2rem, 8vw, 6.4rem);
-      letter-spacing: -0.035em;
-      line-height: .9;
-    }
+    .kicker { margin: 0 0 .8rem; letter-spacing: .16em; text-transform: uppercase; font-size: .78rem; color: var(--accent); }
+    h1 { margin: 0; max-width: 14ch; font-family: Fraunces, Georgia, serif; font-weight: 560; font-size: clamp(3.2rem, 8vw, 6.4rem); letter-spacing: -0.035em; line-height: .9; }
     .deck { max-width: 36rem; margin: 1.3rem 0 0; font-size: 1.25rem; color: var(--muted); }
     section { padding: 2rem 0; border-top: 1px solid var(--rule); scroll-margin-top: 1rem; }
-    .label {
-      margin: 0 0 1rem;
-      font-size: .78rem;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
+    .label { margin: 0 0 1rem; font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
     .split { display: grid; grid-template-columns: 1.5fr .8fr; gap: 2rem; }
     .split p { margin: 0; font-size: 1.12rem; }
     .facts { margin: 0; padding: 0; list-style: none; }
     .facts li { padding: .7rem 0; border-top: 1px solid var(--rule); }
     .facts li:first-child { border-top: 0; padding-top: 0; }
     .facts span { display: block; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
-    .work-item {
-      display: grid;
-      grid-template-columns: 4.2rem 1fr auto;
-      gap: 1rem;
-      align-items: baseline;
-      padding: 1.15rem 0;
-      border-top: 1px solid var(--rule);
-      text-decoration: none;
-    }
+    .work-item { display: grid; grid-template-columns: 4.2rem 1fr auto; gap: 1rem; align-items: baseline; padding: 1.15rem 0; border-top: 1px solid var(--rule); text-decoration: none; }
     .work-item:first-of-type { border-top: 0; }
-    .work-item:hover h2 { color: var(--clay); }
+    .work-item:hover h2 { color: var(--accent); }
     .index { font-variant-numeric: tabular-nums; color: var(--muted); }
-    h2 {
-      margin: 0;
-      font-family: Fraunces, Georgia, serif;
-      font-weight: 540;
-      font-size: clamp(1.8rem, 3vw, 2.5rem);
-      letter-spacing: -0.03em;
-      line-height: 1;
-    }
+    h2 { margin: 0; font-family: Fraunces, Georgia, serif; font-weight: 540; font-size: clamp(1.8rem, 3vw, 2.5rem); letter-spacing: -0.03em; line-height: 1; }
     .dek { margin: .4rem 0 0; color: var(--muted); max-width: 46ch; }
     .when { color: var(--muted); font-size: .92rem; }
-    blockquote {
-      margin: 0;
-      padding: 2.4rem 0;
-      border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
-      font-family: Fraunces, Georgia, serif;
-      font-weight: 500;
-      font-style: italic;
-      font-size: clamp(1.7rem, 3.4vw, 2.5rem);
-      letter-spacing: -0.03em;
-      line-height: 1.2;
-    }
+    blockquote { margin: 0; padding: 2.4rem 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); font-family: Fraunces, Georgia, serif; font-weight: 500; font-style: italic; font-size: clamp(1.7rem, 3.4vw, 2.5rem); letter-spacing: -0.03em; line-height: 1.2; }
     blockquote p { margin: 0; max-width: 22ch; }
     .table { width: 100%; border-collapse: collapse; }
-    .table th {
-      text-align: left;
-      font-weight: 500;
-      font-size: .75rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding: 0 1rem .6rem 0;
-    }
+    .table th { text-align: left; font-weight: 500; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); padding: 0 1rem .6rem 0; }
     .table td { padding: .85rem 1rem .85rem 0; border-top: 1px solid var(--rule); vertical-align: top; }
     .notes { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
     .note h3 { margin: 0 0 .4rem; font-family: Fraunces, Georgia, serif; font-size: 1.45rem; font-weight: 540; }
     .note p { margin: 0; color: var(--muted); }
-    footer {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-      padding: 1.2rem 0 5rem;
-      border-top: 1px solid var(--ink);
-      font-size: .95rem;
-    }
+    footer { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: 1.2rem 0 5rem; border-top: 1px solid var(--ink); font-size: .95rem; }
     footer a { text-decoration-thickness: 1px; text-underline-offset: 3px; }
     .template-gallery {
-      position: fixed;
-      z-index: 5;
-      top: 0;
-      left: 0;
-      right: 0;
+      position: fixed; z-index: 5; top: 0; left: 0; right: 0;
       height: var(--gallery-bar);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--ink);
-      color: var(--paper);
-      text-decoration: none;
-      font-size: .72rem;
-      font-weight: 600;
-      letter-spacing: .14em;
-      text-transform: uppercase;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--ink); color: var(--paper);
+      text-decoration: none; font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
     }
     @media (max-width: 760px) {
       .mast { grid-template-columns: 1fr; gap: .25rem; }
@@ -178,30 +150,34 @@
 </head>
 <body>
   <div class="page">
+    <!-- ===== MASTHEAD ===== -->
     <header class="mast">
-      <span>Portfolio · 2026</span>
+      <span data-field="masthead-left">Portfolio · 2026</span>
       <strong data-field="name">Amira Shah</strong>
       <span data-field="location">New York</span>
     </header>
 
+    <!-- ===== HERO ===== -->
     <section class="hero" id="top">
       <p class="kicker" data-field="role">Brand strategist</p>
       <h1 data-field="headline">Clarity, with a point of view.</h1>
       <p class="deck" data-field="summary">I help a company say one true thing, then build the system that keeps it from wandering off.</p>
     </section>
 
+    <!-- ===== ABOUT: a paragraph and three facts ===== -->
     <section id="about">
       <p class="label">01 — About</p>
       <div class="split">
         <p data-field="about">Most briefs ask for a louder voice. The useful question is narrower: what can this company repeat when the campaign is over? I write that sentence with the founders, then turn it into a name, a narrative, and the few rules a team will still remember in a year.</p>
         <ul class="facts">
-          <li><span>Practice</span> Naming, narrative, brand systems</li>
-          <li><span>With</span> Founders and in-house teams</li>
-          <li><span>Before</span> Journalism, then a decade inside agencies</li>
+          <li><span>Practice</span> <span data-field="fact">Naming, narrative, brand systems</span></li>
+          <li><span>With</span> <span data-field="fact">Founders and in-house teams</span></li>
+          <li><span>Before</span> <span data-field="fact">Journalism, then a decade inside agencies</span></li>
         </ul>
       </div>
     </section>
 
+    <!-- ===== SELECTED WORK: copy one <a class="work-item"> per project ===== -->
     <section id="work">
       <p class="label">02 — Selected work</p>
       <a class="work-item" href="#northwind">
@@ -210,7 +186,7 @@
           <h2 data-field="project-title">Northwind</h2>
           <p class="dek" data-field="project-summary">A regional grocer that needed a name a person could say twice, and a system the bakery could live with.</p>
         </div>
-        <span class="when">2025 · Identity</span>
+        <span class="when" data-field="project-meta">2025 · Identity</span>
       </a>
       <a class="work-item" href="#lumen">
         <span class="index">02</span>
@@ -218,7 +194,7 @@
           <h2 data-field="project-title">Lumen Health</h2>
           <p class="dek" data-field="project-summary">A care brand that had started to sound like its software. We gave the language back to the clinic.</p>
         </div>
-        <span class="when">2024 · Narrative</span>
+        <span class="when" data-field="project-meta">2024 · Narrative</span>
       </a>
       <a class="work-item" href="#paperplane">
         <span class="index">03</span>
@@ -226,14 +202,16 @@
           <h2 data-field="project-title">Paperplane</h2>
           <p class="dek" data-field="project-summary">A magazine that wanted a spine: what it would cover, and what it would politely decline.</p>
         </div>
-        <span class="when">2023 · Editorial</span>
+        <span class="when" data-field="project-meta">2023 · Editorial</span>
       </a>
     </section>
 
+    <!-- ===== PULL QUOTE ===== -->
     <blockquote>
       <p data-field="quote">“If the tagline needs a footnote, it is not done.”</p>
     </blockquote>
 
+    <!-- ===== EXPERIENCE: one <tr> per role ===== -->
     <section id="experience">
       <p class="label">03 — Experience</p>
       <table class="table">
@@ -242,17 +220,17 @@
         </thead>
         <tbody>
           <tr>
-            <td>2021 —</td>
+            <td data-field="years">2021 —</td>
             <td data-field="job-title">Independent strategist</td>
             <td data-field="company">Own practice</td>
           </tr>
           <tr>
-            <td>2016 — 21</td>
+            <td data-field="years">2016 — 21</td>
             <td data-field="job-title">Strategy director</td>
             <td data-field="company">Atelier North</td>
           </tr>
           <tr>
-            <td>2012 — 16</td>
+            <td data-field="years">2012 — 16</td>
             <td data-field="job-title">Writer</td>
             <td data-field="company">The Evening Ledger</td>
           </tr>
@@ -260,20 +238,26 @@
       </table>
     </section>
 
+    <!-- ===== NOTES: ids match the work-item links above ===== -->
     <section id="notes">
       <p class="label">04 — Notes</p>
       <div class="notes">
         <article class="note" id="northwind">
-          <h3>On naming food</h3>
+          <h3 data-field="note-title">On naming food</h3>
           <p data-field="note">Northwind’s first list sounded like a startup. The name that stayed was already painted on the original awning. We just let it be the whole brand.</p>
         </article>
         <article class="note" id="lumen">
-          <h3>On clinical language</h3>
+          <h3 data-field="note-title">On clinical language</h3>
           <p data-field="note">Lumen’s product words had leaked into the waiting room. The fix was a short lexicon: words for patients, words for software, and a rule about which door they use.</p>
+        </article>
+        <article class="note" id="paperplane">
+          <h3 data-field="note-title">On saying no in print</h3>
+          <p data-field="note">Paperplane’s editors knew what they loved. The brand work was writing down what they would decline, so the next pitch could be judged in a sentence.</p>
         </article>
       </div>
     </section>
 
+    <!-- ===== CONTACT ===== -->
     <footer id="contact">
       <span>&copy; <span data-field="year">2026</span> <span data-field="name">Amira Shah</span></span>
       <span>

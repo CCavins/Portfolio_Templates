@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="arcade">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Kai Moreno · Game Developer</title>
+  <meta name="description" content="Games and tools by Kai Moreno, a solo developer working in Godot and Unity. Projects, dev log, and contact." />
+  <meta property="og:title" content="Kai Moreno · Game Developer" />
+  <meta property="og:description" content="Games and tools. Projects, dev log, and contact." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="theme-color" content="#0d0f1a" />
+  <!--
+    ============================================================
+    PIXEL — single-file template for game developers and 3D artists
+    Project cards with platform and engine tags, itch.io and Steam
+    links, a dev-log list, and screenshot frames that reveal on hover.
+    ============================================================
+
+    HOW TO EDIT
+
+    1. TEXT. Replace every element with data-field="…". Update
+       <title> and the description / og: meta tags above.
+       Sample names and games are fictional.
+
+    2. PROJECTS. One <article class="game"> per project. Each has a
+       .shot frame, a title, a status line, a description, tags, and
+       links. Copy a block to add a game.
+
+    3. SCREENSHOTS. Each .shot shows a gradient until you give it an
+       image. Put screenshots in a shots folder and on the frame add
+         style="background-image: url('shots/ember-run.png')"
+       The caption slides up on hover. For pixel art that should
+       stay crisp when scaled, add class="crisp" to the frame.
+
+    4. TAGS. Plain <li> items inside <ul class="tags">. Platform
+       and engine tags look the same; order them how you like.
+
+    5. LINKS. itch.io, Steam, GitHub, trailer. Delete the ones a
+       project does not have.
+
+    6. DEV LOG. One <li> per post with a date, a title link, and a
+       line. Point the links at your blog, itch devlog, or Cohost.
+
+    7. THEME. Change data-theme="arcade" on the <html> tag to:
+         arcade  deep blue-black, cyan and magenta (default)
+         mono    paper white, black type, one green accent
+       Colors live in the THEMES block at the top of <style>.
+       Preview without editing: index.html?theme=mono
+
+    8. FONTS. Space Mono and Rubik load from Google Fonts.
+
+    9. PUBLISH. Upload this folder (with shots/) to any static host;
+       the entry file is index.html. If you copied this file from the
+       gallery, delete the <a class="template-gallery"> link near the
+       bottom.
+  -->
+  <script>
+    // Gallery support: ?preview=1 hides the "All templates" bar; ?theme=name previews a theme.
+    (function () {
+      var q = location.search;
+      if (q.indexOf("preview=1") !== -1) document.documentElement.classList.add("previewing");
+      var m = q.match(/[?&]theme=([\w-]+)/);
+      if (m) document.documentElement.setAttribute("data-theme", m[1]);
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ---------- THEMES ---------- */
+
+    /* THEME: arcade (default) — deep blue-black, cyan and magenta */
+    :root, [data-theme="arcade"] {
+      --bg: #0d0f1a;
+      --card: #151829;
+      --ink: #eef0ff;
+      --muted: #9ba2c4;
+      --line: #262b45;
+      --accent: #38e8ff;
+      --accent-2: #ff4fd8;
+      --on-accent: #0d0f1a;
+      --shot-a: linear-gradient(135deg, #1a2a6c, #38e8ff);
+      --shot-b: linear-gradient(160deg, #3a0d3f, #ff4fd8);
+      --shot-c: linear-gradient(200deg, #0e3b2e, #7cff9e);
+      --shot-d: linear-gradient(150deg, #4a2c0b, #ffb347);
+      --gallery-bar: 34px;
+    }
+    /* THEME: mono — paper white, black type, one green accent */
+    [data-theme="mono"] {
+      --bg: #f7f7f4;
+      --card: #ffffff;
+      --ink: #121212;
+      --muted: #666660;
+      --line: #dcdcd6;
+      --accent: #1f9d55;
+      --accent-2: #1f9d55;
+      --on-accent: #ffffff;
+      --shot-a: linear-gradient(135deg, #2b2b2b, #8f8f8f);
+      --shot-b: linear-gradient(160deg, #1f9d55, #c9f0d8);
+      --shot-c: linear-gradient(200deg, #444, #d8d8d2);
+      --shot-d: linear-gradient(150deg, #121212, #1f9d55);
+    }
+
+    /* ---------- LAYOUT ---------- */
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html.previewing { --gallery-bar: 0px; }
+    html.previewing, html.previewing body { overflow: hidden; height: 100%; }
+    html.previewing .template-gallery { display: none; }
+    body { margin: 0; padding-top: var(--gallery-bar); background: var(--bg); color: var(--ink); font-family: Rubik, "Segoe UI", sans-serif; line-height: 1.5; }
+    a { color: inherit; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .mono { font-family: "Space Mono", ui-monospace, monospace; }
+    .page { width: min(1100px, calc(100% - 2rem)); margin: 0 auto; }
+    header { display: flex; justify-content: space-between; gap: 1rem; align-items: center; padding: 1.1rem 0; border-bottom: 1px dashed var(--line); }
+    .brand { text-decoration: none; font-weight: 700; }
+    .brand::before { content: "▶ "; color: var(--accent); }
+    nav { display: flex; gap: 1.2rem; font-size: .9rem; }
+    nav a { text-decoration: none; color: var(--muted); }
+    nav a:hover { color: var(--accent); }
+    .hero { padding: 3rem 0 2.4rem; }
+    .status { display: inline-flex; align-items: center; gap: .5rem; margin: 0 0 1rem; padding: .3rem .8rem; border: 1px solid var(--line); border-radius: 999px; font-size: .78rem; color: var(--muted); }
+    .status i { width: .55rem; height: .55rem; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+    h1 { margin: 0; font-size: clamp(2.4rem, 6vw, 4.4rem); font-weight: 700; letter-spacing: -0.04em; line-height: 1; }
+    h1 span { color: var(--accent-2); }
+    .lede { margin: 1rem 0 0; font-size: 1.12rem; color: var(--muted); max-width: 38rem; }
+    section { padding: 2.4rem 0; border-top: 1px dashed var(--line); scroll-margin-top: 1rem; }
+    h2 { margin: 0 0 1.2rem; font-size: .85rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+    .games { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .game { background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; }
+    .shot { position: relative; aspect-ratio: 16 / 9; background-size: cover; background-position: center; overflow: hidden; }
+    .shot.crisp { image-rendering: pixelated; }
+    .shot span { position: absolute; left: 0; right: 0; bottom: 0; padding: .6rem .9rem; background: rgba(0,0,0,.6); color: #fff; font-size: .8rem; transform: translateY(100%); transition: transform .25s ease; }
+    .game:hover .shot span, .game:focus-within .shot span { transform: none; }
+    .sa { background-image: var(--shot-a); } .sb { background-image: var(--shot-b); } .sc { background-image: var(--shot-c); } .sd { background-image: var(--shot-d); }
+    .game-body { padding: 1rem 1.1rem 1.2rem; display: flex; flex-direction: column; gap: .5rem; flex: 1; }
+    .game-top { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; }
+    .game h3 { margin: 0; font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; }
+    .game .state { font-size: .75rem; color: var(--accent-2); white-space: nowrap; }
+    .game p { margin: 0; color: var(--muted); font-size: .95rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: .4rem; margin: .2rem 0 0; padding: 0; list-style: none; }
+    .tags li { font-size: .72rem; padding: .2rem .55rem; border: 1px solid var(--line); border-radius: 4px; color: var(--muted); }
+    .links { margin-top: auto; padding-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem 1rem; font-size: .88rem; font-weight: 700; }
+    .links a { text-decoration: none; color: var(--accent); }
+    .links a:hover { text-decoration: underline; }
+    .log { margin: 0; padding: 0; list-style: none; }
+    .log li { display: grid; grid-template-columns: 7rem 1fr; gap: .3rem 1rem; padding: .9rem 0; border-top: 1px solid var(--line); }
+    .log li:first-child { border-top: 0; padding-top: 0; }
+    .log .date { color: var(--muted); font-size: .85rem; }
+    .log a { font-weight: 700; text-decoration: none; }
+    .log a:hover { color: var(--accent); }
+    .log p { margin: .15rem 0 0; color: var(--muted); font-size: .95rem; }
+    footer { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: 1.2rem 0 4rem; border-top: 1px dashed var(--line); color: var(--muted); font-size: .9rem; }
+    footer .social { display: flex; gap: 1rem; }
+    .template-gallery {
+      position: fixed; z-index: 5; top: 0; left: 0; right: 0;
+      height: var(--gallery-bar);
+      display: flex; align-items: center; justify-content: center;
+      background: var(--accent); color: var(--on-accent);
+      text-decoration: none; font-family: "Space Mono", monospace; font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+    }
+    @media (max-width: 760px) {
+      header { flex-direction: column; align-items: flex-start; gap: .1rem; }
+      nav { flex-wrap: wrap; gap: 0 1rem; }
+      nav a, .brand, footer a, .links a { display: inline-flex; align-items: center; min-height: 44px; }
+      .games { grid-template-columns: 1fr; }
+      .shot span { transform: none; }
+      .log li { grid-template-columns: 1fr; }
+      .hero { padding: 1.6rem 0 1.8rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .shot span { transition: none; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- ===== HEADER ===== -->
+    <header>
+      <a class="brand mono" href="#top" data-field="name">Kai Moreno</a>
+      <nav aria-label="Sections" class="mono">
+        <a href="#projects">Projects</a>
+        <a href="#devlog">Dev log</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="top" style="border-top: 0;">
+      <p class="status mono"><i aria-hidden="true"></i><span data-field="status">Currently: shipping Ember Run 1.0</span></p>
+      <h1 data-field="headline">I make small games with <span>big feel</span>.</h1>
+      <p class="lede" data-field="summary">Solo developer in Lisbon. Platformers, puzzle games, and the tools I build to make them. Godot by default, Unity when the client asks. Formerly gameplay programmer at Northline Studios.</p>
+    </section>
+
+    <!-- ===== PROJECTS: copy one <article class="game"> per project ===== -->
+    <section id="projects">
+      <h2 class="mono">Projects</h2>
+      <div class="games">
+        <article class="game">
+          <div class="shot sa" role="img" aria-label="Screenshot placeholder"><span data-field="shot-caption">Ember Run — the furnace level</span></div>
+          <div class="game-body">
+            <div class="game-top"><h3 data-field="game-title">Ember Run</h3><span class="state mono" data-field="game-state">Released · 2026</span></div>
+            <p data-field="game-copy">A precision platformer where every death leaves a light behind. 60 levels, a speedrun mode, and a soundtrack by Low Tide Radio.</p>
+            <ul class="tags"><li data-field="tag">Godot 4</li><li data-field="tag">PC</li><li data-field="tag">Switch</li><li data-field="tag">Solo</li></ul>
+            <p class="links">
+              <a data-field="link-steam" href="https://store.steampowered.com/" target="_blank" rel="noopener noreferrer">Steam</a>
+              <a data-field="link-itch" href="https://itch.io/" target="_blank" rel="noopener noreferrer">itch.io</a>
+              <a data-field="link-trailer" href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">Trailer</a>
+            </p>
+          </div>
+        </article>
+        <article class="game">
+          <div class="shot sb" role="img" aria-label="Screenshot placeholder"><span data-field="shot-caption">Night Desk — the switchboard puzzle</span></div>
+          <div class="game-body">
+            <div class="game-top"><h3 data-field="game-title">Night Desk</h3><span class="state mono" data-field="game-state">In development</span></div>
+            <p data-field="game-copy">You run a hotel switchboard at 3 a.m. Every call is a puzzle; every caller remembers how you treated them.</p>
+            <ul class="tags"><li data-field="tag">Godot 4</li><li data-field="tag">PC</li><li data-field="tag">Narrative</li></ul>
+            <p class="links">
+              <a data-field="link-itch" href="https://itch.io/" target="_blank" rel="noopener noreferrer">Demo on itch.io</a>
+              <a data-field="link-devlog" href="#devlog">Dev log</a>
+            </p>
+          </div>
+        </article>
+        <article class="game">
+          <div class="shot sc" role="img" aria-label="Screenshot placeholder"><span data-field="shot-caption">Orchard — procedural trees, autumn pass</span></div>
+          <div class="game-body">
+            <div class="game-top"><h3 data-field="game-title">Orchard</h3><span class="state mono" data-field="game-state">Jam · 2025</span></div>
+            <p data-field="game-copy">A 72-hour jam game about planting a forest you will not see grow. Placed 4th of 1,200 in visuals.</p>
+            <ul class="tags"><li data-field="tag">Unity</li><li data-field="tag">Web</li><li data-field="tag">Team of 2</li></ul>
+            <p class="links">
+              <a data-field="link-itch" href="https://itch.io/" target="_blank" rel="noopener noreferrer">Play in browser</a>
+              <a data-field="link-github" href="https://github.com/" target="_blank" rel="noopener noreferrer">Source</a>
+            </p>
+          </div>
+        </article>
+        <article class="game">
+          <div class="shot sd" role="img" aria-label="Screenshot placeholder"><span data-field="shot-caption">Tilekit — the autotile editor</span></div>
+          <div class="game-body">
+            <div class="game-top"><h3 data-field="game-title">Tilekit</h3><span class="state mono" data-field="game-state">Tool · open source</span></div>
+            <p data-field="game-copy">A Godot plugin for autotiling with rule previews. Used in Ember Run and by about 900 other people, according to the download counter.</p>
+            <ul class="tags"><li data-field="tag">Godot plugin</li><li data-field="tag">GDScript</li><li data-field="tag">MIT</li></ul>
+            <p class="links">
+              <a data-field="link-github" href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a data-field="link-docs" href="https://example.com/" target="_blank" rel="noopener noreferrer">Docs</a>
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== DEV LOG: one <li> per post ===== -->
+    <section id="devlog">
+      <h2 class="mono">Dev log</h2>
+      <ul class="log">
+        <li>
+          <span class="date mono" data-field="post-date">2026-01-12</span>
+          <div>
+            <a data-field="post-title" href="https://example.com/">Why Ember Run’s deaths leave a light</a>
+            <p data-field="post-summary">The mechanic started as a debugging overlay. Players kept asking for it to stay.</p>
+          </div>
+        </li>
+        <li>
+          <span class="date mono" data-field="post-date">2025-11-03</span>
+          <div>
+            <a data-field="post-title" href="https://example.com/">Porting to Switch as a solo dev</a>
+            <p data-field="post-summary">Cert checklists, the input remap nobody warns you about, and what it cost.</p>
+          </div>
+        </li>
+        <li>
+          <span class="date mono" data-field="post-date">2025-08-20</span>
+          <div>
+            <a data-field="post-title" href="https://example.com/">Autotiling rules, visualised</a>
+            <p data-field="post-summary">The design notes behind Tilekit’s rule preview, with far too many GIFs.</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <footer id="contact">
+      <span><a data-field="email" href="mailto:kai@moreno.example">kai@moreno.example</a> · <span data-field="availability">open to contract gameplay work from April</span></span>
+      <span class="social">
+        <a data-field="itch" href="https://itch.io/" target="_blank" rel="noopener noreferrer">itch.io</a>
+        <a data-field="github" href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a data-field="bluesky" href="https://bsky.app/" target="_blank" rel="noopener noreferrer">Bluesky</a>
+        <a data-field="discord" href="https://discord.com/" target="_blank" rel="noopener noreferrer">Discord</a>
+      </span>
+    </footer>
+  </div>
+  <a class="template-gallery" href="../../index.html">All templates</a>
+</body>
+</html>

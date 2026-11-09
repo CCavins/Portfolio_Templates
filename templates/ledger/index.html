@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="linen">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Theo Lindqvist · Fractional Finance Lead</title>
+  <meta name="description" content="Theo Lindqvist helps founders see their numbers: fractional finance, pricing, and board-ready reporting." />
+  <meta property="og:title" content="Theo Lindqvist · Fractional Finance Lead" />
+  <meta property="og:description" content="Fractional finance, pricing, and board-ready reporting for founders." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="theme-color" content="#f4efe6" />
+  <!--
+    ============================================================
+    LEDGER — single-file template for freelancers and consultants
+    Services with starting prices, a four-step process, three
+    testimonials, and a booking call to action. The goal of the page
+    is one email or one booked call.
+    ============================================================
+
+    HOW TO EDIT
+
+    1. TEXT. Replace every element with data-field="…". Update
+       <title> and the description / og: meta tags above.
+       Sample names, clients, and prices are fictional.
+
+    2. SERVICES. One <article class="service"> per offer. Each has
+       a title, a one-line summary, a list of what is included, and
+       data-field="price". If you do not publish rates, write
+       "On request" in the price.
+
+    3. PROCESS. Four <li> steps. Add or remove steps; the numbers
+       are drawn by CSS, so you never renumber by hand.
+
+    4. TESTIMONIALS. One <figure class="quote"> per client. Keep the
+       name and role in <figcaption>.
+
+    5. BOOKING. The big button is a mailto link. If you use Calendly,
+       Cal.com, or SavvyCal, paste that URL into the href instead and
+       remove the mailto. Keep the plain email link below it as a
+       fallback.
+
+    6. THEME. Change data-theme="linen" on the <html> tag to:
+         linen     warm off-white, deep green accent (default)
+         graphite  charcoal ground, mint accent
+       Colors live in the THEMES block at the top of <style>.
+       Preview without editing: index.html?theme=graphite
+
+    7. FONTS. DM Serif Display and DM Sans load from Google Fonts.
+
+    8. PUBLISH. Upload this folder to any static host; the entry file
+       is index.html. If you copied this file from the gallery, delete
+       the <a class="template-gallery"> link near the bottom.
+  -->
+  <script>
+    // Gallery support: ?preview=1 hides the "All templates" bar; ?theme=name previews a theme.
+    (function () {
+      var q = location.search;
+      if (q.indexOf("preview=1") !== -1) document.documentElement.classList.add("previewing");
+      var m = q.match(/[?&]theme=([\w-]+)/);
+      if (m) document.documentElement.setAttribute("data-theme", m[1]);
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+  <style>
+    /* ---------- THEMES ---------- */
+
+    /* THEME: linen (default) — warm off-white, deep green accent */
+    :root, [data-theme="linen"] {
+      --bg: #f4efe6;
+      --card: #fffdf8;
+      --ink: #1d1b17;
+      --muted: #5f594f;
+      --line: #dcd4c6;
+      --accent: #1f5a3f;
+      --on-accent: #f4efe6;
+      --accent-soft: #e2ece5;
+      --gallery-bar: 34px;
+    }
+    /* THEME: graphite — charcoal ground, mint accent */
+    [data-theme="graphite"] {
+      --bg: #1b1d1e;
+      --card: #242728;
+      --ink: #f1efe9;
+      --muted: #a7a49c;
+      --line: #35393b;
+      --accent: #8fe3c0;
+      --on-accent: #10251c;
+      --accent-soft: #1f2f2a;
+    }
+
+    /* ---------- LAYOUT ---------- */
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html.previewing { --gallery-bar: 0px; }
+    html.previewing, html.previewing body { overflow: hidden; height: 100%; }
+    html.previewing .template-gallery { display: none; }
+    body { margin: 0; padding-top: var(--gallery-bar); background: var(--bg); color: var(--ink); font-family: "DM Sans", "Avenir Next", sans-serif; line-height: 1.55; }
+    a { color: inherit; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .serif { font-family: "DM Serif Display", Georgia, serif; font-weight: 400; }
+    .page { width: min(1080px, calc(100% - 2rem)); margin: 0 auto; }
+    header { display: flex; justify-content: space-between; gap: 1rem; align-items: center; padding: 1.2rem 0; }
+    .brand { text-decoration: none; font-size: 1.1rem; }
+    nav { display: flex; gap: 1.2rem; font-size: .95rem; }
+    nav a { text-decoration: none; color: var(--muted); }
+    nav a:hover { color: var(--accent); }
+    .intro { display: grid; grid-template-columns: 1.3fr .7fr; gap: 2rem; align-items: end; padding: 3.5rem 0 3rem; }
+    .eyebrow { margin: 0 0 .8rem; font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); }
+    h1 { margin: 0; font-size: clamp(2.6rem, 6vw, 4.6rem); letter-spacing: -0.02em; line-height: 1.02; }
+    .lede { margin: 1.1rem 0 0; font-size: 1.2rem; color: var(--muted); max-width: 36rem; }
+    .proof { margin: 0; padding: 1.2rem 1.3rem; border-radius: 16px; background: var(--accent-soft); font-size: .95rem; }
+    .proof strong { display: block; font-size: 2rem; letter-spacing: -0.03em; color: var(--accent); }
+    section { padding: 2.6rem 0; border-top: 1px solid var(--line); scroll-margin-top: 1rem; }
+    h2 { margin: 0 0 1.4rem; font-size: clamp(1.9rem, 3.5vw, 2.6rem); letter-spacing: -0.02em; }
+    .services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .service { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 1.3rem 1.3rem 1.4rem; display: flex; flex-direction: column; }
+    .service h3 { margin: 0; font-size: 1.5rem; letter-spacing: -0.01em; }
+    .service .summary { margin: .5rem 0 .9rem; color: var(--muted); }
+    .service ul { margin: 0 0 1.2rem; padding-left: 1.1rem; color: var(--muted); font-size: .95rem; }
+    .service li + li { margin-top: .25rem; }
+    .price { margin-top: auto; padding-top: .9rem; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: baseline; }
+    .price strong { font-size: 1.3rem; letter-spacing: -0.02em; }
+    .price small { color: var(--muted); }
+    .steps { counter-reset: step; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 0; padding: 0; list-style: none; }
+    .steps li { counter-increment: step; padding-top: .9rem; border-top: 2px solid var(--accent); }
+    .steps li::before { content: "0" counter(step); display: block; font-family: "DM Serif Display", Georgia, serif; font-size: 1.6rem; color: var(--accent); margin-bottom: .3rem; }
+    .steps h3 { margin: 0 0 .3rem; font-size: 1.1rem; }
+    .steps p { margin: 0; color: var(--muted); font-size: .95rem; }
+    .quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .quote { margin: 0; padding: 1.3rem; background: var(--card); border: 1px solid var(--line); border-radius: 18px; }
+    .quote blockquote { margin: 0 0 .9rem; font-family: "DM Serif Display", Georgia, serif; font-size: 1.25rem; line-height: 1.35; }
+    .quote figcaption { color: var(--muted); font-size: .92rem; }
+    .quote figcaption strong { color: var(--ink); font-weight: 600; }
+    .book { text-align: center; padding: 3.5rem 0 4rem; }
+    .book h2 { margin-bottom: .6rem; }
+    .book p { margin: 0 auto 1.6rem; color: var(--muted); max-width: 32rem; }
+    .button { display: inline-flex; align-items: center; min-height: 52px; padding: .8rem 1.6rem; border-radius: 999px; background: var(--accent); color: var(--on-accent); text-decoration: none; font-weight: 600; font-size: 1.05rem; }
+    .button:hover { filter: brightness(1.08); }
+    .fallback { display: block; margin-top: 1rem; color: var(--muted); font-size: .95rem; }
+    footer { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: 1rem 0 3rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .92rem; }
+    .template-gallery {
+      position: fixed; z-index: 5; top: 0; left: 0; right: 0;
+      height: var(--gallery-bar);
+      display: flex; align-items: center; justify-content: center;
+      background: var(--accent); color: var(--on-accent);
+      text-decoration: none; font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+    }
+    @media (max-width: 860px) {
+      .services, .quotes { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .intro { grid-template-columns: 1fr; padding: 2rem 0; }
+    }
+    @media (max-width: 600px) {
+      header { flex-direction: column; align-items: flex-start; gap: .2rem; }
+      nav { flex-wrap: wrap; gap: 0 1rem; }
+      nav a, footer a, .brand { display: inline-flex; align-items: center; min-height: 44px; }
+      .steps { grid-template-columns: 1fr; }
+      h1 { font-size: clamp(2.2rem, 10vw, 3rem); }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- ===== HEADER ===== -->
+    <header>
+      <a class="brand serif" href="#top" data-field="name">Theo Lindqvist</a>
+      <nav aria-label="Sections">
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#clients">Clients</a>
+        <a href="#book">Book a call</a>
+      </nav>
+    </header>
+
+    <!-- ===== INTRO ===== -->
+    <section class="intro" id="top" style="border-top: 0;">
+      <div>
+        <p class="eyebrow" data-field="role">Fractional finance lead · Stockholm and remote</p>
+        <h1 class="serif" data-field="headline">Founders should not learn finance from their board deck.</h1>
+        <p class="lede" data-field="summary">I run the numbers side of early companies a few days a month: pricing, forecasts, and reporting that a founder can explain without a translator.</p>
+      </div>
+      <p class="proof">
+        <strong data-field="proof-number">34</strong>
+        <span data-field="proof-label">companies since 2018, from pre-seed to Series B. Most stay for about two years, which is roughly when they can hire me out of the job.</span>
+      </p>
+    </section>
+
+    <!-- ===== SERVICES: copy one <article class="service"> per offer ===== -->
+    <section id="services">
+      <h2 class="serif">Services</h2>
+      <div class="services">
+        <article class="service">
+          <h3 class="serif" data-field="service-title">Finance on retainer</h3>
+          <p class="summary" data-field="service-summary">A standing few days each month to own the model, the close, and the board pack.</p>
+          <ul>
+            <li data-field="service-item">Monthly close and one-page summary</li>
+            <li data-field="service-item">Rolling 18-month forecast</li>
+            <li data-field="service-item">Board and investor reporting</li>
+          </ul>
+          <p class="price"><strong data-field="price">From €3,800</strong> <small data-field="price-note">per month</small></p>
+        </article>
+        <article class="service">
+          <h3 class="serif" data-field="service-title">Pricing sprint</h3>
+          <p class="summary" data-field="service-summary">Three weeks to replace a guessed price list with one you can defend to a customer.</p>
+          <ul>
+            <li data-field="service-item">Interviews with ten customers</li>
+            <li data-field="service-item">Packaging and tier design</li>
+            <li data-field="service-item">Migration plan for existing accounts</li>
+          </ul>
+          <p class="price"><strong data-field="price">€9,500</strong> <small data-field="price-note">fixed</small></p>
+        </article>
+        <article class="service">
+          <h3 class="serif" data-field="service-title">Fundraise prep</h3>
+          <p class="summary" data-field="service-summary">The model, the data room, and the practice session before the first partner meeting.</p>
+          <ul>
+            <li data-field="service-item">Investor-grade model with scenarios</li>
+            <li data-field="service-item">Data room checklist and build</li>
+            <li data-field="service-item">Two rehearsal sessions</li>
+          </ul>
+          <p class="price"><strong data-field="price">On request</strong> <small data-field="price-note">scoped per round</small></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== PROCESS: one <li> per step; numbers are automatic ===== -->
+    <section id="process">
+      <h2 class="serif">How an engagement runs</h2>
+      <ol class="steps">
+        <li>
+          <h3 data-field="step-title">A 30-minute call</h3>
+          <p data-field="step-copy">You describe the company and the decision you are stuck on. I say whether I can help and what it would cost.</p>
+        </li>
+        <li>
+          <h3 data-field="step-title">Two weeks of listening</h3>
+          <p data-field="step-copy">I read everything: bank, ledger, contracts, the old deck. You get a memo of what the numbers actually say.</p>
+        </li>
+        <li>
+          <h3 data-field="step-title">The work</h3>
+          <p data-field="step-copy">A model, a price list, or a reporting rhythm, built with whoever on your team will own it after me.</p>
+        </li>
+        <li>
+          <h3 data-field="step-title">A handover</h3>
+          <p data-field="step-copy">Documentation, a recorded walkthrough, and a standing offer to answer questions for the next quarter.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ===== TESTIMONIALS: copy one <figure class="quote"> per client ===== -->
+    <section id="clients">
+      <h2 class="serif">What clients say</h2>
+      <div class="quotes">
+        <figure class="quote">
+          <blockquote data-field="quote">“The first board meeting after Theo joined was the first one where nobody asked what a number meant.”</blockquote>
+          <figcaption><strong data-field="quote-name">Priya Raman</strong> · <span data-field="quote-role">CEO, Fieldnote</span></figcaption>
+        </figure>
+        <figure class="quote">
+          <blockquote data-field="quote">“We raised our prices 40% and lost two customers. He told us which two in advance.”</blockquote>
+          <figcaption><strong data-field="quote-name">Jonas Berg</strong> · <span data-field="quote-role">Founder, Halvard</span></figcaption>
+        </figure>
+        <figure class="quote">
+          <blockquote data-field="quote">“Our data room was done before the term sheet arrived. That has never happened to us.”</blockquote>
+          <figcaption><strong data-field="quote-name">Mei Tanaka</strong> · <span data-field="quote-role">COO, Lantern Health</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===== BOOK A CALL: swap the mailto for a Calendly / Cal.com URL if you have one ===== -->
+    <section class="book" id="book">
+      <h2 class="serif" data-field="book-title">Talk through your numbers</h2>
+      <p data-field="book-copy">Thirty minutes, no deck required. If I am not the right person I will tell you who is.</p>
+      <a class="button" data-field="booking-link" href="mailto:theo@lindqvist.example?subject=Intro%20call">Book a 30-minute call</a>
+      <a class="fallback" data-field="email" href="mailto:theo@lindqvist.example">theo@lindqvist.example</a>
+    </section>
+
+    <footer>
+      <span>&copy; <span data-field="year">2026</span> <span data-field="name">Theo Lindqvist</span></span>
+      <a data-field="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </footer>
+  </div>
+  <a class="template-gallery" href="../../index.html">All templates</a>
+</body>
+</html>

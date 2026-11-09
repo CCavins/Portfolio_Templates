@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="newsprint">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Marcus Bell · Reporter</title>
+  <meta name="description" content="Clippings and contact for Marcus Bell, a reporter covering housing, transit, and local government." />
+  <meta property="og:title" content="Marcus Bell · Reporter" />
+  <meta property="og:description" content="Clippings and contact. Housing, transit, local government." />
+  <meta property="og:type" content="profile" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="theme-color" content="#f4f1ea" />
+  <!--
+    ============================================================
+    DISPATCH — single-file template for journalists, essayists, and
+    newsletter writers. Clippings with outlet, date, and link,
+    grouped by beat, plus a newsletter signup.
+    ============================================================
+
+    HOW TO EDIT
+
+    1. TEXT. Replace every element with data-field="…". Update
+       <title> and the description / og: meta tags above.
+       Sample names, outlets, and stories are fictional.
+
+    2. CLIPPINGS. Each story is an <article class="clip"> with an
+       outlet, a date, a headline link, and a one-line summary.
+       Stories sit under a beat heading (<h2 class="beat">). Copy a
+       clip to add a story; copy a heading plus its clips to add a
+       beat. Newest first is the convention.
+
+    3. NEWSLETTER. The button links to a URL. Point it at your
+       Substack, Buttondown, Ghost, or Beehiiv page. Delete the
+       whole <aside class="newsletter"> if you do not have one.
+
+    4. THEME. Change data-theme="newsprint" on the <html> tag to:
+         newsprint   warm paper, black type, red rules (default)
+         broadsheet  black paper, white type, red rules
+       Colors live in the THEMES block at the top of <style>.
+       Preview without editing: index.html?theme=broadsheet
+
+    5. FONTS. Playfair Display and Source Serif 4 load from Google
+       Fonts; the small labels use the system sans.
+
+    6. PUBLISH. Upload this folder to any static host; the entry file
+       is index.html. If you copied this file from the gallery, delete
+       the <a class="template-gallery"> link near the bottom.
+  -->
+  <script>
+    // Gallery support: ?preview=1 hides the "All templates" bar; ?theme=name previews a theme.
+    (function () {
+      var q = location.search;
+      if (q.indexOf("preview=1") !== -1) document.documentElement.classList.add("previewing");
+      var m = q.match(/[?&]theme=([\w-]+)/);
+      if (m) document.documentElement.setAttribute("data-theme", m[1]);
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet" />
+  <style>
+    /* ---------- THEMES ---------- */
+
+    /* THEME: newsprint (default) — warm paper, black type, red rules */
+    :root, [data-theme="newsprint"] {
+      --paper: #f4f1ea;
+      --ink: #161513;
+      --muted: #645f57;
+      --rule: #cfc8ba;
+      --red: #b3261e;
+      --box: #ebe6da;
+      --gallery-bar: 34px;
+    }
+    /* THEME: broadsheet — black paper, white type, red rules */
+    [data-theme="broadsheet"] {
+      --paper: #141311;
+      --ink: #f2eee6;
+      --muted: #a09a90;
+      --rule: #343129;
+      --red: #e0463c;
+      --box: #1f1d19;
+    }
+
+    /* ---------- LAYOUT ---------- */
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html.previewing { --gallery-bar: 0px; }
+    html.previewing, html.previewing body { overflow: hidden; height: 100%; }
+    html.previewing .template-gallery { display: none; }
+    body { margin: 0; padding-top: var(--gallery-bar); background: var(--paper); color: var(--ink); font-family: "Source Serif 4", Georgia, serif; line-height: 1.55; }
+    a { color: inherit; }
+    a:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+    .sans { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+    .display { font-family: "Playfair Display", Georgia, serif; }
+    .page { width: min(1000px, calc(100% - 2rem)); margin: 0 auto; }
+    .dateline { display: flex; justify-content: space-between; gap: 1rem; padding: .9rem 0; border-bottom: 3px double var(--ink); font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; }
+    .hero { display: grid; grid-template-columns: 1.4fr .8fr; gap: 2rem; padding: 2.2rem 0 1.8rem; border-bottom: 1px solid var(--ink); }
+    h1 { margin: 0; font-weight: 700; font-size: clamp(2.6rem, 6vw, 4.4rem); letter-spacing: -0.02em; line-height: .98; }
+    .role { margin: .6rem 0 0; color: var(--red); font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; }
+    .lede { margin: 1rem 0 0; font-size: 1.15rem; max-width: 38rem; }
+    .newsletter { background: var(--box); padding: 1.2rem 1.3rem; border-top: 3px solid var(--red); align-self: start; }
+    .newsletter h2 { margin: 0 0 .3rem; font-size: 1.3rem; }
+    .newsletter p { margin: 0 0 .9rem; font-size: .95rem; color: var(--muted); }
+    .button { display: inline-flex; align-items: center; min-height: 44px; padding: .5rem 1.1rem; background: var(--ink); color: var(--paper); text-decoration: none; font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; }
+    .button:hover { background: var(--red); }
+    .beats { display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; padding: .9rem 0; border-bottom: 1px solid var(--rule); font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; }
+    .beats a { text-decoration: none; color: var(--muted); }
+    .beats a:hover { color: var(--red); }
+    .clippings { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2.4rem; }
+    .beat-group { padding: 1.6rem 0; scroll-margin-top: 1rem; }
+    .beat-group:nth-child(odd) { border-right: 1px solid var(--rule); padding-right: 2.4rem; margin-right: -2.4rem; }
+    h2.beat { margin: 0 0 .6rem; font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--red); }
+    .clip { padding: 1rem 0; border-top: 1px solid var(--rule); }
+    .clip .where { margin: 0; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+    .clip .where strong { color: var(--ink); font-weight: 600; }
+    .clip h3 { margin: .25rem 0 .3rem; font-size: 1.45rem; font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; }
+    .clip h3 a { text-decoration: none; }
+    .clip h3 a:hover { color: var(--red); }
+    .clip p { margin: 0; color: var(--muted); }
+    footer { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: 1.2rem 0 4rem; border-top: 3px double var(--ink); font-size: .95rem; }
+    footer .links { display: flex; gap: 1rem; }
+    .template-gallery {
+      position: fixed; z-index: 5; top: 0; left: 0; right: 0;
+      height: var(--gallery-bar);
+      display: flex; align-items: center; justify-content: center;
+      background: var(--red); color: #fff;
+      text-decoration: none; font-family: system-ui, sans-serif; font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+    }
+    @media (max-width: 760px) {
+      .hero, .clippings { grid-template-columns: 1fr; }
+      .beat-group:nth-child(odd) { border-right: 0; padding-right: 0; margin-right: 0; }
+      .beat-group { padding: 1.2rem 0 .4rem; }
+      .dateline { flex-direction: column; gap: .2rem; }
+      .beats a, footer a { display: inline-flex; align-items: center; min-height: 44px; }
+      .clip h3 a { display: inline-block; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- ===== DATELINE ===== -->
+    <div class="dateline sans">
+      <span data-field="dateline-left">Clippings · Updated January 2026</span>
+      <span data-field="location">Philadelphia</span>
+    </div>
+
+    <!-- ===== HERO: name, beat, lede, newsletter box ===== -->
+    <section class="hero" id="top">
+      <div>
+        <h1 class="display" data-field="name">Marcus Bell</h1>
+        <p class="role sans" data-field="role">Reporter · housing, transit, local government</p>
+        <p class="lede" data-field="summary">I cover the decisions that change a block: zoning votes, bus routes, a landlord's permit. Staff writer at The Evening Ledger since 2022; before that, freelance and a stint on the copy desk.</p>
+      </div>
+      <!-- NEWSLETTER: point the button at your signup page, or delete this <aside> -->
+      <aside class="newsletter sans">
+        <h2 class="display" data-field="newsletter-title">Block by Block</h2>
+        <p data-field="newsletter-copy">A weekly letter on what the city decided and who showed up. Free, Thursdays.</p>
+        <a class="button" data-field="newsletter-link" href="https://substack.com/" target="_blank" rel="noopener noreferrer">Subscribe</a>
+      </aside>
+    </section>
+
+    <!-- ===== BEATS: links to the groups below ===== -->
+    <nav class="beats sans" aria-label="Beats">
+      <a href="#housing">Housing</a>
+      <a href="#transit">Transit</a>
+      <a href="#government">Local government</a>
+      <a href="#essays">Essays</a>
+    </nav>
+
+    <!-- ===== CLIPPINGS: one <section class="beat-group"> per beat, one <article class="clip"> per story ===== -->
+    <main class="clippings">
+      <section class="beat-group" id="housing">
+        <h2 class="beat sans" data-field="beat">Housing</h2>
+        <article class="clip">
+          <p class="where sans"><strong data-field="clip-outlet">The Evening Ledger</strong> · <span data-field="clip-date">Dec 2025</span></p>
+          <h3 class="display"><a data-field="clip-title" href="https://example.com/">The 400 apartments that exist only on paper</a></h3>
+          <p data-field="clip-summary">Permits approved in 2021 and never built. Who holds them, and what they are waiting for.</p>
+        </article>
+        <article class="clip">
+          <p class="where sans"><strong data-field="clip-outlet">The Evening Ledger</strong> · <span data-field="clip-date">Aug 2025</span></p>
+          <h3 class="display"><a data-field="clip-title" href="https://example.com/">A landlord, 61 buildings, one phone number</a></h3>
+          <p data-field="clip-summary">Tracing an LLC network across three counties and the tenants who could not reach it.</p>
+        </article>
+        <article class="clip">
+          <p class="where sans"><strong data-field="clip-outlet">Paperplane</strong> · <span data-field="clip-date">Mar 2025</span></p>
+          <h3 class="display"><a data-field="clip-title" href="https://example.com/">What a rent cap did in the next town over</a></h3>
+          <p data-field="clip-summary">Two years of data from a neighbouring city, read without the slogans.</p>
+        </article>
+      </section>
+
+      <section class="beat-group" id="transit">
+        <h2 class="beat sans" data-field="beat">Transit</h2>
+        <article class="clip">
+          <p class="where sans"><strong data-field="clip-outlet">The Evening Ledger</strong> · <span data-field="clip-date">Nov 2025</span></p>
+          <h3 class="display"><a data-field="clip-title" href="https://example.com/">The bus route that got cut twice</a></h3>
+          <p data-field="clip-summary">Route 47 lost its night service, then its Sunday service. The riders left behind kept a log.</p>
+        </article>
+        <article class="clip">
+          <p class="where sans"><strong data-field="clip-outlet">The Evening Ledger</strong> · <span data-field="clip-date">Jun 2025</span></p>
+          <h3 class="display"><a data-field="clip-title" href="https://example.com/">Inside the transit agency's $2 billion maintenance backlog</a></h3>
+          <p data-field="clip-summary">Documents obtained under a records request show which repairs were postponed, and why.</p>
+        </article>
+      </section>
+
+      <section class="beat-group" id="government">
+        <h2 class="beat sans" data-field="beat">Local government</h2>
+        <article class="clip">
+          <p class="where sans"><strong data-field="clip-outlet">The Evening Ledger</strong> · <span data-field="clip-date">Oct 2025</span></p>
+          <h3 class="display"><a data-field="clip-title" href="https://example.com/">Who shows up to the zoning board</a></h3>
+          <p data-field="clip-summary">We counted every public comment for a year. The map of who speaks is not the map of who lives here.</p>
+        </article>
+        <article class="clip">
+          <p class="where sans"><strong data-field="clip-outlet">Northline Review</strong> · <span data-field="clip-date">Feb 2025</span></p>
+          <h3 class="display"><a data-field="clip-title" href="https://example.com/">The council's consent agenda, explained</a></h3>
+          <p data-field="clip-summary">A guide to the part of the meeting where most of the money moves, written for people who have never been.</p>
+        </article>
+      </section>
+
+      <section class="beat-group" id="essays">
+        <h2 class="beat sans" data-field="beat">Essays</h2>
+        <article class="clip">
+          <p class="where sans"><strong data-field="clip-outlet">Paperplane</strong> · <span data-field="clip-date">Sep 2025</span></p>
+          <h3 class="display"><a data-field="clip-title" href="https://example.com/">On covering a place you also live in</a></h3>
+          <p data-field="clip-summary">The ethics and the awkwardness of reporting on your own neighbours.</p>
+        </article>
+      </section>
+    </main>
+
+    <!-- ===== CONTACT ===== -->
+    <footer id="contact">
+      <span>Tips and story ideas: <a data-field="email" href="mailto:marcus.bell@example.com">marcus.bell@example.com</a> · <span data-field="signal">Signal on request</span></span>
+      <span class="links">
+        <a data-field="twitter" href="https://bsky.app/" target="_blank" rel="noopener noreferrer">Bluesky</a>
+        <a data-field="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a data-field="muckrack" href="https://muckrack.com/" target="_blank" rel="noopener noreferrer">Muck Rack</a>
+      </span>
+    </footer>
+  </div>
+  <a class="template-gallery" href="../../index.html">All templates</a>
+</body>
+</html>

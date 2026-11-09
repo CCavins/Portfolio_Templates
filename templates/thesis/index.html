@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="ivory">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Dr. Leila Haddad · Computational Linguistics</title>
+  <meta name="description" content="Leila Haddad is an assistant professor of computational linguistics. Publications, teaching, talks, and CV." />
+  <meta property="og:title" content="Dr. Leila Haddad · Computational Linguistics" />
+  <meta property="og:description" content="Publications, teaching, talks, and CV." />
+  <meta property="og:type" content="profile" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="theme-color" content="#f7f4ec" />
+  <!--
+    ============================================================
+    THESIS — single-file template for academics and researchers
+    Publications grouped by year with DOI and PDF links, teaching,
+    talks, and a CV link. Reads like a well-kept department page.
+    ============================================================
+
+    HOW TO EDIT
+
+    1. TEXT. Replace every element with data-field="…". Update
+       <title> and the description / og: meta tags above.
+       Sample names, papers, and venues are fictional.
+
+    2. PUBLICATIONS. Papers are grouped under <h3 class="year">
+       headings. Each paper is one <li class="pub"> with:
+         - authors (put your own name in <strong>)
+         - title
+         - venue, in <em>
+         - links: DOI, PDF, Code. Delete any link you do not have.
+       To add a year, copy an <h3 class="year"> and its <ul>.
+
+    3. CV. The "CV" link in the header expects a file named cv.pdf
+       next to index.html. Change the href if your file differs.
+
+    4. TEACHING and TALKS. One <li> per course or talk.
+
+    5. THEME. Change data-theme="ivory" on the <html> tag to:
+         ivory   warm white page, oxblood links (default)
+         oxford  deep blue page, light text, gold links
+       Colors live in the THEMES block at the top of <style>.
+       Preview without editing: index.html?theme=oxford
+
+    6. FONTS. Newsreader and Inter load from Google Fonts.
+
+    7. PUBLISH. Upload this folder (with cv.pdf and any PDFs) to any
+       static host; the entry file is index.html. If you copied this
+       file from the gallery, delete the <a class="template-gallery">
+       link near the bottom.
+  -->
+  <script>
+    // Gallery support: ?preview=1 hides the "All templates" bar; ?theme=name previews a theme.
+    (function () {
+      var q = location.search;
+      if (q.indexOf("preview=1") !== -1) document.documentElement.classList.add("previewing");
+      var m = q.match(/[?&]theme=([\w-]+)/);
+      if (m) document.documentElement.setAttribute("data-theme", m[1]);
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ---------- THEMES ---------- */
+
+    /* THEME: ivory (default) — warm white page, oxblood links */
+    :root, [data-theme="ivory"] {
+      --bg: #f7f4ec;
+      --ink: #1d1b17;
+      --muted: #625c52;
+      --line: #dad4c6;
+      --link: #7a2230;
+      --chip: #ece7dc;
+      --gallery-bar: 34px;
+    }
+    /* THEME: oxford — deep blue page, gold links */
+    [data-theme="oxford"] {
+      --bg: #0f1b33;
+      --ink: #eef0f5;
+      --muted: #a9b2c6;
+      --line: #263554;
+      --link: #e3b85a;
+      --chip: #1a2846;
+    }
+
+    /* ---------- LAYOUT ---------- */
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html.previewing { --gallery-bar: 0px; }
+    html.previewing, html.previewing body { overflow: hidden; height: 100%; }
+    html.previewing .template-gallery { display: none; }
+    body { margin: 0; padding-top: var(--gallery-bar); background: var(--bg); color: var(--ink); font-family: Inter, "Segoe UI", sans-serif; line-height: 1.55; }
+    a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    a:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; }
+    .serif { font-family: Newsreader, Georgia, serif; }
+    .page { width: min(880px, calc(100% - 2rem)); margin: 0 auto; }
+    header { display: grid; grid-template-columns: 1fr auto; gap: 1rem 2rem; align-items: start; padding: 2.2rem 0 1.6rem; border-bottom: 1px solid var(--ink); }
+    h1 { margin: 0; font-family: Newsreader, Georgia, serif; font-weight: 500; font-size: clamp(2.2rem, 5vw, 3.2rem); letter-spacing: -0.02em; line-height: 1.05; }
+    .title { margin: .4rem 0 0; color: var(--muted); font-size: 1.02rem; }
+    .links { display: flex; flex-direction: column; gap: .2rem; font-size: .95rem; text-align: right; }
+    .links a { color: var(--ink); }
+    nav.sections { display: flex; flex-wrap: wrap; gap: .4rem; padding: 1rem 0; }
+    nav.sections a { text-decoration: none; color: var(--ink); background: var(--chip); border-radius: 999px; padding: .3rem .8rem; font-size: .85rem; }
+    section { padding: 1.8rem 0; border-top: 1px solid var(--line); scroll-margin-top: 1rem; }
+    h2 { margin: 0 0 1rem; font-family: Newsreader, Georgia, serif; font-weight: 500; font-size: 1.8rem; letter-spacing: -0.02em; }
+    .about p { margin: 0 0 .9rem; font-size: 1.08rem; max-width: 62ch; }
+    .about p:last-child { margin-bottom: 0; }
+    .interests { display: flex; flex-wrap: wrap; gap: .4rem; margin: 1rem 0 0; padding: 0; list-style: none; }
+    .interests li { background: var(--chip); border-radius: 999px; padding: .25rem .7rem; font-size: .85rem; }
+    h3.year { margin: 1.2rem 0 .4rem; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+    h3.year:first-of-type { margin-top: 0; }
+    ul.pubs { margin: 0; padding: 0; list-style: none; }
+    .pub { padding: .8rem 0; border-top: 1px solid var(--line); }
+    .pub .authors { margin: 0; font-size: .95rem; color: var(--muted); }
+    .pub .authors strong { color: var(--ink); font-weight: 600; }
+    .pub .ptitle { margin: .15rem 0; font-family: Newsreader, Georgia, serif; font-size: 1.25rem; line-height: 1.3; }
+    .pub .venue { margin: 0; color: var(--muted); font-size: .95rem; }
+    .pub .plinks { margin: .4rem 0 0; display: flex; gap: .9rem; font-size: .88rem; }
+    .list { margin: 0; padding: 0; list-style: none; }
+    .list li { display: grid; grid-template-columns: 7rem 1fr; gap: .3rem 1rem; padding: .7rem 0; border-top: 1px solid var(--line); }
+    .list li span:first-child { color: var(--muted); font-variant-numeric: tabular-nums; }
+    .list strong { font-weight: 600; }
+    .list small { display: block; color: var(--muted); }
+    footer { padding: 1.4rem 0 3.5rem; border-top: 1px solid var(--ink); color: var(--muted); font-size: .92rem; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .template-gallery {
+      position: fixed; z-index: 5; top: 0; left: 0; right: 0;
+      height: var(--gallery-bar);
+      display: flex; align-items: center; justify-content: center;
+      background: var(--ink); color: var(--bg);
+      text-decoration: none; font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+    }
+    @media (max-width: 640px) {
+      header { grid-template-columns: 1fr; padding-top: 1.4rem; }
+      .links { text-align: left; flex-direction: row; flex-wrap: wrap; gap: 0 1rem; }
+      .links a, footer a, nav.sections a { display: inline-flex; align-items: center; min-height: 40px; }
+      .list li { grid-template-columns: 1fr; }
+      .pub .plinks { flex-wrap: wrap; }
+      .pub .plinks a { min-height: 40px; display: inline-flex; align-items: center; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- ===== HEADER: name, title, links. The CV link expects cv.pdf next to this file. ===== -->
+    <header>
+      <div>
+        <h1 data-field="name">Leila Haddad</h1>
+        <p class="title" data-field="role">Assistant Professor of Computational Linguistics · University of Edinburgh</p>
+      </div>
+      <div class="links">
+        <a data-field="email" href="mailto:l.haddad@example.edu">l.haddad@example.edu</a>
+        <a data-field="cv" href="cv.pdf">CV (PDF)</a>
+        <a data-field="scholar" href="https://scholar.google.com/" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+        <a data-field="github" href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </header>
+
+    <nav class="sections" aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#publications">Publications</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#talks">Talks</a>
+    </nav>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="about" id="about" style="border-top: 0; padding-top: .6rem;">
+      <p class="serif" data-field="about">I study how language models handle languages with very little text: how they fail, what makes a small amount of good data worth more than a large amount of scraped data, and how speakers of those languages can evaluate a system without trusting the people who built it.</p>
+      <p data-field="about-2">Before Edinburgh I did a postdoc at Saarland and a PhD at Cambridge. I grew up between Beirut and Montréal, which is probably why I care about this.</p>
+      <ul class="interests" aria-label="Research interests">
+        <li data-field="interest">Low-resource NLP</li>
+        <li data-field="interest">Evaluation</li>
+        <li data-field="interest">Morphology</li>
+        <li data-field="interest">Community data</li>
+      </ul>
+    </section>
+
+    <!-- ===== PUBLICATIONS: group under <h3 class="year">; one <li class="pub"> per paper ===== -->
+    <section id="publications">
+      <h2>Publications</h2>
+
+      <h3 class="year" data-field="pub-year">2026</h3>
+      <ul class="pubs">
+        <li class="pub">
+          <p class="authors" data-field="pub-authors"><strong>L. Haddad</strong>, R. Okafor, M. Svensson</p>
+          <p class="ptitle" data-field="pub-title">Who Gets to Say It Works? Speaker-Led Evaluation for Low-Resource Translation</p>
+          <p class="venue" data-field="pub-venue"><em>ACL 2026</em>, main conference</p>
+          <p class="plinks">
+            <a data-field="pub-doi" href="https://doi.org/">DOI</a>
+            <a data-field="pub-pdf" href="papers/haddad-2026-evaluation.pdf">PDF</a>
+            <a data-field="pub-code" href="https://github.com/">Code</a>
+          </p>
+        </li>
+        <li class="pub">
+          <p class="authors" data-field="pub-authors">R. Okafor, <strong>L. Haddad</strong></p>
+          <p class="ptitle" data-field="pub-title">Two Hundred Sentences: What a Small Clean Corpus Buys You</p>
+          <p class="venue" data-field="pub-venue"><em>Computational Linguistics</em>, 52(1)</p>
+          <p class="plinks">
+            <a data-field="pub-doi" href="https://doi.org/">DOI</a>
+            <a data-field="pub-pdf" href="papers/okafor-2026-sentences.pdf">PDF</a>
+          </p>
+        </li>
+      </ul>
+
+      <h3 class="year" data-field="pub-year">2025</h3>
+      <ul class="pubs">
+        <li class="pub">
+          <p class="authors" data-field="pub-authors"><strong>L. Haddad</strong>, T. Nguyen</p>
+          <p class="ptitle" data-field="pub-title">Morphological Segmentation Without a Segmenter</p>
+          <p class="venue" data-field="pub-venue"><em>EMNLP 2025</em>, findings</p>
+          <p class="plinks">
+            <a data-field="pub-doi" href="https://doi.org/">DOI</a>
+            <a data-field="pub-pdf" href="papers/haddad-2025-morph.pdf">PDF</a>
+          </p>
+        </li>
+      </ul>
+
+      <h3 class="year" data-field="pub-year">2023</h3>
+      <ul class="pubs">
+        <li class="pub">
+          <p class="authors" data-field="pub-authors"><strong>L. Haddad</strong></p>
+          <p class="ptitle" data-field="pub-title">Learning From Little: Data Efficiency in Multilingual Language Models</p>
+          <p class="venue" data-field="pub-venue">PhD thesis, <em>University of Cambridge</em></p>
+          <p class="plinks">
+            <a data-field="pub-pdf" href="papers/haddad-thesis.pdf">PDF</a>
+          </p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===== TEACHING: one <li> per course ===== -->
+    <section id="teaching">
+      <h2>Teaching</h2>
+      <ul class="list">
+        <li>
+          <span data-field="term">2025 – 26</span>
+          <span><strong data-field="course">Natural Language Processing</strong> <small data-field="course-note">MSc core course · 140 students · co-taught</small></span>
+        </li>
+        <li>
+          <span data-field="term">2025</span>
+          <span><strong data-field="course">Evaluation in NLP</strong> <small data-field="course-note">Seminar · reading group format</small></span>
+        </li>
+        <li>
+          <span data-field="term">2024</span>
+          <span><strong data-field="course">Introduction to Computational Linguistics</strong> <small data-field="course-note">Undergraduate · Saarland University</small></span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===== TALKS: one <li> per talk ===== -->
+    <section id="talks">
+      <h2>Selected talks</h2>
+      <ul class="list">
+        <li>
+          <span data-field="talk-date">Mar 2026</span>
+          <span><strong data-field="talk-title">Evaluation is a political act</strong> <small data-field="talk-where">Keynote, Workshop on Language Technology for Minority Languages</small></span>
+        </li>
+        <li>
+          <span data-field="talk-date">Nov 2025</span>
+          <span><strong data-field="talk-title">What small corpora teach big models</strong> <small data-field="talk-where">Invited talk, ETH Zürich</small></span>
+        </li>
+      </ul>
+    </section>
+
+    <footer id="contact">
+      <span data-field="address">Informatics Forum, 10 Crichton Street, Edinburgh</span>
+      <span>Updated <span data-field="updated">January 2026</span></span>
+    </footer>
+  </div>
+  <a class="template-gallery" href="../../index.html">All templates</a>
+</body>
+</html>

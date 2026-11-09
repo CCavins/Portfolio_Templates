@@ -1,32 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="classic">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Elena Vasquez · Operations</title>
   <meta name="description" content="Résumé of Elena Vasquez, an operations lead based in Seattle." />
+  <meta property="og:title" content="Elena Vasquez · Operations" />
+  <meta property="og:description" content="Résumé of Elena Vasquez, an operations lead based in Seattle." />
+  <meta property="og:type" content="profile" />
+  <meta name="twitter:card" content="summary" />
   <meta name="theme-color" content="#ffffff" />
   <!--
-    VITA — single-file résumé template.
-    A one-page CV: summary, experience, education, and skills. It also prints cleanly.
-    Replace every element with data-field. Sample copy is fictional.
-    Delete the "All templates" link before publishing your own site.
-    The downloadable zip already has that link removed.
+    ============================================================
+    VITA — single-file résumé template
+    A one-page CV: summary, experience, education, and skills.
+    It prints to a clean PDF; the print button hides itself on paper.
+    ============================================================
+
+    HOW TO EDIT
+
+    1. TEXT. Replace every element with data-field="…": name, role,
+       contact lines, summary, jobs, school, skills. Update <title>
+       and the description / og: meta tags above. Sample copy is
+       fictional.
+
+    2. EXPERIENCE. Each job is one <article class="job"> with a
+       data-field="years" span and a list of achievements. Copy the
+       block to add a job; delete <li> items you do not need. Keep
+       bullets short enough that the page still fits on one sheet.
+
+    3. EDUCATION. Same pattern with <article class="school">.
+
+    4. PDF. Click "Print / Save as PDF" (or press Ctrl/Cmd+P) and
+       choose "Save as PDF". Margins, links, and colors are set for
+       paper in the @media print block.
+
+    5. THEME. Change data-theme="classic" on the <html> tag to:
+         classic  black rules, plain (default)
+         navy     navy headings and rules, cream page
+       Colors live in the THEMES block at the top of <style>.
+       Preview without editing: index.html?theme=navy
+
+    6. FONTS. Source Sans 3 and Source Serif 4 load from Google
+       Fonts in the <link> below.
+
+    7. PUBLISH. Upload this folder to any static host; the entry file
+       is index.html. If you copied this file from the gallery, delete
+       the <a class="template-gallery"> link near the bottom.
   -->
   <script>
-    if (location.search.indexOf("preview=1") !== -1) document.documentElement.classList.add("previewing");
+    // Gallery support: ?preview=1 hides the "All templates" bar; ?theme=name previews a theme.
+    (function () {
+      var q = location.search;
+      if (q.indexOf("preview=1") !== -1) document.documentElement.classList.add("previewing");
+      var m = q.match(/[?&]theme=([\w-]+)/);
+      if (m) document.documentElement.setAttribute("data-theme", m[1]);
+    })();
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,650&display=swap" rel="stylesheet" />
   <style>
-    :root {
+    /* ---------- THEMES ---------- */
+
+    /* THEME: classic (default) — white page, black rules */
+    :root, [data-theme="classic"] {
+      --page: #ffffff;
       --ink: #1a1a1a;
+      --heading: #1a1a1a;
       --muted: #4e4e4e;
       --rule: #1a1a1a;
       --hairline: #d9d9d9;
+      --button-bg: #1a1a1a;
+      --button-ink: #ffffff;
       --gallery-bar: 34px;
     }
+    /* THEME: navy — cream page, navy headings and rules */
+    [data-theme="navy"] {
+      --page: #faf8f2;
+      --ink: #1d2433;
+      --heading: #1b2f5e;
+      --muted: #55607a;
+      --rule: #1b2f5e;
+      --hairline: #d8d9e0;
+      --button-bg: #1b2f5e;
+      --button-ink: #ffffff;
+    }
+
+    /* ---------- LAYOUT ---------- */
     * { box-sizing: border-box; }
     html.previewing { --gallery-bar: 0px; }
     html.previewing, html.previewing body { overflow: hidden; height: 100%; }
@@ -34,49 +95,36 @@
     body {
       margin: 0;
       padding-top: var(--gallery-bar);
-      background: #fff;
+      background: var(--page);
       color: var(--ink);
       font-family: "Source Sans 3", "Segoe UI", sans-serif;
       line-height: 1.45;
     }
     a { color: inherit; }
-    a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--heading); outline-offset: 3px; }
     .sheet { width: min(820px, calc(100% - 2rem)); margin: 2rem auto 4rem; }
-    header {
-      display: flex;
-      justify-content: space-between;
-      gap: 1.5rem;
-      align-items: flex-end;
-      padding-bottom: .8rem;
-      border-bottom: 2px solid var(--rule);
+    .toolbar { display: flex; justify-content: flex-end; margin-bottom: .8rem; }
+    .print {
+      min-height: 40px;
+      padding: .4rem .9rem;
+      border: 0;
+      border-radius: 6px;
+      background: var(--button-bg);
+      color: var(--button-ink);
+      font: inherit;
+      font-size: .9rem;
+      font-weight: 600;
+      cursor: pointer;
     }
-    h1 {
-      margin: 0;
-      font-family: "Source Serif 4", Georgia, serif;
-      font-weight: 650;
-      font-size: clamp(2.4rem, 5vw, 3.3rem);
-      letter-spacing: -0.03em;
-      line-height: 1;
-    }
+    header { display: flex; justify-content: space-between; gap: 1.5rem; align-items: flex-end; padding-bottom: .8rem; border-bottom: 2px solid var(--rule); }
+    h1 { margin: 0; font-family: "Source Serif 4", Georgia, serif; font-weight: 650; font-size: clamp(2.4rem, 5vw, 3.3rem); letter-spacing: -0.03em; line-height: 1; color: var(--heading); }
     .role { margin: .35rem 0 0; font-size: 1.05rem; }
     .contact { margin: 0; text-align: right; color: var(--muted); font-size: .95rem; }
     .contact a { white-space: nowrap; }
-    h2 {
-      margin: 1.4rem 0 .7rem;
-      font-size: .75rem;
-      font-weight: 600;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-    }
+    h2 { margin: 1.4rem 0 .7rem; font-size: .75rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--heading); }
     .summary { margin: 0; max-width: 65ch; }
     .layout { display: grid; grid-template-columns: 1.45fr .8fr; gap: 2.4rem; }
-    .job, .school {
-      display: grid;
-      grid-template-columns: 6.6rem 1fr;
-      gap: .35rem 1rem;
-      padding: .75rem 0;
-      border-top: 1px solid var(--hairline);
-    }
+    .job, .school { display: grid; grid-template-columns: 6.6rem 1fr; gap: .35rem 1rem; padding: .75rem 0; border-top: 1px solid var(--hairline); }
     .when { color: var(--muted); font-variant-numeric: tabular-nums; }
     h3 { margin: 0; font-size: 1.02rem; font-weight: 600; }
     .where { margin: .1rem 0 0; color: var(--muted); }
@@ -85,20 +133,11 @@
     .side h2:first-child { margin-top: 1.4rem; }
     .skills { margin: 0; padding: .75rem 0 0; border-top: 1px solid var(--hairline); }
     .template-gallery {
-      position: fixed;
-      z-index: 5;
-      top: 0; left: 0; right: 0;
+      position: fixed; z-index: 5; top: 0; left: 0; right: 0;
       height: var(--gallery-bar);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #141414;
-      color: #fff;
-      text-decoration: none;
-      font-size: .72rem;
-      font-weight: 600;
-      letter-spacing: .14em;
-      text-transform: uppercase;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--button-bg); color: var(--button-ink);
+      text-decoration: none; font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
     }
     @media (max-width: 720px) {
       header, .layout, .job, .school { display: block; }
@@ -108,16 +147,25 @@
       h1 { font-size: clamp(2.1rem, 10vw, 2.8rem); }
       .sheet { margin-top: 1.2rem; }
     }
+    /* ---------- PRINT: what the PDF looks like ---------- */
     @media print {
-      .template-gallery { display: none; }
-      body { padding-top: 0; }
+      @page { margin: 14mm; }
+      .template-gallery, .toolbar { display: none; }
+      body { padding-top: 0; background: #fff; color: #000; }
       .sheet { margin: 0; width: auto; }
-      a { text-decoration: none; }
+      a { text-decoration: none; color: inherit; }
+      .layout { gap: 1.6rem; }
     }
   </style>
 </head>
 <body>
   <article class="sheet">
+    <!-- Print button. Hidden when printing. -->
+    <div class="toolbar">
+      <button class="print" type="button" onclick="window.print()">Print / Save as PDF</button>
+    </div>
+
+    <!-- ===== HEADER: name, role, contact ===== -->
     <header>
       <div>
         <h1 data-field="name">Elena Vasquez</h1>
@@ -130,10 +178,12 @@
       </p>
     </header>
 
+    <!-- ===== SUMMARY ===== -->
     <h2>Summary</h2>
     <p class="summary" data-field="summary">I run the unglamorous middle of a company: hiring plans, vendor renewals, the weekly meeting that decides what slips, and the document people check when they cannot remember why. Ten years across two startups and one newsroom.</p>
 
     <div class="layout">
+      <!-- ===== EXPERIENCE: copy one <article class="job"> per role ===== -->
       <section>
         <h2>Experience</h2>
         <article class="job">
@@ -148,7 +198,7 @@
           </div>
         </article>
         <article class="job">
-          <span class="when">2018 — 22</span>
+          <span class="when" data-field="years">2018 — 22</span>
           <div>
             <h3 data-field="job-title">Program manager</h3>
             <p class="where" data-field="company">Keel Systems, remote</p>
@@ -159,7 +209,7 @@
           </div>
         </article>
         <article class="job">
-          <span class="when">2015 — 18</span>
+          <span class="when" data-field="years">2015 — 18</span>
           <div>
             <h3 data-field="job-title">Coordinator</h3>
             <p class="where" data-field="company">The Evening Ledger</p>
@@ -170,14 +220,16 @@
         </article>
       </section>
       <aside class="side">
+        <!-- ===== EDUCATION: copy one <article class="school"> per degree ===== -->
         <h2>Education</h2>
         <article class="school">
-          <span class="when">2015</span>
+          <span class="when" data-field="years">2015</span>
           <div>
             <h3 data-field="degree">B.A. History</h3>
             <p class="where" data-field="school">University of Washington</p>
           </div>
         </article>
+        <!-- ===== SKILLS: one short paragraph ===== -->
         <h2>Skills</h2>
         <p class="skills" data-field="skills">Planning, hiring, vendor management, internal writing, light spreadsheet work. Tools follow the team. I do not collect them.</p>
       </aside>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cinema">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Noor Aziz · Director &amp; Editor</title>
+  <meta name="description" content="Showreel and selected work of Noor Aziz, a director and editor working in documentary and commercials." />
+  <meta property="og:title" content="Noor Aziz · Director & Editor" />
+  <meta property="og:description" content="Showreel and selected work. Documentary and commercials." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#0a0a0b" />
+  <!--
+    ============================================================
+    REEL — single-file template for filmmakers, editors, and motion
+    designers. A full-width video hero, a selected-work list with
+    runtimes, a credits table, and a stills grid.
+    ============================================================
+
+    HOW TO EDIT
+
+    1. TEXT. Replace every element with data-field="…". Update
+       <title> and the description / og: meta tags above.
+       Sample names and films are fictional.
+
+    2. THE REEL. The hero holds a placeholder box. Replace the whole
+       <div class="video-placeholder"> … </div> with an embed:
+
+         YouTube:
+         <iframe class="video" src="https://www.youtube.com/embed/VIDEO_ID"
+                 title="Showreel" allow="autoplay; fullscreen" allowfullscreen></iframe>
+
+         Vimeo:
+         <iframe class="video" src="https://player.vimeo.com/video/VIDEO_ID"
+                 title="Showreel" allow="autoplay; fullscreen" allowfullscreen></iframe>
+
+       Keep class="video" so it fills the 16:9 frame.
+
+    3. SELECTED WORK. One <a class="film"> per project. Each has a
+       title, a role/year line, a runtime, and a link (to Vimeo, to
+       a page, anywhere). Copy a block to add one.
+
+    4. CREDITS. One <tr> per credit in the table.
+
+    5. STILLS. Each <figure class="still"> is a colored frame.
+       Replace the inner <div> with <img src="stills/frame-01.jpg" alt="…">
+       and keep the <figcaption>.
+
+    6. THEME. Change data-theme="cinema" on the <html> tag to:
+         cinema    near-black, warm white type (default)
+         daylight  bright white, black type
+       Colors live in the THEMES block at the top of <style>.
+       Preview without editing: index.html?theme=daylight
+
+    7. FONTS. Archivo loads from Google Fonts.
+
+    8. PUBLISH. Upload this folder to any static host; the entry file
+       is index.html. If you copied this file from the gallery, delete
+       the <a class="template-gallery"> link near the bottom.
+  -->
+  <script>
+    // Gallery support: ?preview=1 hides the "All templates" bar; ?theme=name previews a theme.
+    (function () {
+      var q = location.search;
+      if (q.indexOf("preview=1") !== -1) document.documentElement.classList.add("previewing");
+      var m = q.match(/[?&]theme=([\w-]+)/);
+      if (m) document.documentElement.setAttribute("data-theme", m[1]);
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400;75..125,500;75..125,700;75..125,800&display=swap" rel="stylesheet" />
+  <style>
+    /* ---------- THEMES ---------- */
+
+    /* THEME: cinema (default) — near-black, warm white type, amber accent */
+    :root, [data-theme="cinema"] {
+      --bg: #0a0a0b;
+      --ink: #f2efe8;
+      --muted: #9b978e;
+      --line: #26262a;
+      --accent: #ffb454;
+      --frame: #16161a;
+      --gallery-bar: 34px;
+    }
+    /* THEME: daylight — bright white, black type, blue accent */
+    [data-theme="daylight"] {
+      --bg: #fafaf7;
+      --ink: #111113;
+      --muted: #6b6a66;
+      --line: #dddcd6;
+      --accent: #1549d6;
+      --frame: #e9e8e2;
+    }
+
+    /* ---------- LAYOUT ---------- */
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html.previewing { --gallery-bar: 0px; }
+    html.previewing, html.previewing body { overflow: hidden; height: 100%; }
+    html.previewing .template-gallery { display: none; }
+    body { margin: 0; padding-top: var(--gallery-bar); background: var(--bg); color: var(--ink); font-family: Archivo, "Segoe UI", sans-serif; line-height: 1.5; }
+    a { color: inherit; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .wide { font-stretch: 120%; }
+    header { display: flex; justify-content: space-between; gap: 1rem; align-items: center; padding: 1rem 1.4rem; }
+    .brand { text-decoration: none; font-weight: 800; font-size: 1.05rem; letter-spacing: -0.02em; text-transform: uppercase; }
+    nav { display: flex; gap: 1.2rem; font-size: .9rem; }
+    nav a { text-decoration: none; color: var(--muted); }
+    nav a:hover { color: var(--accent); }
+    .hero { padding: 0 1.4rem; }
+    .frame16 { position: relative; width: 100%; aspect-ratio: 16 / 9; background: var(--frame); border-radius: 8px; overflow: hidden; }
+    .video, .video-placeholder { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .video-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .6rem; color: var(--muted); text-align: center; padding: 1rem; }
+    .video-placeholder .play { width: 72px; height: 72px; border-radius: 50%; border: 2px solid var(--accent); display: grid; place-items: center; color: var(--accent); }
+    .video-placeholder .play::after { content: ""; border-left: 22px solid currentColor; border-top: 13px solid transparent; border-bottom: 13px solid transparent; margin-left: 5px; }
+    .video-placeholder strong { color: var(--ink); font-size: 1.1rem; }
+    .video-placeholder small { max-width: 30rem; }
+    .titleblock { display: grid; grid-template-columns: 1fr auto; gap: 1rem 2rem; align-items: end; padding: 1.4rem 0 2.6rem; border-bottom: 1px solid var(--line); }
+    h1 { margin: 0; font-size: clamp(2.4rem, 7vw, 5.4rem); font-weight: 800; letter-spacing: -0.04em; line-height: .92; text-transform: uppercase; }
+    .role { margin: .6rem 0 0; color: var(--muted); font-size: 1.05rem; }
+    .avail { font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+    main { padding: 0 1.4rem; }
+    section { padding: 2.4rem 0; border-bottom: 1px solid var(--line); scroll-margin-top: 1rem; }
+    h2 { margin: 0 0 1.2rem; font-size: .8rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+    .film { display: grid; grid-template-columns: 3rem 1fr auto 5rem; gap: 1rem; align-items: baseline; padding: 1rem 0; border-top: 1px solid var(--line); text-decoration: none; }
+    .film:first-of-type { border-top: 0; }
+    .film h3 { margin: 0; font-size: clamp(1.4rem, 3vw, 2.2rem); font-weight: 700; letter-spacing: -0.03em; }
+    .film:hover h3 { color: var(--accent); }
+    .film .idx, .film .run { color: var(--muted); font-variant-numeric: tabular-nums; }
+    .film .run { text-align: right; }
+    .film .meta { color: var(--muted); font-size: .92rem; }
+    table { width: 100%; border-collapse: collapse; }
+    td { padding: .7rem 1rem .7rem 0; border-top: 1px solid var(--line); vertical-align: top; }
+    td:first-child { color: var(--muted); width: 7rem; font-variant-numeric: tabular-nums; }
+    td:last-child { color: var(--muted); text-align: right; padding-right: 0; }
+    .stills { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; }
+    .still { margin: 0; }
+    .still > div, .still img { width: 100%; aspect-ratio: 16 / 9; border-radius: 6px; object-fit: cover; display: block; }
+    .still figcaption { margin-top: .4rem; font-size: .85rem; color: var(--muted); }
+    .s1 { background: linear-gradient(135deg, #1f2a44, #c9742f); }
+    .s2 { background: linear-gradient(180deg, #e9e2d3, #5f6b63); }
+    .s3 { background: linear-gradient(160deg, #3b1f2b, #d6a07a 80%); }
+    .s4 { background: linear-gradient(200deg, #102b2b, #9bd0c2); }
+    .s5 { background: linear-gradient(150deg, #f0d9b5, #7a4d2a); }
+    .s6 { background: linear-gradient(170deg, #222, #8a8a8a); }
+    .contact { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; border-bottom: 0; padding-bottom: 4rem; }
+    .contact a.big { font-size: clamp(1.5rem, 4vw, 2.6rem); font-weight: 800; letter-spacing: -0.03em; text-decoration: none; }
+    .contact a.big:hover { color: var(--accent); }
+    .contact .side { display: flex; gap: 1.2rem; color: var(--muted); font-size: .95rem; }
+    .template-gallery {
+      position: fixed; z-index: 5; top: 0; left: 0; right: 0;
+      height: var(--gallery-bar);
+      display: flex; align-items: center; justify-content: center;
+      background: var(--accent); color: #111;
+      text-decoration: none; font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    }
+    @media (max-width: 760px) {
+      header { flex-direction: column; align-items: flex-start; gap: .2rem; padding: .7rem 1rem; }
+      nav { flex-wrap: wrap; gap: 0 1rem; }
+      nav a, .brand, .contact .side a { display: inline-flex; align-items: center; min-height: 44px; }
+      .hero, main { padding: 0 1rem; }
+      .titleblock { grid-template-columns: 1fr; }
+      .film { grid-template-columns: 2rem 1fr; }
+      .film .meta, .film .run { grid-column: 2; text-align: left; }
+      .stills { grid-template-columns: 1fr 1fr; }
+      td:last-child { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <!-- ===== HEADER ===== -->
+  <header>
+    <a class="brand" href="#top" data-field="name">Noor Aziz</a>
+    <nav aria-label="Sections">
+      <a href="#work">Work</a>
+      <a href="#credits">Credits</a>
+      <a href="#stills">Stills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ===== VIDEO HERO: replace the placeholder <div> with an <iframe class="video"> (see HOW TO EDIT) ===== -->
+  <section class="hero" id="top">
+    <div class="frame16">
+      <div class="video-placeholder" role="img" aria-label="Placeholder for the showreel video">
+        <span class="play" aria-hidden="true"></span>
+        <strong data-field="reel-title">Showreel 2026 · 2:10</strong>
+        <small data-field="reel-hint">Replace this box with a YouTube or Vimeo iframe. The exact code is in the comment at the top of the file.</small>
+      </div>
+    </div>
+    <div class="titleblock">
+      <div>
+        <h1 data-field="name">Noor Aziz</h1>
+        <p class="role" data-field="role">Director and editor · documentary and commercial · London</p>
+      </div>
+      <span class="avail" data-field="availability">Available from March</span>
+    </div>
+  </section>
+
+  <main>
+    <!-- ===== SELECTED WORK: copy one <a class="film"> per project ===== -->
+    <section id="work">
+      <h2>Selected work</h2>
+      <a class="film" href="https://vimeo.com/" target="_blank" rel="noopener noreferrer">
+        <span class="idx">01</span>
+        <div>
+          <h3 data-field="film-title">The Last Ferry</h3>
+          <span class="meta" data-field="film-meta">Director, editor · short documentary · 2025</span>
+        </div>
+        <span class="meta" data-field="film-client">Channel 4 / Random Acts</span>
+        <span class="run" data-field="film-runtime">14:20</span>
+      </a>
+      <a class="film" href="https://vimeo.com/" target="_blank" rel="noopener noreferrer">
+        <span class="idx">02</span>
+        <div>
+          <h3 data-field="film-title">Northline — “Monday”</h3>
+          <span class="meta" data-field="film-meta">Director · commercial · 2025</span>
+        </div>
+        <span class="meta" data-field="film-client">Agency: Harbor &amp; Co.</span>
+        <span class="run" data-field="film-runtime">0:60</span>
+      </a>
+      <a class="film" href="https://vimeo.com/" target="_blank" rel="noopener noreferrer">
+        <span class="idx">03</span>
+        <div>
+          <h3 data-field="film-title">Kiln</h3>
+          <span class="meta" data-field="film-meta">Editor · feature documentary · 2024</span>
+        </div>
+        <span class="meta" data-field="film-client">Dir. Mira Voss</span>
+        <span class="run" data-field="film-runtime">82:00</span>
+      </a>
+      <a class="film" href="https://vimeo.com/" target="_blank" rel="noopener noreferrer">
+        <span class="idx">04</span>
+        <div>
+          <h3 data-field="film-title">Lumen Health — launch film</h3>
+          <span class="meta" data-field="film-meta">Director, editor · brand film · 2024</span>
+        </div>
+        <span class="meta" data-field="film-client">Direct to client</span>
+        <span class="run" data-field="film-runtime">2:35</span>
+      </a>
+    </section>
+
+    <!-- ===== CREDITS: one <tr> per credit ===== -->
+    <section id="credits">
+      <h2>Credits</h2>
+      <table>
+        <tbody>
+          <tr><td data-field="credit-year">2025</td><td data-field="credit-title">The Last Ferry</td><td data-field="credit-role">Director, editor</td></tr>
+          <tr><td data-field="credit-year">2025</td><td data-field="credit-title">Northline “Monday”</td><td data-field="credit-role">Director</td></tr>
+          <tr><td data-field="credit-year">2024</td><td data-field="credit-title">Kiln</td><td data-field="credit-role">Editor</td></tr>
+          <tr><td data-field="credit-year">2024</td><td data-field="credit-title">Lumen Health launch</td><td data-field="credit-role">Director, editor</td></tr>
+          <tr><td data-field="credit-year">2023</td><td data-field="credit-title">Paperplane, issue films (6)</td><td data-field="credit-role">Editor</td></tr>
+          <tr><td data-field="credit-year">2022</td><td data-field="credit-title">Guest Room</td><td data-field="credit-role">Assistant editor</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ===== STILLS: copy one <figure class="still">; replace the inner <div> with an <img> ===== -->
+    <section id="stills">
+      <h2>Stills</h2>
+      <div class="stills">
+        <figure class="still"><div class="s1"></div><figcaption data-field="still-caption">The Last Ferry — dawn crossing</figcaption></figure>
+        <figure class="still"><div class="s2"></div><figcaption data-field="still-caption">Kiln — the studio in winter</figcaption></figure>
+        <figure class="still"><div class="s3"></div><figcaption data-field="still-caption">Northline — kitchen, 6 a.m.</figcaption></figure>
+        <figure class="still"><div class="s4"></div><figcaption data-field="still-caption">Lumen — waiting room</figcaption></figure>
+        <figure class="still"><div class="s5"></div><figcaption data-field="still-caption">Paperplane — press day</figcaption></figure>
+        <figure class="still"><div class="s6"></div><figcaption data-field="still-caption">Guest Room — final frame</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="contact" id="contact">
+      <a class="big" data-field="email" href="mailto:noor@aziz.example">noor@aziz.example</a>
+      <div class="side">
+        <a data-field="vimeo" href="https://vimeo.com/" target="_blank" rel="noopener noreferrer">Vimeo</a>
+        <a data-field="instagram" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <span data-field="rep">Represented by Harbor Reps</span>
+      </div>
+    </section>
+  </main>
+  <a class="template-gallery" href="../../index.html">All templates</a>
+</body>
+</html>
