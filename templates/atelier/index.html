@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Ren Park · Art Director</title>
   <meta name="description" content="Portfolio of Ren Park, an art director based in Los Angeles." />
   <meta name="theme-color" content="#efeae2" />
@@ -181,9 +181,14 @@
     @media (max-width: 760px) {
       header, .hero-foot, .case, .about { grid-template-columns: 1fr; display: grid; }
       header { align-items: start; }
-      nav { flex-wrap: wrap; gap: .7rem 1rem; }
-      .hero { min-height: 0; padding-top: 2rem; }
+      nav { flex-wrap: wrap; gap: 0 .9rem; }
+      nav a, .mark { display: inline-flex; align-items: center; min-height: 44px; }
+      .contact a.huge { display: inline-flex; align-items: center; min-height: 44px; overflow-wrap: anywhere; }
+      .hero { min-height: 0; padding-top: 1.2rem; }
+      h1 { font-size: clamp(2rem, 12vw, 4.2rem); overflow-wrap: anywhere; }
+      .case { min-height: 44px; }
       .case small { grid-column: 1; }
+      .contact { padding-bottom: 4rem; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }

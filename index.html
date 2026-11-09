@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Portfolio Templates</title>
   <meta name="description" content="Single-file HTML portfolio templates. Open one, replace the sample copy, and publish." />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='2' fill='%231c1915'/%3E%3C/svg%3E" />
@@ -19,7 +19,7 @@
       --shadow: 0 16px 40px rgba(40, 32, 20, 0.08);
     }
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     body {
       margin: 0;
       color: var(--ink);
@@ -140,6 +140,9 @@
       padding-top: .45rem;
     }
     .open, .download {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
       text-decoration: none;
       font-weight: 600;
       font-size: .95rem;
@@ -154,10 +157,12 @@
       justify-content: space-between;
       gap: 1rem;
       flex-wrap: wrap;
-      padding: .4rem 0 2.2rem;
+      align-items: center;
+      padding: .4rem 0 calc(1.4rem + env(safe-area-inset-bottom));
       color: var(--muted);
       font-size: .92rem;
     }
+    footer.site a { display: inline-flex; align-items: center; min-height: 44px; }
     @media (max-width: 800px) {
       .grid { grid-template-columns: 1fr; }
       .card.featured { grid-column: auto; }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Ada Mensah · Product Designer</title>
   <meta name="description" content="Case studies by Ada Mensah, a product designer based in London." />
   <meta name="theme-color" content="#f7f6f3" />
@@ -115,8 +115,11 @@
       text-transform: uppercase;
     }
     @media (max-width: 760px) {
-      header { flex-direction: column; align-items: flex-start; }
-      .case { grid-template-columns: 1fr; }
+      header { flex-direction: column; align-items: flex-start; gap: .4rem; }
+      nav a, footer a { display: inline-flex; align-items: center; min-height: 44px; }
+      .case { grid-template-columns: 1fr; gap: .9rem; }
+      .cover { min-height: 160px; }
+      .cover strong { font-size: clamp(1.7rem, 8vw, 2.4rem); overflow-wrap: anywhere; }
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   </style>
