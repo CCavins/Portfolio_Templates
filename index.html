@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio Templates</title>
+  <meta name="description" content="Single-file HTML portfolio templates. Open one, replace the sample copy, and publish." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='2' fill='%231c1915'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper: #e6e0d4;
+      --card: #f6f2ea;
+      --ink: #1c1915;
+      --muted: #5e574c;
+      --line: #d3cbbd;
+      --shadow: 0 16px 40px rgba(40, 32, 20, 0.08);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(900px 420px at 10% -10%, rgba(255,255,255,.7), transparent 60%),
+        var(--paper);
+      font-family: "Instrument Sans", "Avenir Next", "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+    a { color: inherit; }
+    code {
+      font-family: inherit;
+      font-size: .95em;
+      background: rgba(28, 25, 21, .06);
+      padding: .05em .35em;
+      border-radius: 5px;
+    }
+    .wrap { width: min(1120px, calc(100% - 2rem)); margin: 0 auto; }
+    header.site {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: baseline;
+      padding: 1.4rem 0 0;
+      font-size: .82rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .hero { padding: 3.2rem 0 2rem; }
+    h1 {
+      margin: 0;
+      font-family: "Instrument Serif", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(3rem, 7vw, 5.6rem);
+      letter-spacing: -0.035em;
+      line-height: .92;
+    }
+    h1 em { font-style: italic; }
+    .deck {
+      max-width: 38rem;
+      margin: 1.25rem 0 0;
+      font-size: 1.12rem;
+      color: var(--muted);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.1rem;
+      padding-bottom: 2rem;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+    .card.featured { grid-column: 1 / -1; }
+    .preview {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      background: #141414;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+    }
+    .card.featured .preview { aspect-ratio: 16 / 7.4; }
+    .preview iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1280px;
+      height: 800px;
+      border: 0;
+      transform: scale(.4);
+      transform-origin: top left;
+      pointer-events: none;
+      background: #111;
+    }
+    .preview-hit {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+    .preview-hit:focus-visible {
+      outline: 3px solid var(--ink);
+      outline-offset: -3px;
+    }
+    .card-body { padding: 1.05rem 1.15rem 1.2rem; display: flex; flex-direction: column; gap: .55rem; flex: 1; }
+    .card-top { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+    h2 {
+      margin: 0;
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 2rem;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+    }
+    .num { font-size: .78rem; letter-spacing: .14em; color: var(--muted); }
+    .card p { margin: 0; color: var(--muted); }
+    .tags { display: flex; flex-wrap: wrap; gap: .4rem; list-style: none; margin: .2rem 0 0; padding: 0; }
+    .tags li {
+      font-size: .75rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: .28rem .55rem;
+    }
+    .open {
+      margin-top: auto;
+      align-self: flex-start;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: .95rem;
+      border-bottom: 1px solid var(--ink);
+      padding-top: .35rem;
+    }
+    .open:hover { font-style: italic; }
+    .open:focus-visible, a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+    footer.site {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding: .4rem 0 2.2rem;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+    @media (max-width: 800px) {
+      .grid { grid-template-columns: 1fr; }
+      .card.featured { grid-column: auto; }
+      .card.featured .preview { aspect-ratio: 16 / 10; }
+      header.site { flex-direction: column; gap: .35rem; }
+      h1 { font-size: clamp(2.6rem, 12vw, 4rem); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="site">
+      <span>Portfolio Templates</span>
+      <span>Five single-file starts</span>
+    </header>
+    <section class="hero">
+      <h1>Pick a direction.<br /><em>Make it yours.</em></h1>
+      <p class="deck">Each option is one HTML file with fictional sample copy, marked with <code>data-field</code> so you can swap in your own name, work, and links. Open a template, edit the file, and publish it.</p>
+    </section>
+    <section class="grid" aria-label="Template options">
+      <article class="card featured">
+        <div class="preview">
+          <iframe data-preview src="templates/aurora/index.html?preview=1" title="Preview of the Aurora template" loading="eager" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/aurora/index.html" aria-label="View the Aurora template"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top"><h2>Aurora</h2><span class="num">01</span></div>
+          <p>Dark glass panels, a particle field, and an icon rail. For technical program managers, producers, and product people.</p>
+          <ul class="tags"><li>Dark</li><li>Sidebar</li><li>Animated</li></ul>
+          <a class="open" href="templates/aurora/index.html">View template</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="preview">
+          <iframe data-preview src="templates/editorial/index.html?preview=1" title="Preview of the Editorial template" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/editorial/index.html" aria-label="View the Editorial template"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top"><h2>Editorial</h2><span class="num">02</span></div>
+          <p>A paper-and-ink magazine page. For strategists, writers, and anyone whose work reads better than it screenshots.</p>
+          <ul class="tags"><li>Light</li><li>Serif</li><li>Quiet</li></ul>
+          <a class="open" href="templates/editorial/index.html">View template</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="preview">
+          <iframe data-preview src="templates/signal/index.html?preview=1" title="Preview of the Signal template" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/signal/index.html" aria-label="View the Signal template"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top"><h2>Signal</h2><span class="num">03</span></div>
+          <p>A stark engineer’s index. Select a project and the note beside it updates. No cards, no gradients.</p>
+          <ul class="tags"><li>Dark</li><li>Minimal</li><li>Mono</li></ul>
+          <a class="open" href="templates/signal/index.html">View template</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="preview">
+          <iframe data-preview src="templates/atelier/index.html?preview=1" title="Preview of the Atelier template" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/atelier/index.html" aria-label="View the Atelier template"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top"><h2>Atelier</h2><span class="num">04</span></div>
+          <p>Oversized type on a ground that changes color as you move through the work. For art directors and studios.</p>
+          <ul class="tags"><li>Bold</li><li>Color</li><li>Studio</li></ul>
+          <a class="open" href="templates/atelier/index.html">View template</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="preview">
+          <iframe data-preview src="templates/monograph/index.html?preview=1" title="Preview of the Monograph template" loading="lazy" tabindex="-1"></iframe>
+          <a class="preview-hit" href="templates/monograph/index.html" aria-label="View the Monograph template"></a>
+        </div>
+        <div class="card-body">
+          <div class="card-top"><h2>Monograph</h2><span class="num">05</span></div>
+          <p>A sticky monograph cover beside a long list of projects. For architects, researchers, and studios with a body of work.</p>
+          <ul class="tags"><li>Split</li><li>Serif</li><li>Sticky</li></ul>
+          <a class="open" href="templates/monograph/index.html">View template</a>
+        </div>
+      </article>
+    </section>
+    <footer class="site">
+      <span>Sample names and projects are fictional.</span>
+      <span>Remove the “All templates” link before you publish your own site.</span>
+    </footer>
+  </div>
+  <script>
+    function fitPreviews() {
+      document.querySelectorAll("[data-preview]").forEach((frame) => {
+        const box = frame.parentElement;
+        const base = 1280;
+        const scale = box.clientWidth / base;
+        if (!scale) return;
+        frame.style.width = base + "px";
+        frame.style.height = Math.ceil(box.clientHeight / scale) + "px";
+        frame.style.transform = "scale(" + scale + ")";
+      });
+    }
+    const observer = new ResizeObserver(fitPreviews);
+    document.querySelectorAll(".preview").forEach((el) => observer.observe(el));
+    fitPreviews();
+    window.addEventListener("load", fitPreviews);
+  </script>
+</body>
+</html>
